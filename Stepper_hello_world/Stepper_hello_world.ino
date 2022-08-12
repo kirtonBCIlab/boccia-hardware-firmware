@@ -5,7 +5,7 @@
 
 const int num_steps = 200;
 int num_turns = 2;      // Number of turns in each direction
-int turn_duration = 5;  // Turn duration in seconds
+int turn_duration = 3;  // Turn duration in seconds
 int turn_direction = 0; // Boolean for turn direction
 float wait_step;        // Time to wait for each step [usec]
 
@@ -14,9 +14,13 @@ const int pin_dir = 3;
 
 void setup() 
 {
+  // Set pins as outputs
   pinMode(pin_step, OUTPUT);
   pinMode(pin_dir, OUTPUT); 
 
+  // Set pins to low
+  digitalWrite(pin_step, 0);
+  digitalWrite(pin_dir, 0);
   wait_step = 1e6 * turn_duration / (2*num_steps);
 }
 
@@ -25,7 +29,7 @@ void loop()
   digitalWrite(pin_dir, turn_direction);
 
 
-  for(int i=0; i<=num_turns*num_steps; i++)
+  for(int i=0; i<num_turns*num_steps; i++)
   {
     digitalWrite(pin_step, HIGH);
     waitMicros((unsigned long)wait_step);
