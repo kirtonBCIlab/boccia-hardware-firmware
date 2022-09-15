@@ -3,8 +3,8 @@
  * - This scipt takes uses two pins to control a stepper motor
  */
 
-const int num_steps = 200;
-int num_turns = 2;      // Number of turns in each direction
+const int num_steps = 400;
+int num_turns = 1;      // Number of turns in each direction
 int turn_duration = 3;  // Turn duration in seconds
 int turn_direction = 0; // Boolean for turn direction
 float wait_step;        // Time to wait for each step [usec]
@@ -21,7 +21,8 @@ void setup()
   // Set pins to low
   digitalWrite(pin_step, 0);
   digitalWrite(pin_dir, 0);
-  wait_step = 1e6 * turn_duration / (2*num_steps);
+  wait_step = 10000;
+//  wait_step = 1e6 * turn_duration / (2*num_steps);
 }
 
 void loop() 

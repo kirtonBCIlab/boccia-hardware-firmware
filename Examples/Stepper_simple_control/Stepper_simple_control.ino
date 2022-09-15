@@ -17,7 +17,7 @@ AccelStepper nema8(AccelStepper::DRIVER, pin_step, pin_dir);
 void setup() {
   // Set motor parameters
   nema8.setMaxSpeed(1000);    // Speed [steps/sec]
-  nema8.setAcceleration(20);  // Acceleration [steps/sec^2]
+  nema8.setAcceleration(10);  // Acceleration [steps/sec^2]
                               // High values will cause skipping steps
   nema8.setSpeed(400);
 
@@ -50,9 +50,6 @@ void loop() {
     }while(nema8.distanceToGo() != 0);
     Serial.println(" Movement finished\nWaiting for next command...\n");
   }
-
-
-
 }
 
 void waitMillis(unsigned long wait_msec)

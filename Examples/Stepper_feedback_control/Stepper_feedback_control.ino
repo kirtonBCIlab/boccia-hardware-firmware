@@ -11,8 +11,8 @@ bool limit_trigger = 0;
 // Stepper motor variables
 #include <AccelStepper.h>
 
-const int pin_dir = 3;  // Direction pin
-const int pin_step = 2; // Step pin
+const int pin_dir = 52;  // Direction pin
+const int pin_step = 53; // Step pin
 int lim0;               // Lower limit of the stepper motor [steps]
 int lim1;               // Higher limit of the stepper motor [steps]
 int range;              // Range of movement of the stepper [steps]
@@ -21,6 +21,8 @@ int range;              // Range of movement of the stepper [steps]
 AccelStepper nema8(AccelStepper::DRIVER, pin_step, pin_dir);
 
 void setup() {
+  pinMode(pin_dir, OUTPUT);
+  pinMode(pin_step, OUTPUT);
   Serial.begin(9600);
 
   // Set stepper parameters
@@ -39,7 +41,7 @@ void loop() {
     
     // Flush buffer
     for(int i=0; i<Serial.available(); i++)
-    { Serial.read();  }
+    { Serial.read();}
     
     
     if(answer=='c')
@@ -62,8 +64,6 @@ void loop() {
     {}
   }
   
-
-
 }
 
 // Move stepper only within limits
@@ -105,7 +105,9 @@ void calibrationProcess()
   Serial.println("Lower limit found");
   Serial.println("Stepper position: " + String(lim0));
   
-  waitMillis(1000);  
+  waitMillis(200);
+  moveStepper(-15);  // Move away from sensor before next reading
+  waitMillis(500);  
   lim1 = calibrateStepper(-1);
   Serial.println("Upper limit found");
   Serial.println("Stepper position: " + String(lim1)); 
@@ -120,11 +122,14 @@ int calibrateStepper(int stepper_direction)
   float analog_value;
   do
   {
-    nema8.move(5*stepper_direction);
+    nema8.move(25*stepper_direction);
     nema8.run();
     analog_value = analogReader(pin_sense);
   }while(analog_value < analog_threshold);
 
+  nema8.stop();
+  //nema8.move(0);  // Make sure the motor doesn't move after calibrating it
+  //nema8.run;
   int stepper_lim = nema8.currentPosition();
   return stepper_lim;
 }
