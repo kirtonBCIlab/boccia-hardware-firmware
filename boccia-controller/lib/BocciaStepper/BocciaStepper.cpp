@@ -18,6 +18,7 @@
         int step_dir = (relative>0) - (relative<0); // Current direction
         move(nreturn*-step_dir);
         runToPosition();
+        setLimits();
         limit_flag = 0; // Restart flag
       }
 
@@ -35,6 +36,42 @@
 
   void BocciaStepper::setLimits()
   {
+    int temp;
+
+    // Set limits for the first time
+    if (limits[0]==0 && limits[1]==0)
+    { 
+      Serial.println("No limits set");
+      limits[1] = currentPosition();
+      Serial.println("Upper limit = " + String(limits[1]));
+    }
+    else if (limits[0]==0)
+    { 
+      limits[0] = currentPosition();
+      Serial.println("Lower limit = " + String(limits[0]));
+    }
+    else
+    {
+      Serial.println("Limits updated");
+      temp = currentPosition();
+
+      // If higher limit was touched
+      if (abs(limits[1]-temp) < abs(limits[0]-temp))
+      {
+        limits[0] += temp-limits[1];
+        limits[1] = temp; 
+      }
+
+      // Else, lower limit was touched
+      else
+      {
+        limits[1] += temp-limits[0];
+        limits[0] = temp;
+      }
+
+      Serial.println("Low limit =" + String(limits[0]));
+      Serial.println("High limit = " + String(limits[1]));
+      }
 
   }
 
@@ -46,13 +83,6 @@
   void BocciaStepper::setHighLimit()
   {
     limits[1] = currentPosition();
-  }
-
-  void BocciaStepper::findRange()
-  {
-    noInterrupts(); // Disable temporarily for finding range
-    moveRun(nsteps);
-    
   }
 
   void BocciaStepper::setInterruptPin(int pin_sensor)
@@ -92,4 +122,12 @@
     limit_flag = 1;
     setAcceleration(10 * getDefaultAccel());  // Change acceleration to stop quickly
     stop();
+  }
+
+  void BocciaStepper::findRange()
+  {
+    int starting_pos = currentPosition();
+    moveRun(nsteps);
+    moveRun(-nsteps);
+
   }

@@ -9,7 +9,7 @@ class BocciaStepper:public AccelStepper
     int nsteps=200;           // Number of steps for a full rotation
     int nreturn = 1;          // Number of steps to return if limitDetected()
     int pin_interrupt = 2;    // Pin for interrupt
-    int limits[2] = {0};      // Limits [low, high]
+    int limits[2] = {NULL};   // Limits [low, high]
     bool homing_flag = 0;     // Homing flag (raised when homing is finished)
     bool limit_flag = 0;      // Limit flag (raised when an interrupt has activated)
     int default_speed = 200;  // Default speed [steps/sec]
