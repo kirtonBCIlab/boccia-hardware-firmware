@@ -15,16 +15,23 @@ void nema8Limit();
 void waitMillis(unsigned long wait_msec);
 
 void setup() {
-  // put your setup code here, to run once:
+  // Serial communication debugging
   Serial.begin(9600);
   Serial.println("Begin setup");
+
+  // Nema 8 settings
+  nema8.setNoSteps(200);
+  nema8.setReturnSteps(10);
+  nema8.setDefaultSpeed(400);   // Default speed [steps/sec]
+  nema8.setDefaultAccel(10);
   nema8.setMaxSpeed(1000);    // Maximum speed [steps/sec]
-  nema8.setAcceleration(10);  // Acceleration [steps/sec^2]
-  nema8.setSpeed(400);        // Speed [steps/sec]
   nema8.setInterruptPin(2);
+  nema8.setNoSteps(200);      // Number of steps for complete rotation [steps]
 
   // Interrupts
   attachInterrupt(digitalPinToInterrupt(nema8.getInterruptPin()), nema8Limit, RISING);
+
+  Serial.println("Start position: " + String(nema8.currentPosition()));
 }
 
 void loop() 
