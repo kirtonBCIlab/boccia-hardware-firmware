@@ -31,14 +31,22 @@ void setup() {
   // Interrupts
   attachInterrupt(digitalPinToInterrupt(nema8.getInterruptPin()), nema8Limit, RISING);
 
-  Serial.println("Start position: " + String(nema8.currentPosition()));
+  Serial.println("Begin calibration");
+  nema8.findRange();
+  Serial.println("End calibration\nInput steps to move...");
+
 }
 
 void loop() 
 {
-  nema8.moveRun(n_steps*dir);
+  if (Serial.available())
+  {
+    n_steps = Serial.parseInt();
+    Serial.println("Moving " + String(n_steps) + " steps");
+    nema8.moveRun(n_steps);
+
+  }
   waitMillis(500);
-  dir = dir * -1;
 }
 
 void nema8Limit()
