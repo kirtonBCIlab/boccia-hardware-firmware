@@ -7,11 +7,31 @@
       setSpeed(getDefaultSpeed());
       setAcceleration(getDefaultAccel());
     
-      // Set movement and get there
-      move(relative);
-      runToPosition();
+      // If limits exist, make sure requested movement is within limits
+      if (limits[0]!=0 && limits[1]!=0)
+      {
+        long end_position = relative + currentPosition(); 
+        if (end_position < limits[0])
+          {
+            Serial.println("The requested movement will hit the lower limit\nReadjusting value");
+            relative = limits[0] - currentPosition(); 
+          }
+        else if (end_position > limits[1])
+          {
+            Serial.println("The requested movement will hit the higher limit\nReadjusting value");
+            relative = limits[1] - currentPosition();
+          }
+      }
 
-      // If limit detected
+      // Set movement and get there
+      if (relative!=0)
+      {
+        move(relative);
+        runToPosition();
+      }
+      
+
+      // If limit detected, quickly stop
       if (limit_flag)
       {
         setAcceleration(default_accel);
@@ -45,11 +65,13 @@
       limits[1] = currentPosition();
       Serial.println("Upper limit = " + String(limits[1]));
     }
+    // Set lower limit if higher limit is already set
     else if (limits[0]==0)
     { 
       limits[0] = currentPosition();
       Serial.println("Lower limit = " + String(limits[0]));
     }
+    // Update limits
     else
     {
       Serial.println("Limits updated");
@@ -73,16 +95,6 @@
       Serial.println("High limit = " + String(limits[1]));
       }
 
-  }
-
-  void BocciaStepper::setLowLimit()
-  {
-    limits[0] = currentPosition();
-  }
-
-  void BocciaStepper::setHighLimit()
-  {
-    limits[1] = currentPosition();
   }
 
   void BocciaStepper::setInterruptPin(int pin_sensor)

@@ -16,8 +16,6 @@ class BocciaStepper:public AccelStepper
     int default_accel = 10;   // Default acceleration [steps/(sec^2)]
 
     void setLimits();
-    void setLowLimit();
-    void setHighLimit();
   
   using AccelStepper::AccelStepper;
   

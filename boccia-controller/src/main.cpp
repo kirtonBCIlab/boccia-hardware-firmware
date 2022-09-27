@@ -42,6 +42,14 @@ void loop()
   if (Serial.available())
   {
     n_steps = Serial.parseInt();
+    
+    // Empty serial port
+    for (int n=0; n<Serial.available(); n++)
+    {
+      Serial.read();
+    }
+    
+    Serial.println("Current position: " + String(nema8.currentPosition()));
     Serial.println("Moving " + String(n_steps) + " steps");
     nema8.moveRun(n_steps);
 
