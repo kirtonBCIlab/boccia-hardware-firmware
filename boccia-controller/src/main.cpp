@@ -15,13 +15,13 @@ int pwm_speed = 255;
 LinearStepper inclineActuator(pin1, pin2, pin_sensor, pwm_speed);
 
 // Define Nema8
-int pin_step = 53;
-int pin_dir = 52;
+int pin_step = 52;
+int pin_dir = 53;
 BocciaStepper nema8(AccelStepper::DRIVER, pin_step, pin_dir);
 
 // Prototype functions
-void nema8Limit();
-void waitMillis(unsigned long wait_msec);
+// void nema8Limit();
+// void waitMillis(unsigned long wait_msec);
 
 void setup() {
   // Serial communication debugging
@@ -40,7 +40,7 @@ void setup() {
   nema8.setNoSteps(200);      // Number of steps for complete rotation [steps]
 
   // Interrupts
-  attachInterrupt(digitalPinToInterrupt(nema8.getInterruptPin()), nema8Limit, RISING);
+  // attachInterrupt(digitalPinToInterrupt(nema8.getInterruptPin()), nema8Limit, RISING);
 
   // Serial.println("Begin calibration");
   // nema8.findRange();
@@ -71,10 +71,10 @@ void loop()
   // waitMillis(500);
 }
 
-void nema8Limit()
-{
-  nema8.limitDetected();
-}
+// void nema8Limit()
+// {
+//   nema8.limitDetected();
+// }
 
 // void waitMillis(unsigned long wait_msec)
 // {

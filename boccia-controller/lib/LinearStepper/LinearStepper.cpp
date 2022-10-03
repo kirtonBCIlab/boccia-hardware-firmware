@@ -55,11 +55,12 @@
     {   
         Serial.println("Extending...");
         float a = moveToLimit(1);
-        Serial.println(String(a));
-        waitMillis(500);
+        Serial.println("Extension limit = " + String(a));
+        waitMillis(2000);
         Serial.println("Retracting...");
         float b = moveToLimit(-1);
-        Serial.println(String(b));
+        Serial.println("Retraction limit = " + String(b));
+        waitMillis(2000);
     }
 
     void LinearStepper::moveToPercentage()
