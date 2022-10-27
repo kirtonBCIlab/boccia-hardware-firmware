@@ -1,4 +1,4 @@
-#include "BocciaStepper.h"
+#include <BocciaStepper.h>
 #include <AccelStepper.h>
   
   void BocciaStepper::moveRun(long relative)
@@ -138,7 +138,7 @@
 
   void BocciaStepper::findRange()
   {
-    int starting_pos = currentPosition();
+    // int starting_pos = currentPosition();
     moveRun(nsteps);
     moveRun(-nsteps);
 

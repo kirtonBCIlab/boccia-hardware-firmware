@@ -32,14 +32,30 @@
 
     float LinearStepper::resistanceToPercentage(float resistance)
     {
-        float a = 0.0;
-        return a;
+        int range[2] = {0, 100};        // Range of motion for normalization [%]
+
+        float num = range[1]*(resistance-_limits[0]) + range[0]*(_limits[1]-resistance);
+        float den = _limits[1] - _limits[0];
+        float percentage = num/den;
+
+        return percentage;
+    }
+
+    float LinearStepper::percentageToResistance(float percentage)
+    {
+        int range[2] = {0, 100};        // Range of motion for normalization [%]
+
+        float num = _limits[1]*(percentage-range[0]) + _limits[0]*(range[1]-percentage);
+        float den = range[1] - range[0];
+        float resistance = num/den;
+
+        return resistance;
     }
 
     float LinearStepper::moveToLimit(int direction)
     {
-        int prev_reading=0;
-        int curr_reading=0;
+        int prev_reading = 0;
+        int curr_reading = 0;
 
         do{
             prev_reading = curr_reading;
@@ -53,18 +69,23 @@
 
     void LinearStepper::findRange()
     {   
-        Serial.println("Extending...");
-        float a = moveToLimit(1);
-        Serial.println("Extension limit = " + String(a));
-        waitMillis(2000);
         Serial.println("Retracting...");
-        float b = moveToLimit(-1);
-        Serial.println("Retraction limit = " + String(b));
+        _limits[0] = moveToLimit(-1);
+        Serial.println("Retraction limit = " + String(_limits[0]));
+        waitMillis(2000);
+
+        Serial.println("Extending...");
+        _limits[1] = moveToLimit(1);
+        Serial.println("Extension limit = " + String(_limits[1]));
         waitMillis(2000);
     }
 
-    void LinearStepper::moveToPercentage()
+    void LinearStepper::moveToPercentage(float percentage)
     {
+        int curr_reading = analogRead(_pin_sensor);
+        float resistance = percentageToResistance(percentage); 
+
+        Serial.println("Moved to " + String(resistance));
 
     }
 

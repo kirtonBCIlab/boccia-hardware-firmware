@@ -1,4 +1,3 @@
-
 #include <Arduino.h>
 
 void waitMillis(unsigned long wait_msec)

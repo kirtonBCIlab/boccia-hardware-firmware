@@ -3,6 +3,7 @@
 #include <BocciaStepper.h>
 #include <LinearStepper.h>
 #include <Functions.h>
+#include <AccelStepper.h>
 
 int n_steps = 200;
 int dir = 1;
@@ -39,36 +40,40 @@ void setup() {
   nema8.setInterruptPin(2);
   nema8.setNoSteps(200);      // Number of steps for complete rotation [steps]
 
+  // Set NEMA inputs to ground
+  digitalWrite(pin_dir, 0);
+  digitalWrite(pin_step, 0);
+
   // Interrupts
   // attachInterrupt(digitalPinToInterrupt(nema8.getInterruptPin()), nema8Limit, RISING);
 
   // Serial.println("Begin calibration");
   // nema8.findRange();
-  // inclineActuator.findRange();
-  // Serial.println("End calibration\nInput steps to move...");
+  inclineActuator.findRange();
+  Serial.println("End calibration\nInput steps to move...");
 
 }
 
 void loop() 
 {
-  inclineActuator.findRange();
 
-  // if (Serial.available())
-  // {
-  //   n_steps = Serial.parseInt();
+  if (Serial.available())
+  {
+    n_steps = Serial.parseInt();
     
-  //   // Empty serial port
-  //   for (int n=0; n<Serial.available(); n++)
-  //   {
-  //     Serial.read();
-  //   }
+    // Empty serial port
+    for (int n=0; n<Serial.available(); n++)
+    {
+      Serial.read();
+    }
     
-  //   Serial.println("Current position: " + String(nema8.currentPosition()));
-  //   Serial.println("Moving " + String(n_steps) + " steps");
-  //   nema8.moveRun(n_steps);
+    inclineActuator.moveToPercentage(n_steps);
+    // Serial.println("Current position: " + String(nema8.currentPosition()));
+    // Serial.println("Moving " + String(n_steps) + " steps");
+    // nema8.moveRun(n_steps);
 
-  // }
-  // waitMillis(500);
+  }
+  waitMillis(500);
 }
 
 // void nema8Limit()
@@ -76,14 +81,15 @@ void loop()
 //   nema8.limitDetected();
 // }
 
-// void waitMillis(unsigned long wait_msec)
+// void decodeCommand()
 // {
-//     unsigned long deltaT, t0, t1 = 0;
-//     t0 = millis();
-    
-//     do
-//     {
-//       t1 = millis();
-//       deltaT = t1-t0;
-//     }while(deltaT < wait_msec);
+//   long command = Serial.parseInt();
+
+//   // Empty serial port
+//   for (int n=0; n<Serial.available(); n++)
+//   {
+//     Serial.read();
+//   }
+
+//   // Determine direction of movement
 // }
