@@ -14,19 +14,19 @@
         switch(direction)
         {
             case 1:       //extension
-            analogWrite(_pin2, _pwm_speed);
-            analogWrite(_pin1, 0);
-            break;
+                analogWrite(_pin2, _pwm_speed);
+                analogWrite(_pin1, 0);
+                break;
         
             case 0:       //stopping
-            analogWrite(_pin2, 0);
-            analogWrite(_pin1, 0);
-            break;
+                analogWrite(_pin2, 0);
+                analogWrite(_pin1, 0);
+                break;
 
             case -1:      //retraction
-            analogWrite(_pin2, 0);
-            analogWrite(_pin1, _pwm_speed);
-            break;
+                analogWrite(_pin2, 0);
+                analogWrite(_pin1, _pwm_speed);
+                break;
         }
     }
 
@@ -83,9 +83,35 @@
     void LinearStepper::moveToPercentage(float percentage)
     {
         int curr_reading = analogRead(_pin_sensor);
+        Serial.println("Current: " + String(curr_reading));
         float resistance = percentageToResistance(percentage); 
+        Serial.println("Target: " + String(resistance));
+        int direction = signum(resistance, float(curr_reading));
 
-        Serial.println("Moved to " + String(resistance));
+        switch (direction)
+        {
+            case 1:
+                while (curr_reading < resistance)
+                {
+                    driveActuator(direction);
+                    curr_reading = analogRead(_pin_sensor);
+                }
+                break;
+            case -1:
+                while (curr_reading > resistance)
+                {
+                    driveActuator(direction);
+                    curr_reading = analogRead(_pin_sensor);
+                }
+                break;
+            case 0:
+                break;
+        }
+
+        driveActuator(0); // Stop motor
+        waitMillis(100);
+
+        Serial.println("Moved to " + String(analogRead(_pin_sensor)));
 
     }
 
