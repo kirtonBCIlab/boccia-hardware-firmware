@@ -50,9 +50,9 @@ void setup() {
   nema8.findRange();
   Serial.println("NEMA8 - Calibration ended");
 
-  // Serial.println("Calibrating -  linear actuator");
-  // inclineActuator.findRange();
-  // Serial.println("Linear actuator - Calibration ended");
+  Serial.println("Calibrating -  linear actuator");
+  inclineActuator.findRange();
+  Serial.println("Linear actuator - Calibration ended");
 
   Serial.println("Select motor and movement...");
 }
@@ -99,7 +99,7 @@ void decodeCommand()
 
   // Determine which motor to move
   int motor_select = 1000;  // Units to select motor and determine movement
-  int motor = floor(command/motor_select);
+  int motor = abs(floor(command/motor_select));
   float movement = command % motor_select;
   String motor_name;
 
