@@ -50,9 +50,9 @@ void setup() {
   nema8.findRange();
   Serial.println("NEMA8 - Calibration ended");
 
-  Serial.println("Calibrating -  linear actuator");
-  inclineActuator.findRange();
-  Serial.println("Linear actuator - Calibration ended");
+  // Serial.println("Calibrating -  linear actuator");
+  // inclineActuator.findRange();
+  // Serial.println("Linear actuator - Calibration ended");
 
   Serial.println("Select motor and movement...");
 }
@@ -116,6 +116,7 @@ void decodeCommand()
     break;
 
   default:
+    Serial.println("Wrong command: " + String(command));
     break;
   }
 
