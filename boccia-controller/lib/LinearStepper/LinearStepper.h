@@ -25,7 +25,11 @@ class LinearStepper
         void setSensorPin(int pin);
         int getSensorPin();
 
-        void moveToPercentage(float percentage);
+        /// @brief Moves linear actuator to a percentage of the full range.
+        /// Note: needs findRange() function to be run first.
+        /// @param percentage Percentage of extension or retraction [0-100].
+        void moveToPercentage(long percentage);
+
         void findRange();
 
 };

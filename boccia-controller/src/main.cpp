@@ -21,15 +21,14 @@ int pin_dir = 53;
 BocciaStepper nema8(AccelStepper::DRIVER, pin_step, pin_dir);
 
 // Prototype functions
-// void nema8Limit();
-// void waitMillis(unsigned long wait_msec);
+void nema8Limit();
+void waitMillis(unsigned long wait_msec);
+void decodeCommand();
 
 void setup() {
   // Serial communication debugging
   Serial.begin(9600);
   Serial.println("Begin setup");
-
-  // Incline actuator settings
 
   // Nema 8 settings
   nema8.setNoSteps(200);
@@ -45,51 +44,84 @@ void setup() {
   digitalWrite(pin_step, 0);
 
   // Interrupts
-  // attachInterrupt(digitalPinToInterrupt(nema8.getInterruptPin()), nema8Limit, RISING);
+  attachInterrupt(digitalPinToInterrupt(nema8.getInterruptPin()), nema8Limit, RISING);
 
-  // Serial.println("Begin calibration");
-  // nema8.findRange();
+  Serial.println("Calibrating - NEMA8");
+  nema8.findRange();
+  Serial.println("NEMA8 - Calibration ended");
+
+  Serial.println("Calibrating -  linear actuator");
   inclineActuator.findRange();
-  Serial.println("End calibration\nInput steps to move...");
+  Serial.println("Linear actuator - Calibration ended");
 
+  Serial.println("Select motor and movement...");
 }
 
 void loop() 
 {
-
   if (Serial.available())
   {
-    n_steps = Serial.parseInt();
-    
-    // Empty serial port
-    for (int n=0; n<Serial.available(); n++)
-    {
-      Serial.read();
-    }
-    
-    inclineActuator.moveToPercentage(n_steps);
-    // Serial.println("Current position: " + String(nema8.currentPosition()));
-    // Serial.println("Moving " + String(n_steps) + " steps");
-    // nema8.moveRun(n_steps);
-
+    decodeCommand();
   }
-  waitMillis(500);
+  // if (Serial.available())
+  // {
+  //   n_steps = Serial.parseInt();
+    
+  //   // Empty serial port
+  //   for (int n=0; n<Serial.available(); n++)
+  //   {
+  //     Serial.read();
+  //   }
+    
+  //   inclineActuator.moveToPercentage(n_steps);
+  //   // Serial.println("Current position: " + String(nema8.currentPosition()));
+  //   // Serial.println("Moving " + String(n_steps) + " steps");
+  //   // nema8.moveRun(n_steps);
+
+  // }
+  waitMillis(250);
 }
 
-// void nema8Limit()
-// {
-//   nema8.limitDetected();
-// }
+void nema8Limit()
+{
+  nema8.limitDetected();
+}
 
-// void decodeCommand()
-// {
-//   long command = Serial.parseInt();
+void decodeCommand()
+{
+  long command = Serial.parseInt();
 
-//   // Empty serial port
-//   for (int n=0; n<Serial.available(); n++)
-//   {
-//     Serial.read();
-//   }
+  // Empty serial port
+  for (int n=0; n<Serial.available(); n++)
+  {
+    Serial.read();
+  }
 
-//   // Determine direction of movement
-// }
+  // Determine which motor to move
+  int motor_select = 1000;  // Units to select motor and determine movement
+  int motor = floor(command/motor_select);
+  float movement = command % motor_select;
+  String motor_name;
+
+  switch (motor)
+  {
+  case 1:
+    inclineActuator.moveToPercentage(movement);
+    motor_name = "Incline actuator";
+    break;
+
+  case 2:
+    nema8.moveRun(movement);
+    motor_name = "NEMA8";
+    break;
+
+  default:
+    break;
+  }
+
+  Serial.println("Movement request: ");
+  Serial.println("- Motor: " + motor_name);
+  Serial.println("- Movement: " + String(movement));
+
+  Serial.println("\nSelect motor and movement...");
+}

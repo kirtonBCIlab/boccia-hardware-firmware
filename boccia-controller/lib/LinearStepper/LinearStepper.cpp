@@ -80,7 +80,7 @@
         waitMillis(2000);
     }
 
-    void LinearStepper::moveToPercentage(float percentage)
+    void LinearStepper::moveToPercentage(long percentage)
     {
         int curr_reading = analogRead(_pin_sensor);
         Serial.println("Current: " + String(curr_reading));
