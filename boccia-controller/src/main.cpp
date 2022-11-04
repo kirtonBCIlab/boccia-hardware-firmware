@@ -1,7 +1,7 @@
 // Include libraries
 #include <Arduino.h>
 #include <BocciaStepper.h>
-#include <LinearStepper.h>
+#include <LinearActuator.h>
 #include <Functions.h>
 #include <AccelStepper.h>
 
@@ -12,8 +12,9 @@ int dir = 1;
 int pin1 = 4;
 int pin2 = 5;
 int pin_sensor = 0;
-int pwm_speed = 255;
-LinearStepper inclineActuator(pin1, pin2, pin_sensor, pwm_speed);
+int speed_threshold = 15;
+int speed_factor = 50;
+LinearActuator inclineActuator(pin1, pin2, pin_sensor, speed_threshold, speed_factor);
 
 // Define Nema8
 int pin_step = 52;
@@ -46,9 +47,9 @@ void setup() {
   // Interrupts
   attachInterrupt(digitalPinToInterrupt(nema8.getInterruptPin()), nema8Limit, RISING);
 
-  Serial.println("Calibrating - NEMA8");
-  nema8.findRange();
-  Serial.println("NEMA8 - Calibration ended");
+  // Serial.println("Calibrating - NEMA8");
+  // nema8.findRange();
+  // Serial.println("NEMA8 - Calibration ended");
 
   Serial.println("Calibrating -  linear actuator");
   inclineActuator.findRange();

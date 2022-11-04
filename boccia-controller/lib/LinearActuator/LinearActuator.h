@@ -1,9 +1,9 @@
-#ifndef LINEARSTEPPER_H
-#define LINEARSTEPPER_H
+#ifndef LinearActuator_H
+#define LinearActuator_H
 #include <AccelStepper.h>
 #include <Arduino.h>
 
-class LinearStepper
+class LinearActuator
 {
     private:
         int _pin1;                  // Pin 1 for motor driver, PWM driven
@@ -13,6 +13,8 @@ class LinearStepper
         int _pwm_speed;             // PWM speed [0 to 255]
         bool _homing_flag = 0;      // Homing flag (raised when homing is finished)
         int _limits[2] = {0};       // Limits [low, high]. Min = 0, Max = 2^10
+        int _speed_threshold;       // Threshold to switch between full speed and speed_factor [%]
+        int _speed_factor;          // Percentage to reduce speed to if requested movement < _speed_threshold [%]
 
         /// @brief Drives the actuator in the desired direction. Change
         /// the speed with _pwm_speed 
@@ -32,7 +34,13 @@ class LinearStepper
         float moveToLimit(int direction);
 
     public:
-        LinearStepper(int pin1, int pin2, int pin_sensor, int pwm_speed);
+        /// @brief Creates a linear actuator object
+        /// @param pin1 PWM pin 1 to drive motor (Active = retract)
+        /// @param pin2 PWM pin 2 to drive motor (Active = extend)
+        /// @param pin_sensor Analog pin to read potentiometer
+        /// @param speed_threshold Threshold to switch between full speed and speed_factor [%]
+        /// @param speed_factor Percentage to reduce speed to if requested movement < speed_threshold [%]
+        LinearActuator(int pin1, int pin2, int pin_sensor, int speed_threshold, int speed_factor);
 
         void setSensorPin(int pin);
         int getSensorPin();
