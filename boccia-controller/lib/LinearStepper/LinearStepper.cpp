@@ -82,6 +82,12 @@
 
     void LinearStepper::moveToPercentage(long percentage)
     {
+        // First, avoid going over the limits
+        if (percentage>100)
+        {   percentage = 100;   }
+        else if (percentage<0)
+        {   percentage = 0;     }
+
         int curr_reading = analogRead(_pin_sensor);
         Serial.println("Current: " + String(curr_reading));
         float resistance = percentageToResistance(percentage); 

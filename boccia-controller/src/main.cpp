@@ -120,6 +120,7 @@ void decodeCommand()
     break;
   }
 
+  Serial.println("\nCommand received: " + String(command));
   Serial.println("Movement request: ");
   Serial.println("- Motor: " + motor_name);
   Serial.println("- Movement: " + String(movement));
