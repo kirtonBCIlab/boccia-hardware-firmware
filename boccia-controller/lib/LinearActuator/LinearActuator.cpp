@@ -1,15 +1,16 @@
-#include <LinearStepper.h>
+#include <LinearActuator.h>
 #include <Functions.h>
 
-    LinearStepper::LinearStepper(int pin_1, int pin_2, int pin_sensor, int pwm_speed)
+    LinearActuator::LinearActuator(int pin_1, int pin_2, int pin_sensor, int speed_threshold, int speed_factor)
     {
         _pin1 = pin_1;
         _pin2 = pin_2;
         _pin_sensor = pin_sensor;
-        _pwm_speed = pwm_speed;
+        _speed_threshold = speed_threshold;
+        _speed_factor = speed_factor;   
     }
 
-    void LinearStepper::driveActuator(int direction)
+    void LinearActuator::driveActuator(int direction)
     {
         switch(direction)
         {
@@ -30,7 +31,7 @@
         }
     }
 
-    float LinearStepper::resistanceToPercentage(float resistance)
+    float LinearActuator::resistanceToPercentage(float resistance)
     {
         int range[2] = {0, 100};        // Range of motion for normalization [%]
 
@@ -41,7 +42,7 @@
         return percentage;
     }
 
-    float LinearStepper::percentageToResistance(float percentage)
+    float LinearActuator::percentageToResistance(float percentage)
     {
         int range[2] = {0, 100};        // Range of motion for normalization [%]
 
@@ -52,8 +53,9 @@
         return resistance;
     }
 
-    float LinearStepper::moveToLimit(int direction)
+    float LinearActuator::moveToLimit(int direction)
     {
+        _pwm_speed = 255;   // Move to limit with full speed
         int prev_reading = 0;
         int curr_reading = 0;
 
@@ -67,7 +69,7 @@
         return curr_reading;
     }
 
-    void LinearStepper::findRange()
+    void LinearActuator::findRange()
     {   
         Serial.println("Retracting...");
         _limits[0] = moveToLimit(-1);
@@ -80,7 +82,7 @@
         waitMillis(2000);
     }
 
-    void LinearStepper::moveToPercentage(long percentage)
+    void LinearActuator::moveToPercentage(long percentage)
     {
         // First, avoid going over the limits
         if (percentage>100)
@@ -93,6 +95,14 @@
         float resistance = percentageToResistance(percentage); 
         Serial.println("Target: " + String(resistance));
         int direction = signum(resistance, float(curr_reading));
+
+        // If target is below threshold, reduce speed (i.e., fine movements)
+        int move_percentage = abs(resistanceToPercentage(curr_reading) - percentage);
+        if (move_percentage <= _speed_threshold)
+            {   _pwm_speed = int(floor(255 * _speed_factor / 100)); }
+        else
+            {   _pwm_speed = 255;   }
+
 
         switch (direction)
         {
