@@ -23,6 +23,7 @@ BocciaStepper nema8(AccelStepper::DRIVER, pin_step, pin_dir);
 
 // Prototype functions
 void nema8Limit();
+void inclineLimit();
 void waitMillis(unsigned long wait_msec);
 void decodeCommand();
 
@@ -46,10 +47,11 @@ void setup() {
 
   // Interrupts
   attachInterrupt(digitalPinToInterrupt(nema8.getInterruptPin()), nema8Limit, RISING);
+  attachInterrupt(digitalPinToInterrupt(inclineActuator.getSensorPin()), inclineLimit, RISING);
 
-  // Serial.println("Calibrating - NEMA8");
-  // nema8.findRange();
-  // Serial.println("NEMA8 - Calibration ended");
+  Serial.println("Calibrating - NEMA8");
+  nema8.findRange();
+  Serial.println("NEMA8 - Calibration ended");
 
   Serial.println("Calibrating -  linear actuator");
   inclineActuator.findRange();
@@ -86,6 +88,11 @@ void loop()
 void nema8Limit()
 {
   nema8.limitDetected();
+}
+
+void inclineLimit()
+{
+  inclineActuator.limitDetected();
 }
 
 void decodeCommand()

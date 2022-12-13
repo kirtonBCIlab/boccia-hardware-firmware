@@ -1,10 +1,11 @@
 #include <LinearActuator.h>
 #include <Functions.h>
 
-    LinearActuator::LinearActuator(int pin_1, int pin_2, int pin_sensor, int speed_threshold, int speed_factor)
+    LinearActuator::LinearActuator(int pin_1, int pin_2, int pin_pot, int speed_threshold, int speed_factor, int pin_sensor=18)
     {
         _pin1 = pin_1;
         _pin2 = pin_2;
+        _pin_pot = pin_pot;
         _pin_sensor = pin_sensor;
         _speed_threshold = speed_threshold;
         _speed_factor = speed_factor;   
@@ -63,7 +64,7 @@
             prev_reading = curr_reading;
             driveActuator(direction);
             waitMillis(200);    // Keep moving until the reading is stable for 200 msec
-            curr_reading = analogRead(_pin_sensor);
+            curr_reading = analogRead(_pin_pot);
         }while(prev_reading != curr_reading);
 
         return curr_reading;
@@ -90,7 +91,7 @@
         else if (percentage<0)
         {   percentage = 0;     }
 
-        int curr_reading = analogRead(_pin_sensor);
+        int curr_reading = analogRead(_pin_pot);
         Serial.println("Current: " + String(curr_reading));
         float resistance = percentageToResistance(percentage); 
         Serial.println("Target: " + String(resistance));
@@ -110,14 +111,14 @@
                 while (curr_reading < resistance)
                 {
                     driveActuator(direction);
-                    curr_reading = analogRead(_pin_sensor);
+                    curr_reading = analogRead(_pin_pot);
                 }
                 break;
             case -1:
                 while (curr_reading > resistance)
                 {
                     driveActuator(direction);
-                    curr_reading = analogRead(_pin_sensor);
+                    curr_reading = analogRead(_pin_pot);
                 }
                 break;
             case 0:
@@ -127,8 +128,22 @@
         driveActuator(0); // Stop motor
         waitMillis(100);
 
-        Serial.println("Moved to " + String(analogRead(_pin_sensor)));
+        Serial.println("Moved to " + String(analogRead(_pin_pot)));
 
+    }
+
+    int LinearActuator::getSensorPin()
+    {
+        return _pin_sensor;
+    }
+
+    float LinearActuator::limitDetected()
+    {
+        driveActuator(0);                           // Stop motor
+        float curr_reading = analogRead(_pin_pot);  // Read potentiometer
+        Serial.println("Sensor pressed");
+
+        return curr_reading;
     }
 
 
