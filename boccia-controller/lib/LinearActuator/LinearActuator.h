@@ -10,6 +10,7 @@ class LinearActuator
         int _pin2;                  // Pin 2 for motor driver, PWM driven
         int _pin_pot;               // Pin for the potentiometer
         int _pin_sensor;            // Pin for analog sensor [optional]
+        bool _pin_sensor_flag;      // Flag to know if sensor is not default value
         float _stroke_length;       // Stroke length [in]
         int _pwm_speed;             // PWM speed [0 to 255]
         bool _homing_flag = 0;      // Homing flag (raised when homing is finished)
@@ -42,7 +43,7 @@ class LinearActuator
         /// @param speed_threshold Threshold to switch between full speed and speed_factor [%]
         /// @param speed_factor Percentage to reduce speed to if requested movement < speed_threshold [%]
         /// @param pin_sensor Pin number for the force sensor [optional]
-        LinearActuator(int pin1, int pin2, int pin_pot, int speed_threshold, int speed_factor, int pin_sensor=18);
+        LinearActuator(int pin1, int pin2, int pin_pot, int speed_threshold, int speed_factor, int pin_sensor=0);
 
         /// @brief Returns pin of the pressure sensor
         int getSensorPin();

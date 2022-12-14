@@ -1,14 +1,22 @@
 #include <LinearActuator.h>
 #include <Functions.h>
 
-    LinearActuator::LinearActuator(int pin_1, int pin_2, int pin_pot, int speed_threshold, int speed_factor, int pin_sensor=18)
+    LinearActuator::LinearActuator(int pin_1, int pin_2, int pin_pot, int speed_threshold, int speed_factor, int pin_sensor=0)
     {
         _pin1 = pin_1;
         _pin2 = pin_2;
         _pin_pot = pin_pot;
-        _pin_sensor = pin_sensor;
+        _pin_sensor = pin_sensor;        
         _speed_threshold = speed_threshold;
-        _speed_factor = speed_factor;   
+        _speed_factor = speed_factor;
+        _pin_sensor_flag = false;
+
+        // Enable sensor flag if _pin_sensor is not default
+        if (_pin_sensor != 0)
+        {
+            _pin_sensor_flag = true;
+            Serial.println("Pin sensor active");
+        }   
     }
 
     void LinearActuator::driveActuator(int direction)
@@ -59,13 +67,19 @@
         _pwm_speed = 255;   // Move to limit with full speed
         int prev_reading = 0;
         int curr_reading = 0;
+        bool sensor_pressed;
 
+        // Keep moving until the reading is stable for X msec or sensor active
+        // If object was created with no sensor, the second part of the while check statement is discarded
         do{
             prev_reading = curr_reading;
             driveActuator(direction);
-            waitMillis(200);    // Keep moving until the reading is stable for 200 msec
+            waitMillis(50);   
             curr_reading = analogRead(_pin_pot);
-        }while(prev_reading != curr_reading);
+            sensor_pressed = digitalReadDebounce(_pin_sensor, 20);
+        }while((prev_reading!=curr_reading) && !(_pin_sensor_flag && sensor_pressed));
+
+        driveActuator(0);   // Stop actuator once you have reached the limit
 
         return curr_reading;
     }
