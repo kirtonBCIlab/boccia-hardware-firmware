@@ -50,7 +50,7 @@ class LinearActuator
         /// @brief Moves linear actuator to a percentage of the full range.
         /// Note: needs findRange() function to be run first.
         /// @param percentage Percentage of extension or retraction [0-100].
-        void moveToPercentage(long percentage);
+        void moveToPercentage(int percentage);
 
         void findRange();
 

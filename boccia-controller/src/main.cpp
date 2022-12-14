@@ -108,7 +108,7 @@ void decodeCommand()
   // Determine which motor to move
   int motor_select = 1000;  // Units to select motor and determine movement
   int motor = abs(floor(command/motor_select));
-  float movement = command % motor_select;
+  int movement = command % motor_select;
   String motor_name;
 
   switch (motor)

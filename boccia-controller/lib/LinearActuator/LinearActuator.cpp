@@ -83,13 +83,19 @@
         waitMillis(2000);
     }
 
-    void LinearActuator::moveToPercentage(long percentage)
+    void LinearActuator::moveToPercentage(int percentage)
     {
         // First, avoid going over the limits
         if (percentage>100)
-        {   percentage = 100;   }
+        {   
+            Serial.println("Movement requested over 100%, will limit to 100%");
+            percentage = 100;   
+        }
         else if (percentage<0)
-        {   percentage = 0;     }
+        {   
+            Serial.println("Movement requested under 0%, will limit to 0%");
+            percentage = 0;     
+        }
 
         int curr_reading = analogRead(_pin_pot);
         Serial.println("Current: " + String(curr_reading));
