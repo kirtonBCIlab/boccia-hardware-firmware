@@ -1,13 +1,22 @@
 #include <LinearActuator.h>
 #include <Functions.h>
 
-    LinearActuator::LinearActuator(int pin_1, int pin_2, int pin_sensor, int speed_threshold, int speed_factor)
+    LinearActuator::LinearActuator(int pin_1, int pin_2, int pin_pot, int speed_threshold, int speed_factor, int pin_sensor=0)
     {
         _pin1 = pin_1;
         _pin2 = pin_2;
-        _pin_sensor = pin_sensor;
+        _pin_pot = pin_pot;
+        _pin_sensor = pin_sensor;        
         _speed_threshold = speed_threshold;
-        _speed_factor = speed_factor;   
+        _speed_factor = speed_factor;
+        _pin_sensor_flag = false;
+
+        // Enable sensor flag if _pin_sensor is not default
+        if (_pin_sensor != 0)
+        {
+            _pin_sensor_flag = true;
+            Serial.println("Pin sensor active");
+        }   
     }
 
     void LinearActuator::driveActuator(int direction)
@@ -58,13 +67,19 @@
         _pwm_speed = 255;   // Move to limit with full speed
         int prev_reading = 0;
         int curr_reading = 0;
+        bool sensor_pressed;
 
+        // Keep moving until the reading is stable for X msec or sensor active
+        // If object was created with no sensor, the second part of the while check statement is discarded
         do{
             prev_reading = curr_reading;
             driveActuator(direction);
-            waitMillis(200);    // Keep moving until the reading is stable for 200 msec
-            curr_reading = analogRead(_pin_sensor);
-        }while(prev_reading != curr_reading);
+            waitMillis(50);   
+            curr_reading = analogRead(_pin_pot);
+            sensor_pressed = digitalReadDebounce(_pin_sensor, 20);
+        }while((prev_reading!=curr_reading) && !(_pin_sensor_flag && sensor_pressed));
+
+        driveActuator(0);   // Stop actuator once you have reached the limit
 
         return curr_reading;
     }
@@ -82,15 +97,21 @@
         waitMillis(2000);
     }
 
-    void LinearActuator::moveToPercentage(long percentage)
+    void LinearActuator::moveToPercentage(int percentage)
     {
         // First, avoid going over the limits
         if (percentage>100)
-        {   percentage = 100;   }
+        {   
+            Serial.println("Movement requested over 100%, will limit to 100%");
+            percentage = 100;   
+        }
         else if (percentage<0)
-        {   percentage = 0;     }
+        {   
+            Serial.println("Movement requested under 0%, will limit to 0%");
+            percentage = 0;     
+        }
 
-        int curr_reading = analogRead(_pin_sensor);
+        int curr_reading = analogRead(_pin_pot);
         Serial.println("Current: " + String(curr_reading));
         float resistance = percentageToResistance(percentage); 
         Serial.println("Target: " + String(resistance));
@@ -110,14 +131,14 @@
                 while (curr_reading < resistance)
                 {
                     driveActuator(direction);
-                    curr_reading = analogRead(_pin_sensor);
+                    curr_reading = analogRead(_pin_pot);
                 }
                 break;
             case -1:
                 while (curr_reading > resistance)
                 {
                     driveActuator(direction);
-                    curr_reading = analogRead(_pin_sensor);
+                    curr_reading = analogRead(_pin_pot);
                 }
                 break;
             case 0:
@@ -127,8 +148,22 @@
         driveActuator(0); // Stop motor
         waitMillis(100);
 
-        Serial.println("Moved to " + String(analogRead(_pin_sensor)));
+        Serial.println("Moved to " + String(analogRead(_pin_pot)));
 
+    }
+
+    int LinearActuator::getSensorPin()
+    {
+        return _pin_sensor;
+    }
+
+    float LinearActuator::limitDetected()
+    {
+        driveActuator(0);                           // Stop motor
+        float curr_reading = analogRead(_pin_pot);  // Read potentiometer
+        Serial.println("Sensor pressed");
+
+        return curr_reading;
     }
 
 

@@ -8,7 +8,9 @@ class LinearActuator
     private:
         int _pin1;                  // Pin 1 for motor driver, PWM driven
         int _pin2;                  // Pin 2 for motor driver, PWM driven
-        int _pin_sensor;            // Pin for the potentiometer sensor 
+        int _pin_pot;               // Pin for the potentiometer
+        int _pin_sensor;            // Pin for analog sensor [optional]
+        bool _pin_sensor_flag;      // Flag to know if sensor is not default value
         float _stroke_length;       // Stroke length [in]
         int _pwm_speed;             // PWM speed [0 to 255]
         bool _homing_flag = 0;      // Homing flag (raised when homing is finished)
@@ -37,20 +39,25 @@ class LinearActuator
         /// @brief Creates a linear actuator object
         /// @param pin1 PWM pin 1 to drive motor (Active = retract)
         /// @param pin2 PWM pin 2 to drive motor (Active = extend)
-        /// @param pin_sensor Analog pin to read potentiometer
+        /// @param pin_pot Analog pin to read potentiometer
         /// @param speed_threshold Threshold to switch between full speed and speed_factor [%]
         /// @param speed_factor Percentage to reduce speed to if requested movement < speed_threshold [%]
-        LinearActuator(int pin1, int pin2, int pin_sensor, int speed_threshold, int speed_factor);
+        /// @param pin_sensor Pin number for the force sensor [optional]
+        LinearActuator(int pin1, int pin2, int pin_pot, int speed_threshold, int speed_factor, int pin_sensor=0);
 
-        void setSensorPin(int pin);
+        /// @brief Returns pin of the pressure sensor
         int getSensorPin();
 
         /// @brief Moves linear actuator to a percentage of the full range.
         /// Note: needs findRange() function to be run first.
         /// @param percentage Percentage of extension or retraction [0-100].
-        void moveToPercentage(long percentage);
+        void moveToPercentage(int percentage);
 
         void findRange();
+
+        /// To use with interrupt service routine to detect limits when a force sensor is used.
+        /// Returns the value of the potentiometer once the limit has been reached.
+        float limitDetected();
 
 };
 

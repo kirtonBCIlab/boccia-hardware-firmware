@@ -11,10 +11,13 @@ int dir = 1;
 // Define incline actuator
 int pin1 = 4;
 int pin2 = 5;
-int pin_sensor = 0;
+int pin_pot = 0;
 int speed_threshold = 15;
 int speed_factor = 50;
-LinearActuator inclineActuator(pin1, pin2, pin_sensor, speed_threshold, speed_factor);
+int pin_sensor = 18;
+// LinearActuator inclineActuator(pin1, pin2, pin_sensor, speed_threshold, speed_factor);
+// If pin sensor is enabled, the calibration depends on the 
+LinearActuator inclineActuator(pin1, pin2, pin_pot, speed_threshold, speed_factor, pin_sensor);
 
 // Define Nema8
 int pin_step = 52;
@@ -23,6 +26,7 @@ BocciaStepper nema8(AccelStepper::DRIVER, pin_step, pin_dir);
 
 // Prototype functions
 void nema8Limit();
+void inclineLimit();
 void waitMillis(unsigned long wait_msec);
 void decodeCommand();
 
@@ -46,10 +50,11 @@ void setup() {
 
   // Interrupts
   attachInterrupt(digitalPinToInterrupt(nema8.getInterruptPin()), nema8Limit, RISING);
+  // attachInterrupt(digitalPinToInterrupt(inclineActuator.getSensorPin()), inclineLimit, RISING);
 
-  // Serial.println("Calibrating - NEMA8");
-  // nema8.findRange();
-  // Serial.println("NEMA8 - Calibration ended");
+  Serial.println("Calibrating - NEMA8");
+  nema8.findRange();
+  Serial.println("NEMA8 - Calibration ended");
 
   Serial.println("Calibrating -  linear actuator");
   inclineActuator.findRange();
@@ -64,28 +69,19 @@ void loop()
   {
     decodeCommand();
   }
-  // if (Serial.available())
-  // {
-  //   n_steps = Serial.parseInt();
-    
-  //   // Empty serial port
-  //   for (int n=0; n<Serial.available(); n++)
-  //   {
-  //     Serial.read();
-  //   }
-    
-  //   inclineActuator.moveToPercentage(n_steps);
-  //   // Serial.println("Current position: " + String(nema8.currentPosition()));
-  //   // Serial.println("Moving " + String(n_steps) + " steps");
-  //   // nema8.moveRun(n_steps);
 
-  // }
   waitMillis(250);
 }
+
 
 void nema8Limit()
 {
   nema8.limitDetected();
+}
+
+void inclineLimit()
+{
+  inclineActuator.limitDetected();
 }
 
 void decodeCommand()
@@ -101,7 +97,7 @@ void decodeCommand()
   // Determine which motor to move
   int motor_select = 1000;  // Units to select motor and determine movement
   int motor = abs(floor(command/motor_select));
-  float movement = command % motor_select;
+  int movement = command % motor_select;
   String motor_name;
 
   switch (motor)
