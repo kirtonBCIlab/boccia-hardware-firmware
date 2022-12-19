@@ -21,8 +21,12 @@ int pin_step = 52;
 int pin_dir = 53;
 BocciaStepper nema8(AccelStepper::DRIVER, pin_step, pin_dir);
 
+// Define Nema24
+BocciaStepper nema24(AccelStepper::DRIVER, 50, 51);
+
 // Prototype functions
 void nema8Limit();
+void nema24Limit();
 void waitMillis(unsigned long wait_msec);
 void decodeCommand();
 
@@ -32,7 +36,6 @@ void setup() {
   Serial.println("Begin setup");
 
   // Nema 8 settings
-  nema8.setNoSteps(200);
   nema8.setReturnSteps(10);
   nema8.setDefaultSpeed(400);   // Default speed [steps/sec]
   nema8.setDefaultAccel(10);
@@ -40,22 +43,36 @@ void setup() {
   nema8.setInterruptPin(2);
   nema8.setNoSteps(200);      // Number of steps for complete rotation [steps]
 
+  // Nema 24 settings
+  nema24.setReturnSteps(10);
+  nema24.setDefaultSpeed(400);   // Default speed [steps/sec]
+  nema24.setDefaultAccel(10);
+  nema24.setMaxSpeed(1000);    // Maximum speed [steps/sec]
+  nema24.setInterruptPin(3);
+  nema24.setNoSteps(800);      // Number of steps for complete rotation [steps]
+
   // Set NEMA inputs to ground
   digitalWrite(pin_dir, 0);
   digitalWrite(pin_step, 0);
 
   // Interrupts
   attachInterrupt(digitalPinToInterrupt(nema8.getInterruptPin()), nema8Limit, RISING);
+  attachInterrupt(digitalPinToInterrupt(nema24.getInterruptPin()), nema24Limit, RISING);
 
-  // Serial.println("Calibrating - NEMA8");
-  // nema8.findRange();
-  // Serial.println("NEMA8 - Calibration ended");
+  Serial.println("Calibration");
+  Serial.println("NEMA8 - Calibration started");
+  nema8.findRange();
+  Serial.println("NEMA8 - Calibration ended");
 
-  Serial.println("Calibrating -  linear actuator");
+  Serial.println("NEMA24 - Calibration started");
+  nema24.findRange();
+  Serial.println("NEMA24 - Calibration ended");
+
+  Serial.println("Incline actuator - Calibration started");
   inclineActuator.findRange();
-  Serial.println("Linear actuator - Calibration ended");
+  Serial.println("Incline actuator - Calibration ended");
 
-  Serial.println("Select motor and movement...");
+  Serial.println("\nSelect motor and movement...");
 }
 
 void loop() 
@@ -64,28 +81,18 @@ void loop()
   {
     decodeCommand();
   }
-  // if (Serial.available())
-  // {
-  //   n_steps = Serial.parseInt();
-    
-  //   // Empty serial port
-  //   for (int n=0; n<Serial.available(); n++)
-  //   {
-  //     Serial.read();
-  //   }
-    
-  //   inclineActuator.moveToPercentage(n_steps);
-  //   // Serial.println("Current position: " + String(nema8.currentPosition()));
-  //   // Serial.println("Moving " + String(n_steps) + " steps");
-  //   // nema8.moveRun(n_steps);
 
-  // }
   waitMillis(250);
 }
 
 void nema8Limit()
 {
   nema8.limitDetected();
+}
+
+void nema24Limit()
+{
+  nema24.limitDetected();
 }
 
 void decodeCommand()
@@ -115,6 +122,10 @@ void decodeCommand()
     nema8.moveRun(movement);
     motor_name = "NEMA8";
     break;
+
+  case 3:
+    nema24.moveRun(movement);
+    motor_name = "NEMA24";
 
   default:
     Serial.println("Wrong command: " + String(command));
