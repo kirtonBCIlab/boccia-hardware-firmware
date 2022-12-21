@@ -74,7 +74,7 @@
         do{
             prev_reading = curr_reading;
             driveActuator(direction);
-            waitMillis(50);   
+            waitMillis(250);   
             curr_reading = analogRead(_pin_pot);
             sensor_pressed = digitalReadDebounce(_pin_sensor, 20);
         }while((prev_reading!=curr_reading) && !(_pin_sensor_flag && sensor_pressed));

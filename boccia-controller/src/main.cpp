@@ -9,15 +9,25 @@ int n_steps = 200;
 int dir = 1;
 
 // Define incline actuator
-int pin1 = 4;
-int pin2 = 5;
-int pin_pot = 0;
-int speed_threshold = 15;
-int speed_factor = 50;
-int pin_sensor = 18;
+int incline_pin1 = 7;
+int incline_pin2 = 6;
+int incline_pin_pot = 0;
+int incline_speed_threshold = 15;
+int incline_speed_factor = 50;
+int incline_pin_sensor = 18;
 // LinearActuator inclineActuator(pin1, pin2, pin_sensor, speed_threshold, speed_factor);
 // If pin sensor is enabled, the calibration depends on the 
-LinearActuator inclineActuator(pin1, pin2, pin_pot, speed_threshold, speed_factor, pin_sensor);
+LinearActuator inclineActuator(incline_pin1, incline_pin2, incline_pin_pot, incline_speed_threshold, incline_speed_factor, incline_pin_sensor);
+
+// Define elevator actuator
+int elevator_pin1 = 5;
+int elevator_pin2 = 4;
+int elevator_pin_pot = 1;
+int elevator_speed_threshold = 15;
+int elevator_speed_factor = 50;
+// LinearActuator elevatorActuator(pin1, pin2, pin_sensor, speed_threshold, speed_factor);
+// If pin sensor is enabled, the calibration depends on the 
+LinearActuator elevatorActuator(elevator_pin1, elevator_pin2, elevator_pin_pot, elevator_speed_threshold, elevator_speed_factor);
 
 // Define Nema8
 int pin_step = 52;
@@ -50,15 +60,18 @@ void setup() {
 
   // Interrupts
   attachInterrupt(digitalPinToInterrupt(nema8.getInterruptPin()), nema8Limit, RISING);
-  // attachInterrupt(digitalPinToInterrupt(inclineActuator.getSensorPin()), inclineLimit, RISING);
 
   Serial.println("Calibrating - NEMA8");
   nema8.findRange();
   Serial.println("NEMA8 - Calibration ended");
 
-  Serial.println("Calibrating -  linear actuator");
+  Serial.println("Calibrating -  incline actuator");
   inclineActuator.findRange();
-  Serial.println("Linear actuator - Calibration ended");
+  Serial.println("Calibration ended");
+
+  Serial.println("Calibrating -  elevator actuator");
+  elevatorActuator.findRange();
+  Serial.println("Calibration ended");
 
   Serial.println("Select motor and movement...");
 }
@@ -77,11 +90,6 @@ void loop()
 void nema8Limit()
 {
   nema8.limitDetected();
-}
-
-void inclineLimit()
-{
-  inclineActuator.limitDetected();
 }
 
 void decodeCommand()
@@ -110,6 +118,11 @@ void decodeCommand()
   case 2:
     nema8.moveRun(movement);
     motor_name = "NEMA8";
+    break;
+
+   case 4:
+    elevatorActuator.moveToPercentage(movement);
+    motor_name = "Elevator Actuator";
     break;
 
   default:
