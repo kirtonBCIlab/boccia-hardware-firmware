@@ -77,9 +77,13 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt(nema24.getInterruptPin()), nema24Limit, RISING);
 
   Serial.println("Calibration");
-  Serial.println("NEMA8 - Calibration started");
-  nema8.findRange();
-  Serial.println("NEMA8 - Calibration ended");
+  // Serial.println("NEMA8 - Calibration started");
+  // nema8.findRange();
+  // Serial.println("NEMA8 - Calibration ended");
+
+  // Serial.println("NEMA24 - Calibration started");
+  // nema24.findRange();
+  // Serial.println("NEMA24 - Calibration ended");
 
 <<<<<<< HEAD
   Serial.println("Calibrating - NEMA8");
@@ -99,7 +103,7 @@ void setup() {
   Serial.println("NEMA24 - Calibration ended");
 
   Serial.println("Incline actuator - Calibration started");
-  inclineActuator.findRange();
+  elevatorActuator.findRange();
   Serial.println("Incline actuator - Calibration ended");
 >>>>>>> Added controller for NEMA24
 
@@ -155,7 +159,6 @@ void decodeCommand()
     motor_name = "NEMA8";
     break;
 
-<<<<<<< HEAD
   case 3:
     nema24.moveRun(movement);
     motor_name = "NEMA24";
@@ -165,7 +168,6 @@ void decodeCommand()
     elevatorActuator.moveToPercentage(movement);
     motor_name = "Elevator Actuator";
     break;
->>>>>>> Added controller for NEMA24
 
   default:
     Serial.println("Wrong command: " + String(command));
