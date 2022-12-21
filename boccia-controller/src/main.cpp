@@ -9,17 +9,17 @@ int n_steps = 200;
 int dir = 1;
 
 // Define incline actuator
-int pin1 = 4;
-int pin2 = 5;
+int pin1 = 7;
+int pin2 = 6;
 int pin_sensor = 0;
 int speed_threshold = 15;
 int speed_factor = 50;
 LinearActuator inclineActuator(pin1, pin2, pin_sensor, speed_threshold, speed_factor);
 
 // Define elevator actuator
-int elevator_pin1 = 4;
-int elevator_pin2 = 5;
-int elevator_pin_sensor = 18;
+int elevator_pin1 = 5;
+int elevator_pin2 = 4;
+int elevator_pin_sensor = 2;
 int elevator_speed_threshold = 15;
 int elevator_speed_factor = 50;
 LinearActuator elevatorActuator(elevator_pin1, elevator_pin2, elevator_pin_sensor, elevator_speed_threshold, elevator_speed_factor);
@@ -76,9 +76,9 @@ void setup() {
   // nema24.findRange();
   // Serial.println("NEMA24 - Calibration ended");
 
-  // Serial.println("Incline actuator - Calibration started");
-  // inclineActuator.findRange();
-  // Serial.println("Incline actuator - Calibration ended");
+  Serial.println("Incline actuator - Calibration started");
+  inclineActuator.findRange();
+  Serial.println("Incline actuator - Calibration ended");
 
   Serial.println("Incline actuator - Calibration started");
   elevatorActuator.findRange();
