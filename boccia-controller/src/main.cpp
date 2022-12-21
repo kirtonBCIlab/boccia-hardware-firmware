@@ -16,6 +16,14 @@ int speed_threshold = 15;
 int speed_factor = 50;
 LinearActuator inclineActuator(pin1, pin2, pin_sensor, speed_threshold, speed_factor);
 
+// Define elevator actuator
+int elevator_pin1 = 4;
+int elevator_pin2 = 5;
+int elevator_pin_sensor = 18;
+int elevator_speed_threshold = 15;
+int elevator_speed_factor = 50;
+LinearActuator elevatorActuator(elevator_pin1, elevator_pin2, elevator_pin_sensor, elevator_speed_threshold, elevator_speed_factor);
+
 // Define Nema8
 int pin_step = 52;
 int pin_dir = 53;
@@ -60,16 +68,20 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt(nema24.getInterruptPin()), nema24Limit, RISING);
 
   Serial.println("Calibration");
-  Serial.println("NEMA8 - Calibration started");
-  nema8.findRange();
-  Serial.println("NEMA8 - Calibration ended");
+  // Serial.println("NEMA8 - Calibration started");
+  // nema8.findRange();
+  // Serial.println("NEMA8 - Calibration ended");
 
-  Serial.println("NEMA24 - Calibration started");
-  nema24.findRange();
-  Serial.println("NEMA24 - Calibration ended");
+  // Serial.println("NEMA24 - Calibration started");
+  // nema24.findRange();
+  // Serial.println("NEMA24 - Calibration ended");
+
+  // Serial.println("Incline actuator - Calibration started");
+  // inclineActuator.findRange();
+  // Serial.println("Incline actuator - Calibration ended");
 
   Serial.println("Incline actuator - Calibration started");
-  inclineActuator.findRange();
+  elevatorActuator.findRange();
   Serial.println("Incline actuator - Calibration ended");
 
   Serial.println("\nSelect motor and movement...");
@@ -126,6 +138,11 @@ void decodeCommand()
   case 3:
     nema24.moveRun(movement);
     motor_name = "NEMA24";
+
+  case 4:
+    elevatorActuator.moveToPercentage(movement);
+    motor_name = "Elevator actuator";
+    break;
 
   default:
     Serial.println("Wrong command: " + String(command));
