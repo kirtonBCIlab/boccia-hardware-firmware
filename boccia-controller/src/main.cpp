@@ -39,11 +39,7 @@ BocciaStepper nema24(AccelStepper::DRIVER, 50, 51);
 
 // Prototype functions
 void nema8Limit();
-<<<<<<< HEAD
 void inclineLimit();
-=======
-void nema24Limit();
->>>>>>> Added controller for NEMA24
 void waitMillis(unsigned long wait_msec);
 void decodeCommand();
 
@@ -85,7 +81,6 @@ void setup() {
   // nema24.findRange();
   // Serial.println("NEMA24 - Calibration ended");
 
-<<<<<<< HEAD
   Serial.println("Calibrating - NEMA8");
   nema8.findRange();
   Serial.println("NEMA8 - Calibration ended");
@@ -97,15 +92,6 @@ void setup() {
   Serial.println("Calibrating -  elevator actuator");
   elevatorActuator.findRange();
   Serial.println("Calibration ended");
-=======
-  Serial.println("NEMA24 - Calibration started");
-  nema24.findRange();
-  Serial.println("NEMA24 - Calibration ended");
-
-  Serial.println("Incline actuator - Calibration started");
-  elevatorActuator.findRange();
-  Serial.println("Incline actuator - Calibration ended");
->>>>>>> Added controller for NEMA24
 
   Serial.println("\nSelect motor and movement...");
 }
