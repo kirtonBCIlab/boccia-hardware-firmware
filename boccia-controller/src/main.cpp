@@ -29,6 +29,14 @@ int elevator_speed_factor = 50;
 // If pin sensor is enabled, the calibration depends on the 
 LinearActuator elevatorActuator(elevator_pin1, elevator_pin2, elevator_pin_pot, elevator_speed_threshold, elevator_speed_factor);
 
+// Define elevator actuator
+int elevator_pin1 = 5;
+int elevator_pin2 = 4;
+int elevator_pin_sensor = 2;
+int elevator_speed_threshold = 15;
+int elevator_speed_factor = 50;
+LinearActuator elevatorActuator(elevator_pin1, elevator_pin2, elevator_pin_sensor, elevator_speed_threshold, elevator_speed_factor);
+
 // Define Nema8
 int pin_step = 52;
 int pin_dir = 53;
@@ -40,6 +48,7 @@ BocciaStepper nema24(AccelStepper::DRIVER, 50, 51);
 // Prototype functions
 void nema8Limit();
 void inclineLimit();
+void nema24Limit();
 void waitMillis(unsigned long wait_msec);
 void decodeCommand();
 
