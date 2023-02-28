@@ -14,9 +14,7 @@ int incline_pin2 = 6;
 int incline_pin_pot = 0;
 int incline_speed_threshold = 15;
 int incline_speed_factor = 50;
-int incline_pin_sensor = 18;
-// LinearActuator inclineActuator(pin1, pin2, pin_sensor, speed_threshold, speed_factor);
-// If pin sensor is enabled, the calibration depends on the 
+int incline_pin_sensor = 18;      // If pin sensor is enabled (i.e., !0), the calibration depends on the pin sensor trigger
 LinearActuator inclineActuator(incline_pin1, incline_pin2, incline_pin_pot, incline_speed_threshold, incline_speed_factor, incline_pin_sensor);
 
 // Define elevator actuator
@@ -25,17 +23,7 @@ int elevator_pin2 = 4;
 int elevator_pin_pot = 1;
 int elevator_speed_threshold = 15;
 int elevator_speed_factor = 50;
-// LinearActuator elevatorActuator(pin1, pin2, pin_sensor, speed_threshold, speed_factor);
-// If pin sensor is enabled, the calibration depends on the 
 LinearActuator elevatorActuator(elevator_pin1, elevator_pin2, elevator_pin_pot, elevator_speed_threshold, elevator_speed_factor);
-
-// Define elevator actuator
-int elevator_pin1 = 5;
-int elevator_pin2 = 4;
-int elevator_pin_sensor = 2;
-int elevator_speed_threshold = 15;
-int elevator_speed_factor = 50;
-LinearActuator elevatorActuator(elevator_pin1, elevator_pin2, elevator_pin_sensor, elevator_speed_threshold, elevator_speed_factor);
 
 // Define Nema8
 int pin_step = 52;
