@@ -8,6 +8,7 @@
 int n_steps = 200;
 int dir = 1;
 
+// Change number of pins
 // Define incline actuator
 int incline_pin1 = 7;
 int incline_pin2 = 6;
@@ -61,19 +62,23 @@ void setup() {
   // Interrupts
   attachInterrupt(digitalPinToInterrupt(nema8.getInterruptPin()), nema8Limit, RISING);
 
-  Serial.println("Calibrating - NEMA8");
+  // Calibration steps
+  Serial.println("Calibration");
+  Serial.println("NEMA17 - Calibration started");
   nema8.findRange();
   Serial.println("NEMA8 - Calibration ended");
 
-  Serial.println("Calibrating -  incline actuator");
+  Serial.println("NEMA23 - Calibration started");
+  nema24.findRange();
+  Serial.println("NEMA24 - Calibration ended");
+
+  Serial.println("Incline actuator - Calibration started");
   inclineActuator.findRange();
   Serial.println("Calibration ended");
 
-  Serial.println("Calibrating -  elevator actuator");
-  elevatorActuator.findRange();
-  Serial.println("Calibration ended");
+  // Add elevator motor
 
-  Serial.println("Select motor and movement...");
+  Serial.println("\nSelect motor and movement...");
 }
 
 void loop() 
@@ -94,6 +99,8 @@ void nema8Limit()
 
 void decodeCommand()
 {
+  // Add documentation on how this works
+
   long command = Serial.parseInt();
 
   // Empty serial port
@@ -124,6 +131,13 @@ void decodeCommand()
     elevatorActuator.moveToPercentage(movement);
     motor_name = "Elevator Actuator";
     break;
+
+  case 4:
+    // Implement elevator actuator
+
+  case 9:
+    // Implement find range with first two digits
+    // 9100 : Calibrate motor  case 1
 
   default:
     Serial.println("Wrong command: " + String(command));
