@@ -1,7 +1,7 @@
 #include <LinearActuator.h>
 #include <Functions.h>
 
-    LinearActuator::LinearActuator(int pin_1, int pin_2, int pin_pot, int speed_threshold, int speed_factor, int pin_sensor=0)
+    LinearActuator::LinearActuator(int pin_1, int pin_2, int pin_pot, int speed_threshold, int speed_factor, int pin_sensor)
     {
         _pin1 = pin_1;
         _pin2 = pin_2;
