@@ -20,6 +20,13 @@ class BocciaStepper:public AccelStepper
   using AccelStepper::AccelStepper;
   
   public:
+    /// @brief Moves the stepper the desired amount of steps
+    /// @param relative Number of steps that the stepper motor will move.
+    /// positive numbers will rotate clockwise, negative numbers will rotate
+    /// anticlockwise. The function checks if the motor range limits are set,
+    /// if the limits are not set, they will get set based on the optical sensor.
+    /// If the limits are already set, and the sensor is triggered, the limits
+    /// are updated.
     void moveRun(long relative);
 
     void setReturnSteps(int steps);
@@ -35,7 +42,11 @@ class BocciaStepper:public AccelStepper
 
     void setNoSteps(int steps);
     
+    /// @brief ISR activated when one of the optiocal sensors is triggered
     void limitDetected();
+
+    /// @brief Moves the motor a full rotation clockwise, and then
+    /// moves the motor a full rotation anticlocwise. 
     void findRange();
 };
 

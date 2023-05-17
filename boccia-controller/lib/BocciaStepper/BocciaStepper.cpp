@@ -30,7 +30,6 @@
         runToPosition();
       }
       
-
       // If limit detected, quickly stop
       if (limit_flag)
       {
