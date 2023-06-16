@@ -4,8 +4,10 @@
 */
 
 // Setup variables
-int driver1 = 2;  // Pin connected to IN1
-int driver2 = 3;  // Pin connected to IN2
+int driver1 = 10;  // Pin connected to IN1
+int driver2 = 9;  // Pin connected to IN2
+int pot_pin = A3;
+int pot_val;
 String command;   // Command to be sent through serial 
 
 void setup()
@@ -35,12 +37,12 @@ void loop()
 void move_motor(String command)
 {
   // Move motor
-  if (command == "extend")
+  if (command == "ext")
   {
     digitalWrite(driver1, HIGH);
     digitalWrite(driver2, LOW);
   }
-  else if (command == "collapse")
+  else if (command == "ret")
   {
     digitalWrite(driver1, LOW);
     digitalWrite(driver2, HIGH);
@@ -51,6 +53,9 @@ void move_motor(String command)
   }
 
   waitTime(500);
+  pot_val = analogRead(pot_pin);
+  Serial.println(pot_val);
+  
 
   // Hold position
   digitalWrite(driver1, LOW);
