@@ -78,12 +78,12 @@ void setup() {
   // Calibration steps - Enable sections as needed
   Serial.println("Calibration");
 
-  - Nema 17
+  // - Nema 17
   Serial.println("Nema 17 - Calibration started");
   nema17.findRange();
   Serial.println("Nema 17 - Calibration ended");
  
-  - Nema 23
+  // - Nema 23
   Serial.println("Nema 23 - Calibration started");
   nema23.findRange();
   Serial.println("Nema 23 - Calibration ended");
@@ -143,7 +143,7 @@ void decodeCommand()
 
   // Determine which motor to move
   int motor_select = 1000;  // Units to select motor and determine movement
-   int gross_motor_select = 100000;  // Units to select gross movement
+  int gross_motor_select = 100000;  // Units to select gross movement
   int motor = abs(floor(command/motor_select));
   int movement = command % motor_select;
   String motor_name;
@@ -225,3 +225,4 @@ void decodeCommand()
   Serial.println("- Movement: " + String(movement));
 
   Serial.println("\nSelect motor and movement...");
+}
