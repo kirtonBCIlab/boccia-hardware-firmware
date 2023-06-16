@@ -11405,16 +11405,13 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 <part name="DRIVER_HEIGHT" library="st-microelectronics" library_urn="urn:adsk.eagle:library:368" deviceset="L298" device="" package3d_urn="urn:adsk.eagle:package:26823/1"/>
 <part name="P+1" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+24V" device=""/>
 <part name="PE1" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="PE" device=""/>
-<part name="DRIVER_NEMA24" library="TB6600HG-H" deviceset="TB6600-H" device=""/>
-<part name="NEMA23" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CONN_04" device="" package3d_urn="urn:adsk.eagle:package:38085/1"/>
 <part name="OPTICAL_NEMA17_1" library="optocoupler" library_urn="urn:adsk.eagle:library:320" deviceset="SFH618?*" device="A" package3d_urn="urn:adsk.eagle:package:21960/1" technology="-2"/>
 <part name="PE2" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="PE" device=""/>
 <part name="OPTICAL_NEMA17_2" library="optocoupler" library_urn="urn:adsk.eagle:library:320" deviceset="SFH618?*" device="A" package3d_urn="urn:adsk.eagle:package:21960/1" technology="-2"/>
 <part name="PE3" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="PE" device=""/>
-<part name="OPTICAL_NEMA24_1" library="optocoupler" library_urn="urn:adsk.eagle:library:320" deviceset="SFH618?*" device="A" package3d_urn="urn:adsk.eagle:package:21960/1" technology="-2"/>
-<part name="OPTICAL_NEMA24_2" library="optocoupler" library_urn="urn:adsk.eagle:library:320" deviceset="SFH618?*" device="A" package3d_urn="urn:adsk.eagle:package:21960/1" technology="-2"/>
+<part name="OPTICAL_NEMA23_1" library="optocoupler" library_urn="urn:adsk.eagle:library:320" deviceset="SFH618?*" device="A" package3d_urn="urn:adsk.eagle:package:21960/1" technology="-2"/>
+<part name="OPTICAL_NEMA23_2" library="optocoupler" library_urn="urn:adsk.eagle:library:320" deviceset="SFH618?*" device="A" package3d_urn="urn:adsk.eagle:package:21960/1" technology="-2"/>
 <part name="PE4" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="PE" device=""/>
-<part name="PE7" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="PE" device=""/>
 <part name="PE12" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="PE" device=""/>
 <part name="INCLINE_ACTUATOR" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CONN_02" device="" package3d_urn="urn:adsk.eagle:package:38039/1"/>
 <part name="PE13" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="PE" device=""/>
@@ -11424,12 +11421,6 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 <part name="C3" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="EL-" device="BI35-12AXIAL" package3d_urn="urn:adsk.eagle:package:23715/1" value="100uF"/>
 <part name="PE15" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="PE" device=""/>
 <part name="DRIVER_NEMA17" library="pololu-stepper-driver" deviceset="2985-A4988" device=""/>
-<part name="R5" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-US_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="10k"/>
-<part name="R6" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-US_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="10k"/>
-<part name="PE8" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="PE" device=""/>
-<part name="PE9" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="PE" device=""/>
-<part name="PE10" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="PE" device=""/>
-<part name="DRIVER_NEMA1" library="pololu-stepper-driver" deviceset="2985-A4988" device=""/>
 <part name="C1" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="EL-" device="BI35-12AXIAL" package3d_urn="urn:adsk.eagle:package:23715/1" value="100uF"/>
 <part name="PE11" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="PE" device=""/>
 <part name="NEMA17" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CONN_04" device="" package3d_urn="urn:adsk.eagle:package:38085/1"/>
@@ -11440,13 +11431,17 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 <part name="R1" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-US_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="10k"/>
 <part name="R2" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-US_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="10k"/>
 <part name="PE5" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="PE" device=""/>
-<part name="DRIVER_NEMA2" library="TB6600HG-H" deviceset="TB6600-H" device=""/>
-<part name="NEMA1" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CONN_04" device="" package3d_urn="urn:adsk.eagle:package:38085/1"/>
+<part name="DRIVER_NEMA23" library="TB6600HG-H" deviceset="TB6600-H" device=""/>
+<part name="NEMA23" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CONN_04" device="" package3d_urn="urn:adsk.eagle:package:38085/1"/>
 <part name="PE6" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="PE" device=""/>
+<part name="PRESS_SENSOR" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-US_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="10k"/>
+<part name="R4" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-US_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="100k"/>
+<part name="PE7" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="PE" device=""/>
 </parts>
 <sheets>
 <sheet>
 <plain>
+<text x="180.34" y="22.86" size="1.778" layer="95">DRIVER_NEMA23</text>
 </plain>
 <instances>
 <instance part="B1" gate="G$1" x="276.86" y="124.46" smashed="yes">
@@ -11479,11 +11474,6 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 <instance part="PE1" gate="M" x="78.74" y="55.88" smashed="yes">
 <attribute name="VALUE" x="76.2" y="53.34" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="DRIVER_NEMA24" gate="G$1" x="86.36" y="-73.66" smashed="yes"/>
-<instance part="NEMA23" gate="G$1" x="127" y="-76.2" smashed="yes" rot="MR0">
-<attribute name="VALUE" x="132.08" y="-83.566" size="1.778" layer="96" font="vector" rot="MR0"/>
-<attribute name="NAME" x="132.08" y="-68.072" size="1.778" layer="95" font="vector" rot="MR0"/>
-</instance>
 <instance part="OPTICAL_NEMA17_1" gate="G$1" x="264.16" y="38.1" smashed="yes">
 <attribute name="NAME" x="257.175" y="43.815" size="1.778" layer="95"/>
 <attribute name="VALUE" x="257.175" y="30.48" size="1.778" layer="96"/>
@@ -11498,19 +11488,16 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 <instance part="PE3" gate="M" x="251.46" y="5.08" smashed="yes">
 <attribute name="VALUE" x="248.92" y="2.54" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="OPTICAL_NEMA24_1" gate="G$1" x="266.7" y="-22.86" smashed="yes">
+<instance part="OPTICAL_NEMA23_1" gate="G$1" x="266.7" y="-22.86" smashed="yes">
 <attribute name="NAME" x="259.715" y="-17.145" size="1.778" layer="95"/>
 <attribute name="VALUE" x="259.715" y="-30.48" size="1.778" layer="96"/>
 </instance>
-<instance part="OPTICAL_NEMA24_2" gate="G$1" x="266.7" y="-40.64" smashed="yes">
+<instance part="OPTICAL_NEMA23_2" gate="G$1" x="266.7" y="-40.64" smashed="yes">
 <attribute name="NAME" x="259.715" y="-34.925" size="1.778" layer="95"/>
 <attribute name="VALUE" x="259.715" y="-48.26" size="1.778" layer="96"/>
 </instance>
 <instance part="PE4" gate="M" x="254" y="-55.88" smashed="yes">
 <attribute name="VALUE" x="251.46" y="-58.42" size="1.778" layer="96" rot="R90"/>
-</instance>
-<instance part="PE7" gate="M" x="91.44" y="-119.38" smashed="yes">
-<attribute name="VALUE" x="88.9" y="-121.92" size="1.778" layer="96" rot="R90"/>
 </instance>
 <instance part="PE12" gate="M" x="200.66" y="40.64" smashed="yes">
 <attribute name="VALUE" x="198.12" y="38.1" size="1.778" layer="96" rot="R90"/>
@@ -11540,28 +11527,7 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 <instance part="PE15" gate="M" x="116.84" y="93.98" smashed="yes">
 <attribute name="VALUE" x="114.3" y="91.44" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="DRIVER_NEMA17" gate="G$1" x="99.06" y="226.06" smashed="yes">
-<attribute name="NAME" x="93.98" y="236.855" size="1.778" layer="95"/>
-<attribute name="VALUE" x="93.98" y="210.82" size="1.778" layer="96"/>
-</instance>
-<instance part="R5" gate="G$1" x="63.5" y="213.36" smashed="yes" rot="R90">
-<attribute name="NAME" x="62.0014" y="209.55" size="1.778" layer="95" rot="R90"/>
-<attribute name="VALUE" x="59.182" y="209.55" size="1.778" layer="96" rot="R90"/>
-</instance>
-<instance part="R6" gate="G$1" x="83.82" y="210.82" smashed="yes" rot="R90">
-<attribute name="NAME" x="82.3214" y="207.01" size="1.778" layer="95" rot="R90"/>
-<attribute name="VALUE" x="79.502" y="207.01" size="1.778" layer="96" rot="R90"/>
-</instance>
-<instance part="PE8" gate="M" x="63.5" y="203.2" smashed="yes">
-<attribute name="VALUE" x="60.96" y="200.66" size="1.778" layer="96" rot="R90"/>
-</instance>
-<instance part="PE9" gate="M" x="83.82" y="200.66" smashed="yes">
-<attribute name="VALUE" x="81.28" y="198.12" size="1.778" layer="96" rot="R90"/>
-</instance>
-<instance part="PE10" gate="M" x="114.3" y="210.82" smashed="yes">
-<attribute name="VALUE" x="111.76" y="208.28" size="1.778" layer="96" rot="R90"/>
-</instance>
-<instance part="DRIVER_NEMA1" gate="G$1" x="182.88" y="154.94" smashed="yes" rot="MR0">
+<instance part="DRIVER_NEMA17" gate="G$1" x="182.88" y="154.94" smashed="yes" rot="MR0">
 <attribute name="NAME" x="187.96" y="165.735" size="1.778" layer="95" rot="MR0"/>
 <attribute name="VALUE" x="187.96" y="139.7" size="1.778" layer="96" rot="MR0"/>
 </instance>
@@ -11601,13 +11567,24 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 <instance part="PE5" gate="M" x="208.28" y="121.92" smashed="yes">
 <attribute name="VALUE" x="205.74" y="119.38" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="DRIVER_NEMA2" gate="G$1" x="180.34" y="-17.78" smashed="yes" rot="MR0"/>
-<instance part="NEMA1" gate="G$1" x="137.16" y="-17.78" smashed="yes">
+<instance part="DRIVER_NEMA23" gate="G$1" x="180.34" y="-17.78" smashed="yes" rot="MR0"/>
+<instance part="NEMA23" gate="G$1" x="137.16" y="-17.78" smashed="yes">
 <attribute name="VALUE" x="132.08" y="-25.146" size="1.778" layer="96" font="vector"/>
 <attribute name="NAME" x="132.08" y="-9.652" size="1.778" layer="95" font="vector"/>
 </instance>
 <instance part="PE6" gate="M" x="175.26" y="-63.5" smashed="yes">
 <attribute name="VALUE" x="172.72" y="-66.04" size="1.778" layer="96" rot="R90"/>
+</instance>
+<instance part="PRESS_SENSOR" gate="G$1" x="314.96" y="170.18" smashed="yes" rot="R90">
+<attribute name="NAME" x="313.4614" y="166.37" size="1.778" layer="95" rot="R90"/>
+<attribute name="VALUE" x="310.642" y="166.37" size="1.778" layer="96" rot="R90"/>
+</instance>
+<instance part="R4" gate="G$1" x="314.96" y="154.94" smashed="yes" rot="R90">
+<attribute name="NAME" x="313.4614" y="151.13" size="1.778" layer="95" rot="R90"/>
+<attribute name="VALUE" x="310.642" y="151.13" size="1.778" layer="96" rot="R90"/>
+</instance>
+<instance part="PE7" gate="M" x="314.96" y="144.78" smashed="yes">
+<attribute name="VALUE" x="312.42" y="142.24" size="1.778" layer="96" rot="R90"/>
 </instance>
 </instances>
 <busses>
@@ -11630,26 +11607,14 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 <wire x1="73.66" y1="73.66" x2="73.66" y2="27.94" width="0.1524" layer="91"/>
 <wire x1="73.66" y1="27.94" x2="170.18" y2="27.94" width="0.1524" layer="91"/>
 <junction x="73.66" y="73.66"/>
-<pinref part="DRIVER_NEMA2" gate="G$1" pin="VCC_A"/>
+<pinref part="DRIVER_NEMA23" gate="G$1" pin="VCC_A"/>
 <wire x1="172.72" y1="20.32" x2="172.72" y2="22.86" width="0.1524" layer="91"/>
 <wire x1="172.72" y1="22.86" x2="170.18" y2="22.86" width="0.1524" layer="91"/>
-<pinref part="DRIVER_NEMA2" gate="G$1" pin="VCC_B"/>
+<pinref part="DRIVER_NEMA23" gate="G$1" pin="VCC_B"/>
 <wire x1="170.18" y1="22.86" x2="167.64" y2="22.86" width="0.1524" layer="91"/>
 <wire x1="167.64" y1="22.86" x2="167.64" y2="20.32" width="0.1524" layer="91"/>
 <wire x1="170.18" y1="22.86" x2="170.18" y2="27.94" width="0.1524" layer="91"/>
 <junction x="170.18" y="22.86"/>
-</segment>
-<segment>
-<pinref part="DRIVER_NEMA24" gate="G$1" pin="VCC_A"/>
-<wire x1="93.98" y1="-35.56" x2="93.98" y2="-33.02" width="0.1524" layer="91"/>
-<wire x1="93.98" y1="-33.02" x2="96.52" y2="-33.02" width="0.1524" layer="91"/>
-<wire x1="96.52" y1="-33.02" x2="96.52" y2="-30.48" width="0.1524" layer="91"/>
-<pinref part="DRIVER_NEMA24" gate="G$1" pin="VCC_B"/>
-<wire x1="99.06" y1="-35.56" x2="99.06" y2="-33.02" width="0.1524" layer="91"/>
-<wire x1="99.06" y1="-33.02" x2="96.52" y2="-33.02" width="0.1524" layer="91"/>
-<junction x="96.52" y="-33.02"/>
-<junction x="96.52" y="-30.48"/>
-<label x="96.52" y="-30.48" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="PE" class="0">
@@ -11694,11 +11659,11 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 <junction x="287.02" y="17.78"/>
 </segment>
 <segment>
-<pinref part="OPTICAL_NEMA24_1" gate="G$1" pin="C"/>
+<pinref part="OPTICAL_NEMA23_1" gate="G$1" pin="C"/>
 <pinref part="PE4" gate="M" pin="PE"/>
 <wire x1="256.54" y1="-25.4" x2="254" y2="-25.4" width="0.1524" layer="91"/>
 <wire x1="254" y1="-25.4" x2="254" y2="-43.18" width="0.1524" layer="91"/>
-<pinref part="OPTICAL_NEMA24_2" gate="G$1" pin="C"/>
+<pinref part="OPTICAL_NEMA23_2" gate="G$1" pin="C"/>
 <wire x1="254" y1="-43.18" x2="254" y2="-50.8" width="0.1524" layer="91"/>
 <wire x1="254" y1="-50.8" x2="254" y2="-53.34" width="0.1524" layer="91"/>
 <wire x1="256.54" y1="-43.18" x2="254" y2="-43.18" width="0.1524" layer="91"/>
@@ -11706,25 +11671,12 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 <wire x1="254" y1="-50.8" x2="287.02" y2="-50.8" width="0.1524" layer="91"/>
 <junction x="254" y="-50.8"/>
 <wire x1="287.02" y1="-50.8" x2="287.02" y2="-43.18" width="0.1524" layer="91"/>
-<pinref part="OPTICAL_NEMA24_2" gate="G$1" pin="EMIT"/>
+<pinref part="OPTICAL_NEMA23_2" gate="G$1" pin="EMIT"/>
 <wire x1="287.02" y1="-43.18" x2="274.32" y2="-43.18" width="0.1524" layer="91"/>
-<pinref part="OPTICAL_NEMA24_1" gate="G$1" pin="EMIT"/>
+<pinref part="OPTICAL_NEMA23_1" gate="G$1" pin="EMIT"/>
 <wire x1="274.32" y1="-25.4" x2="287.02" y2="-25.4" width="0.1524" layer="91"/>
 <wire x1="287.02" y1="-25.4" x2="287.02" y2="-43.18" width="0.1524" layer="91"/>
 <junction x="287.02" y="-43.18"/>
-</segment>
-<segment>
-<pinref part="DRIVER_NEMA24" gate="G$1" pin="GND-B"/>
-<wire x1="96.52" y1="-111.76" x2="96.52" y2="-114.3" width="0.1524" layer="91"/>
-<wire x1="96.52" y1="-114.3" x2="91.44" y2="-114.3" width="0.1524" layer="91"/>
-<pinref part="PE7" gate="M" pin="PE"/>
-<wire x1="91.44" y1="-114.3" x2="91.44" y2="-116.84" width="0.1524" layer="91"/>
-<pinref part="DRIVER_NEMA24" gate="G$1" pin="GND-A"/>
-<wire x1="91.44" y1="-111.76" x2="91.44" y2="-114.3" width="0.1524" layer="91"/>
-<junction x="91.44" y="-114.3"/>
-<pinref part="DRIVER_NEMA24" gate="G$1" pin="S-GND"/>
-<wire x1="86.36" y1="-111.76" x2="86.36" y2="-114.3" width="0.1524" layer="91"/>
-<wire x1="86.36" y1="-114.3" x2="91.44" y2="-114.3" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="DRIVER_HEIGHT" gate="L298" pin="GND"/>
@@ -11749,26 +11701,6 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 <wire x1="116.84" y1="99.06" x2="116.84" y2="96.52" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="R6" gate="G$1" pin="1"/>
-<pinref part="PE9" gate="M" pin="PE"/>
-<wire x1="83.82" y1="205.74" x2="83.82" y2="203.2" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<pinref part="R5" gate="G$1" pin="1"/>
-<pinref part="PE8" gate="M" pin="PE"/>
-<wire x1="63.5" y1="208.28" x2="63.5" y2="205.74" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<pinref part="DRIVER_NEMA17" gate="G$1" pin="GND2"/>
-<wire x1="111.76" y1="231.14" x2="114.3" y2="231.14" width="0.1524" layer="91"/>
-<pinref part="PE10" gate="M" pin="PE"/>
-<wire x1="114.3" y1="231.14" x2="114.3" y2="215.9" width="0.1524" layer="91"/>
-<pinref part="DRIVER_NEMA17" gate="G$1" pin="GND1"/>
-<wire x1="114.3" y1="215.9" x2="114.3" y2="213.36" width="0.1524" layer="91"/>
-<wire x1="111.76" y1="215.9" x2="114.3" y2="215.9" width="0.1524" layer="91"/>
-<junction x="114.3" y="215.9"/>
-</segment>
-<segment>
 <pinref part="PE11" gate="M" pin="PE"/>
 <pinref part="C1" gate="G$1" pin="2"/>
 <wire x1="116.84" y1="147.32" x2="116.84" y2="149.86" width="0.1524" layer="91"/>
@@ -11776,7 +11708,7 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 <segment>
 <pinref part="PE16" gate="M" pin="PE"/>
 <wire x1="165.1" y1="142.24" x2="165.1" y2="144.78" width="0.1524" layer="91"/>
-<pinref part="DRIVER_NEMA1" gate="G$1" pin="GND1"/>
+<pinref part="DRIVER_NEMA17" gate="G$1" pin="GND1"/>
 <wire x1="170.18" y1="144.78" x2="165.1" y2="144.78" width="0.1524" layer="91"/>
 </segment>
 <segment>
@@ -11802,16 +11734,16 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 <junction x="208.28" y="127"/>
 </segment>
 <segment>
-<pinref part="DRIVER_NEMA2" gate="G$1" pin="GND-B"/>
+<pinref part="DRIVER_NEMA23" gate="G$1" pin="GND-B"/>
 <wire x1="170.18" y1="-55.88" x2="170.18" y2="-58.42" width="0.1524" layer="91"/>
-<pinref part="DRIVER_NEMA2" gate="G$1" pin="S-GND"/>
+<pinref part="DRIVER_NEMA23" gate="G$1" pin="S-GND"/>
 <wire x1="170.18" y1="-58.42" x2="175.26" y2="-58.42" width="0.1524" layer="91"/>
 <wire x1="175.26" y1="-58.42" x2="180.34" y2="-58.42" width="0.1524" layer="91"/>
 <wire x1="180.34" y1="-58.42" x2="180.34" y2="-55.88" width="0.1524" layer="91"/>
 <pinref part="PE6" gate="M" pin="PE"/>
 <wire x1="175.26" y1="-60.96" x2="175.26" y2="-58.42" width="0.1524" layer="91"/>
 <junction x="175.26" y="-58.42"/>
-<pinref part="DRIVER_NEMA2" gate="G$1" pin="GND-A"/>
+<pinref part="DRIVER_NEMA23" gate="G$1" pin="GND-A"/>
 <wire x1="175.26" y1="-55.88" x2="175.26" y2="-58.42" width="0.1524" layer="91"/>
 </segment>
 </net>
@@ -11819,56 +11751,11 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 <segment>
 <pinref part="REG_NEMA17" gate="G$1" pin="OUT"/>
 <wire x1="109.22" y1="162.56" x2="116.84" y2="162.56" width="0.1524" layer="91"/>
-<pinref part="DRIVER_NEMA1" gate="G$1" pin="VMOT"/>
+<pinref part="DRIVER_NEMA17" gate="G$1" pin="VMOT"/>
 <pinref part="C1" gate="G$1" pin="1"/>
 <wire x1="116.84" y1="162.56" x2="170.18" y2="162.56" width="0.1524" layer="91"/>
 <wire x1="116.84" y1="157.48" x2="116.84" y2="162.56" width="0.1524" layer="91"/>
 <junction x="116.84" y="162.56"/>
-</segment>
-<segment>
-<pinref part="DRIVER_NEMA17" gate="G$1" pin="VMOT"/>
-<wire x1="111.76" y1="233.68" x2="144.78" y2="233.68" width="0.1524" layer="91"/>
-<junction x="162.56" y="233.68"/>
-<label x="147.32" y="233.68" size="1.778" layer="95"/>
-<wire x1="144.78" y1="233.68" x2="162.56" y2="233.68" width="0.1524" layer="91"/>
-<wire x1="144.78" y1="231.14" x2="144.78" y2="233.68" width="0.1524" layer="91"/>
-<junction x="144.78" y="233.68"/>
-</segment>
-</net>
-<net name="N$1" class="0">
-<segment>
-<pinref part="DRIVER_NEMA24" gate="G$1" pin="OUT-A2"/>
-<wire x1="111.76" y1="-58.42" x2="114.3" y2="-58.42" width="0.1524" layer="91"/>
-<wire x1="114.3" y1="-58.42" x2="114.3" y2="-73.66" width="0.1524" layer="91"/>
-<pinref part="NEMA23" gate="G$1" pin="3"/>
-<wire x1="114.3" y1="-73.66" x2="121.92" y2="-73.66" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$2" class="0">
-<segment>
-<pinref part="NEMA23" gate="G$1" pin="4"/>
-<wire x1="121.92" y1="-71.12" x2="116.84" y2="-71.12" width="0.1524" layer="91"/>
-<wire x1="116.84" y1="-71.12" x2="116.84" y2="-53.34" width="0.1524" layer="91"/>
-<pinref part="DRIVER_NEMA24" gate="G$1" pin="OUT-A1"/>
-<wire x1="116.84" y1="-53.34" x2="111.76" y2="-53.34" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$3" class="0">
-<segment>
-<pinref part="DRIVER_NEMA24" gate="G$1" pin="OUT-B1"/>
-<wire x1="111.76" y1="-81.28" x2="114.3" y2="-81.28" width="0.1524" layer="91"/>
-<wire x1="114.3" y1="-81.28" x2="114.3" y2="-76.2" width="0.1524" layer="91"/>
-<pinref part="NEMA23" gate="G$1" pin="2"/>
-<wire x1="114.3" y1="-76.2" x2="121.92" y2="-76.2" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$4" class="0">
-<segment>
-<pinref part="NEMA23" gate="G$1" pin="1"/>
-<wire x1="121.92" y1="-78.74" x2="116.84" y2="-78.74" width="0.1524" layer="91"/>
-<wire x1="116.84" y1="-78.74" x2="116.84" y2="-86.36" width="0.1524" layer="91"/>
-<pinref part="DRIVER_NEMA24" gate="G$1" pin="OUT-B2"/>
-<wire x1="116.84" y1="-86.36" x2="111.76" y2="-86.36" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="INTERRUPT_NEMA17" class="0">
@@ -11885,30 +11772,24 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 <pinref part="OPTICAL_NEMA17_1" gate="G$1" pin="COL"/>
 <wire x1="289.56" y1="33.02" x2="289.56" y2="40.64" width="0.1524" layer="91"/>
 <wire x1="289.56" y1="40.64" x2="271.78" y2="40.64" width="0.1524" layer="91"/>
-<label x="289.56" y="33.02" size="1.778" layer="95"/>
+<label x="292.1" y="33.02" size="1.778" layer="95"/>
 <junction x="289.56" y="33.02"/>
-<wire x1="289.56" y1="33.02" x2="314.96" y2="33.02" width="0.1524" layer="91"/>
-<junction x="314.96" y="33.02"/>
+<wire x1="289.56" y1="33.02" x2="317.5" y2="33.02" width="0.1524" layer="91"/>
+<junction x="317.5" y="33.02"/>
 </segment>
 </net>
 <net name="INTERRUPT_NEMA24" class="0">
 <segment>
-<pinref part="B1" gate="G$1" pin="3"/>
-<wire x1="259.08" y1="109.22" x2="228.6" y2="109.22" width="0.1524" layer="91"/>
-<junction x="228.6" y="109.22"/>
-<label x="228.6" y="109.22" size="1.778" layer="95"/>
-</segment>
-<segment>
-<pinref part="OPTICAL_NEMA24_2" gate="G$1" pin="COL"/>
+<pinref part="OPTICAL_NEMA23_2" gate="G$1" pin="COL"/>
 <wire x1="274.32" y1="-38.1" x2="289.56" y2="-38.1" width="0.1524" layer="91"/>
 <wire x1="289.56" y1="-38.1" x2="289.56" y2="-27.94" width="0.1524" layer="91"/>
-<pinref part="OPTICAL_NEMA24_1" gate="G$1" pin="COL"/>
+<pinref part="OPTICAL_NEMA23_1" gate="G$1" pin="COL"/>
 <wire x1="289.56" y1="-27.94" x2="289.56" y2="-20.32" width="0.1524" layer="91"/>
 <wire x1="289.56" y1="-20.32" x2="274.32" y2="-20.32" width="0.1524" layer="91"/>
-<label x="289.56" y="-27.94" size="1.778" layer="95"/>
-<wire x1="289.56" y1="-27.94" x2="314.96" y2="-27.94" width="0.1524" layer="91"/>
+<label x="292.1" y="-27.94" size="1.778" layer="95"/>
+<wire x1="289.56" y1="-27.94" x2="317.5" y2="-27.94" width="0.1524" layer="91"/>
 <junction x="289.56" y="-27.94"/>
-<junction x="314.96" y="-27.94"/>
+<junction x="317.5" y="-27.94"/>
 </segment>
 </net>
 <net name="V5_LOGIC" class="0">
@@ -11938,10 +11819,10 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 <junction x="248.92" y="50.8"/>
 </segment>
 <segment>
-<pinref part="OPTICAL_NEMA24_2" gate="G$1" pin="A"/>
+<pinref part="OPTICAL_NEMA23_2" gate="G$1" pin="A"/>
 <wire x1="256.54" y1="-38.1" x2="251.46" y2="-38.1" width="0.1524" layer="91"/>
 <wire x1="251.46" y1="-38.1" x2="251.46" y2="-20.32" width="0.1524" layer="91"/>
-<pinref part="OPTICAL_NEMA24_1" gate="G$1" pin="A"/>
+<pinref part="OPTICAL_NEMA23_1" gate="G$1" pin="A"/>
 <wire x1="251.46" y1="-20.32" x2="256.54" y2="-20.32" width="0.1524" layer="91"/>
 <junction x="251.46" y="-20.32"/>
 <label x="251.46" y="-7.62" size="1.778" layer="95"/>
@@ -11950,24 +11831,18 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 </segment>
 <segment>
 <pinref part="DRIVER_NEMA17" gate="G$1" pin="VDD"/>
-<wire x1="111.76" y1="218.44" x2="132.08" y2="218.44" width="0.1524" layer="91"/>
-<junction x="132.08" y="218.44"/>
-<label x="119.38" y="218.44" size="1.778" layer="95"/>
-</segment>
-<segment>
-<pinref part="DRIVER_NEMA1" gate="G$1" pin="VDD"/>
 <wire x1="170.18" y1="147.32" x2="149.86" y2="147.32" width="0.1524" layer="91"/>
 <junction x="149.86" y="147.32"/>
 <label x="149.86" y="147.32" size="1.778" layer="95"/>
 </segment>
+<segment>
+<pinref part="PRESS_SENSOR" gate="G$1" pin="2"/>
+<wire x1="314.96" y1="175.26" x2="314.96" y2="180.34" width="0.1524" layer="91"/>
+<junction x="314.96" y="180.34"/>
+<label x="314.96" y="182.88" size="1.778" layer="95"/>
+</segment>
 </net>
 <net name="DIR_NEMA24" class="0">
-<segment>
-<pinref part="DRIVER_NEMA24" gate="G$1" pin="DIR"/>
-<wire x1="60.96" y1="-63.5" x2="43.18" y2="-63.5" width="0.1524" layer="91"/>
-<junction x="43.18" y="-63.5"/>
-<label x="43.18" y="-63.5" size="1.778" layer="95"/>
-</segment>
 <segment>
 <pinref part="B1" gate="G$1" pin="51"/>
 <wire x1="294.64" y1="78.74" x2="312.42" y2="78.74" width="0.1524" layer="91"/>
@@ -11976,12 +11851,6 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 </segment>
 </net>
 <net name="PUL_NEMA24" class="0">
-<segment>
-<pinref part="DRIVER_NEMA24" gate="G$1" pin="CLK"/>
-<wire x1="60.96" y1="-68.58" x2="43.18" y2="-68.58" width="0.1524" layer="91"/>
-<junction x="43.18" y="-68.58"/>
-<label x="43.18" y="-68.58" size="1.778" layer="95"/>
-</segment>
 <segment>
 <pinref part="B1" gate="G$1" pin="50"/>
 <wire x1="294.64" y1="81.28" x2="312.42" y2="81.28" width="0.1524" layer="91"/>
@@ -12039,95 +11908,40 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 <junction x="116.84" y="111.76"/>
 </segment>
 </net>
-<net name="DIR_NEMA17" class="0">
-<segment>
-<pinref part="DRIVER_NEMA17" gate="G$1" pin="DIR"/>
-<pinref part="R6" gate="G$1" pin="2"/>
-<wire x1="86.36" y1="215.9" x2="83.82" y2="215.9" width="0.1524" layer="91"/>
-<wire x1="83.82" y1="215.9" x2="68.58" y2="215.9" width="0.1524" layer="91"/>
-<junction x="83.82" y="215.9"/>
-<junction x="68.58" y="215.9"/>
-<label x="68.58" y="215.9" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="STEP_NEMA17" class="0">
-<segment>
-<pinref part="DRIVER_NEMA17" gate="G$1" pin="STEP"/>
-<pinref part="R5" gate="G$1" pin="2"/>
-<wire x1="86.36" y1="218.44" x2="63.5" y2="218.44" width="0.1524" layer="91"/>
-<wire x1="63.5" y1="218.44" x2="45.72" y2="218.44" width="0.1524" layer="91"/>
-<junction x="63.5" y="218.44"/>
-<junction x="45.72" y="218.44"/>
-<label x="45.72" y="218.44" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="N$5" class="0">
-<segment>
-<pinref part="DRIVER_NEMA17" gate="G$1" pin="!SLP"/>
-<wire x1="86.36" y1="220.98" x2="83.82" y2="220.98" width="0.1524" layer="91"/>
-<wire x1="83.82" y1="220.98" x2="83.82" y2="223.52" width="0.1524" layer="91"/>
-<pinref part="DRIVER_NEMA17" gate="G$1" pin="!RST"/>
-<wire x1="83.82" y1="223.52" x2="86.36" y2="223.52" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$6" class="0">
-<segment>
-<pinref part="DRIVER_NEMA17" gate="G$1" pin="1B"/>
-<wire x1="111.76" y1="220.98" x2="129.54" y2="220.98" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$7" class="0">
-<segment>
-<pinref part="DRIVER_NEMA17" gate="G$1" pin="1A"/>
-<wire x1="129.54" y1="223.52" x2="111.76" y2="223.52" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$8" class="0">
-<segment>
-<pinref part="DRIVER_NEMA17" gate="G$1" pin="2A"/>
-<wire x1="111.76" y1="226.06" x2="129.54" y2="226.06" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$9" class="0">
-<segment>
-<pinref part="DRIVER_NEMA17" gate="G$1" pin="2B"/>
-<wire x1="129.54" y1="228.6" x2="111.76" y2="228.6" width="0.1524" layer="91"/>
-</segment>
-</net>
 <net name="N$16" class="0">
 <segment>
 <pinref part="NEMA17" gate="G$1" pin="4"/>
-<pinref part="DRIVER_NEMA1" gate="G$1" pin="2B"/>
+<pinref part="DRIVER_NEMA17" gate="G$1" pin="2B"/>
 <wire x1="144.78" y1="157.48" x2="170.18" y2="157.48" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$17" class="0">
 <segment>
 <pinref part="NEMA17" gate="G$1" pin="3"/>
-<pinref part="DRIVER_NEMA1" gate="G$1" pin="2A"/>
+<pinref part="DRIVER_NEMA17" gate="G$1" pin="2A"/>
 <wire x1="144.78" y1="154.94" x2="170.18" y2="154.94" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$18" class="0">
 <segment>
 <pinref part="NEMA17" gate="G$1" pin="2"/>
-<pinref part="DRIVER_NEMA1" gate="G$1" pin="1A"/>
+<pinref part="DRIVER_NEMA17" gate="G$1" pin="1A"/>
 <wire x1="144.78" y1="152.4" x2="170.18" y2="152.4" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$19" class="0">
 <segment>
 <pinref part="NEMA17" gate="G$1" pin="1"/>
-<pinref part="DRIVER_NEMA1" gate="G$1" pin="1B"/>
+<pinref part="DRIVER_NEMA17" gate="G$1" pin="1B"/>
 <wire x1="144.78" y1="149.86" x2="170.18" y2="149.86" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$20" class="0">
 <segment>
-<pinref part="DRIVER_NEMA1" gate="G$1" pin="!SLP"/>
+<pinref part="DRIVER_NEMA17" gate="G$1" pin="!SLP"/>
 <wire x1="195.58" y1="149.86" x2="198.12" y2="149.86" width="0.1524" layer="91"/>
 <wire x1="198.12" y1="149.86" x2="198.12" y2="152.4" width="0.1524" layer="91"/>
-<pinref part="DRIVER_NEMA1" gate="G$1" pin="!RST"/>
+<pinref part="DRIVER_NEMA17" gate="G$1" pin="!RST"/>
 <wire x1="198.12" y1="152.4" x2="195.58" y2="152.4" width="0.1524" layer="91"/>
 </segment>
 </net>
@@ -12158,7 +11972,7 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 </net>
 <net name="N$25" class="0">
 <segment>
-<pinref part="DRIVER_NEMA1" gate="G$1" pin="DIR"/>
+<pinref part="DRIVER_NEMA17" gate="G$1" pin="DIR"/>
 <wire x1="195.58" y1="144.78" x2="203.2" y2="144.78" width="0.1524" layer="91"/>
 <wire x1="203.2" y1="144.78" x2="223.52" y2="144.78" width="0.1524" layer="91"/>
 <wire x1="223.52" y1="144.78" x2="223.52" y2="101.6" width="0.1524" layer="91"/>
@@ -12172,7 +11986,7 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 <net name="N$26" class="0">
 <segment>
 <wire x1="226.06" y1="104.14" x2="226.06" y2="147.32" width="0.1524" layer="91"/>
-<pinref part="DRIVER_NEMA1" gate="G$1" pin="STEP"/>
+<pinref part="DRIVER_NEMA17" gate="G$1" pin="STEP"/>
 <wire x1="226.06" y1="147.32" x2="213.36" y2="147.32" width="0.1524" layer="91"/>
 <pinref part="R1" gate="G$1" pin="2"/>
 <wire x1="213.36" y1="147.32" x2="195.58" y2="147.32" width="0.1524" layer="91"/>
@@ -12200,43 +12014,43 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 </net>
 <net name="N$29" class="0">
 <segment>
-<pinref part="NEMA1" gate="G$1" pin="4"/>
+<pinref part="NEMA23" gate="G$1" pin="4"/>
 <wire x1="142.24" y1="-12.7" x2="144.78" y2="-12.7" width="0.1524" layer="91"/>
 <wire x1="144.78" y1="-12.7" x2="144.78" y2="2.54" width="0.1524" layer="91"/>
-<pinref part="DRIVER_NEMA2" gate="G$1" pin="OUT-A1"/>
+<pinref part="DRIVER_NEMA23" gate="G$1" pin="OUT-A1"/>
 <wire x1="144.78" y1="2.54" x2="154.94" y2="2.54" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$30" class="0">
 <segment>
-<pinref part="DRIVER_NEMA2" gate="G$1" pin="OUT-A2"/>
+<pinref part="DRIVER_NEMA23" gate="G$1" pin="OUT-A2"/>
 <wire x1="154.94" y1="-2.54" x2="149.86" y2="-2.54" width="0.1524" layer="91"/>
-<pinref part="NEMA1" gate="G$1" pin="3"/>
+<pinref part="NEMA23" gate="G$1" pin="3"/>
 <wire x1="149.86" y1="-2.54" x2="149.86" y2="-15.24" width="0.1524" layer="91"/>
 <wire x1="149.86" y1="-15.24" x2="142.24" y2="-15.24" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$31" class="0">
 <segment>
-<pinref part="NEMA1" gate="G$1" pin="2"/>
+<pinref part="NEMA23" gate="G$1" pin="2"/>
 <wire x1="142.24" y1="-17.78" x2="149.86" y2="-17.78" width="0.1524" layer="91"/>
 <wire x1="149.86" y1="-17.78" x2="149.86" y2="-25.4" width="0.1524" layer="91"/>
-<pinref part="DRIVER_NEMA2" gate="G$1" pin="OUT-B1"/>
+<pinref part="DRIVER_NEMA23" gate="G$1" pin="OUT-B1"/>
 <wire x1="149.86" y1="-25.4" x2="154.94" y2="-25.4" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$32" class="0">
 <segment>
-<pinref part="NEMA1" gate="G$1" pin="1"/>
+<pinref part="NEMA23" gate="G$1" pin="1"/>
 <wire x1="142.24" y1="-20.32" x2="144.78" y2="-20.32" width="0.1524" layer="91"/>
 <wire x1="144.78" y1="-20.32" x2="144.78" y2="-30.48" width="0.1524" layer="91"/>
-<pinref part="DRIVER_NEMA2" gate="G$1" pin="OUT-B2"/>
+<pinref part="DRIVER_NEMA23" gate="G$1" pin="OUT-B2"/>
 <wire x1="144.78" y1="-30.48" x2="154.94" y2="-30.48" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$34" class="0">
 <segment>
-<pinref part="DRIVER_NEMA2" gate="G$1" pin="DIR"/>
+<pinref part="DRIVER_NEMA23" gate="G$1" pin="DIR"/>
 <wire x1="205.74" y1="-7.62" x2="228.6" y2="-7.62" width="0.1524" layer="91"/>
 <pinref part="B1" gate="G$1" pin="11"/>
 <wire x1="228.6" y1="-7.62" x2="228.6" y2="88.9" width="0.1524" layer="91"/>
@@ -12247,7 +12061,7 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 <segment>
 <pinref part="B1" gate="G$1" pin="12"/>
 <wire x1="259.08" y1="86.36" x2="231.14" y2="86.36" width="0.1524" layer="91"/>
-<pinref part="DRIVER_NEMA2" gate="G$1" pin="CLK"/>
+<pinref part="DRIVER_NEMA23" gate="G$1" pin="CLK"/>
 <wire x1="231.14" y1="86.36" x2="231.14" y2="-12.7" width="0.1524" layer="91"/>
 <wire x1="231.14" y1="-12.7" x2="205.74" y2="-12.7" width="0.1524" layer="91"/>
 </segment>
@@ -12257,6 +12071,32 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 <pinref part="DRIVER_INCLINE" gate="L298" pin="INPUT1"/>
 <pinref part="B1" gate="G$1" pin="7"/>
 <wire x1="195.58" y1="99.06" x2="259.08" y2="99.06" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="INTERRUPT_NEMA23" class="0">
+<segment>
+<pinref part="B1" gate="G$1" pin="3"/>
+<wire x1="259.08" y1="109.22" x2="228.6" y2="109.22" width="0.1524" layer="91"/>
+<junction x="228.6" y="109.22"/>
+<label x="228.6" y="109.22" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="N$2" class="0">
+<segment>
+<pinref part="R4" gate="G$1" pin="1"/>
+<wire x1="314.96" y1="149.86" x2="314.96" y2="147.32" width="0.1524" layer="91"/>
+<pinref part="PE7" gate="M" pin="PE"/>
+</segment>
+</net>
+<net name="N$1" class="0">
+<segment>
+<pinref part="PRESS_SENSOR" gate="G$1" pin="1"/>
+<pinref part="R4" gate="G$1" pin="2"/>
+<wire x1="314.96" y1="165.1" x2="314.96" y2="162.56" width="0.1524" layer="91"/>
+<pinref part="B1" gate="G$1" pin="18(TX1)"/>
+<wire x1="314.96" y1="162.56" x2="314.96" y2="160.02" width="0.1524" layer="91"/>
+<wire x1="294.64" y1="162.56" x2="314.96" y2="162.56" width="0.1524" layer="91"/>
+<junction x="314.96" y="162.56"/>
 </segment>
 </net>
 </nets>

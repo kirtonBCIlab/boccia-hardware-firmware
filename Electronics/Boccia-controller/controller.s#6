@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -8466,145 +8466,6 @@ R2 3 2 {val-val*var/100}
 </deviceset>
 </devicesets>
 </library>
-<library name="TB6600HG-H">
-<packages>
-<package name="TB6600-H">
-<wire x1="-14.605" y1="-5.08" x2="-14.605" y2="1.27" width="0.127" layer="20"/>
-<wire x1="-14.605" y1="1.27" x2="-14.605" y2="4.445" width="0.127" layer="20"/>
-<wire x1="-14.605" y1="-5.08" x2="14.605" y2="-5.08" width="0.127" layer="20"/>
-<wire x1="14.605" y1="1.27" x2="14.605" y2="4.445" width="0.127" layer="20"/>
-<wire x1="14.605" y1="4.445" x2="14.605" y2="10.795" width="0.127" layer="20"/>
-<wire x1="-14.605" y1="1.27" x2="-10.795" y2="1.27" width="0.127" layer="20"/>
-<wire x1="-10.795" y1="1.27" x2="-10.16" y2="1.905" width="0.127" layer="20" curve="90"/>
-<wire x1="-10.16" y1="1.905" x2="-10.16" y2="3.81" width="0.127" layer="20"/>
-<wire x1="-10.16" y1="3.81" x2="-10.795" y2="4.445" width="0.127" layer="20" curve="90"/>
-<wire x1="-10.795" y1="4.445" x2="-14.605" y2="4.445" width="0.127" layer="20"/>
-<wire x1="14.605" y1="1.27" x2="10.795" y2="1.27" width="0.127" layer="20"/>
-<wire x1="10.795" y1="1.27" x2="10.16" y2="1.905" width="0.127" layer="20" curve="-90"/>
-<wire x1="10.16" y1="1.905" x2="10.16" y2="3.81" width="0.127" layer="20"/>
-<wire x1="10.16" y1="3.81" x2="10.795" y2="4.445" width="0.127" layer="20" curve="-90"/>
-<wire x1="10.795" y1="4.445" x2="14.605" y2="4.445" width="0.127" layer="20"/>
-<wire x1="14.605" y1="10.795" x2="-14.605" y2="10.795" width="0.127" layer="20"/>
-<wire x1="-14.605" y1="10.795" x2="-14.605" y2="4.445" width="0.127" layer="20"/>
-<text x="-5.715" y="6.985" size="1.6764" layer="48">TB6600HQ</text>
-<text x="-12.7" y="-3.81" size="1.27" layer="21">1</text>
-<wire x1="14.605" y1="-5.08" x2="14.605" y2="1.27" width="0.127" layer="20"/>
-<wire x1="-7.62" y1="-5.08" x2="-7.62" y2="10.16" width="0.127" layer="21"/>
-<wire x1="7.62" y1="-5.08" x2="7.62" y2="10.16" width="0.127" layer="21"/>
-<smd name="12" x="-1" y="-10" dx="3.8" dy="1.5" layer="16" rot="R90"/>
-<smd name="14" x="1" y="-10" dx="3.8" dy="1.5" layer="16" rot="R90"/>
-<smd name="16" x="3" y="-10" dx="3.8" dy="1.5" layer="16" rot="R90"/>
-<smd name="18" x="5" y="-10" dx="3.8" dy="1.5" layer="16" rot="R90"/>
-<smd name="20" x="7" y="-10" dx="3.8" dy="1.5" layer="16" rot="R90"/>
-<smd name="22" x="9" y="-10" dx="3.8" dy="1.5" layer="16" rot="R90"/>
-<smd name="24" x="11" y="-10" dx="3.8" dy="1.5" layer="16" rot="R90"/>
-<smd name="10" x="-3" y="-10" dx="3.8" dy="1.5" layer="16" rot="R90"/>
-<smd name="8" x="-5" y="-10" dx="3.8" dy="1.5" layer="16" rot="R90"/>
-<smd name="6" x="-7" y="-10" dx="3.8" dy="1.5" layer="16" rot="R90"/>
-<smd name="4" x="-9" y="-10" dx="3.8" dy="1.5" layer="16" rot="R90"/>
-<smd name="2" x="-11" y="-10" dx="3.8" dy="1.5" layer="16" rot="R90"/>
-<smd name="1" x="-12" y="-10" dx="3.8" dy="1.5" layer="1" rot="R90"/>
-<smd name="3" x="-10" y="-10" dx="3.8" dy="1.5" layer="1" rot="R90"/>
-<smd name="5" x="-8" y="-10" dx="3.8" dy="1.5" layer="1" rot="R90"/>
-<smd name="7" x="-6" y="-10" dx="3.8" dy="1.5" layer="1" rot="R90"/>
-<smd name="9" x="-4" y="-10" dx="3.8" dy="1.5" layer="1" rot="R90"/>
-<smd name="11" x="-2" y="-10" dx="3.8" dy="1.5" layer="1" rot="R90"/>
-<smd name="13" x="0" y="-10" dx="3.8" dy="1.5" layer="1" rot="R90"/>
-<smd name="15" x="2" y="-10" dx="3.8" dy="1.5" layer="1" rot="R90"/>
-<smd name="17" x="4" y="-10" dx="3.8" dy="1.5" layer="1" rot="R90"/>
-<smd name="19" x="6" y="-10" dx="3.8" dy="1.5" layer="1" rot="R90"/>
-<smd name="21" x="8" y="-10" dx="3.8" dy="1.5" layer="1" rot="R90"/>
-<smd name="23" x="10" y="-10" dx="3.8" dy="1.5" layer="1" rot="R90"/>
-<smd name="25" x="12" y="-10" dx="3.8" dy="1.5" layer="1" rot="R90"/>
-</package>
-</packages>
-<symbols>
-<symbol name="TB6600-H">
-<wire x1="-20.32" y1="33.02" x2="20.32" y2="33.02" width="0.254" layer="94"/>
-<wire x1="20.32" y1="33.02" x2="20.32" y2="-33.02" width="0.254" layer="94"/>
-<wire x1="20.32" y1="-33.02" x2="-20.32" y2="-33.02" width="0.254" layer="94"/>
-<pin name="VREG" x="-12.7" y="38.1" length="middle" rot="R270"/>
-<pin name="CLK" x="-25.4" y="5.08" length="middle"/>
-<pin name="ENABLE" x="-25.4" y="-5.08" length="middle"/>
-<pin name="_RESET" x="-25.4" y="0" length="middle"/>
-<pin name="S-GND" x="0" y="-38.1" length="middle" rot="R90"/>
-<pin name="OSC" x="-25.4" y="-20.32" length="middle"/>
-<pin name="VCC_A" x="7.62" y="38.1" length="middle" rot="R270"/>
-<pin name="OUT-B2" x="25.4" y="-12.7" length="middle" direction="out" rot="R180"/>
-<pin name="GND-B" x="10.16" y="-38.1" length="middle" rot="R90"/>
-<pin name="SENS-A" x="25.4" y="7.62" length="middle" rot="R180"/>
-<pin name="OUT-B1" x="25.4" y="-7.62" length="middle" direction="out" rot="R180"/>
-<pin name="OUT-A2" x="25.4" y="15.24" length="middle" direction="out" rot="R180"/>
-<pin name="TQ" x="-10.16" y="-38.1" length="middle" rot="R90"/>
-<pin name="SENS-B" x="25.4" y="-20.32" length="middle" rot="R180"/>
-<pin name="GND-A" x="5.08" y="-38.1" length="middle" rot="R90"/>
-<pin name="OUT-A1" x="25.4" y="20.32" length="middle" direction="out" rot="R180"/>
-<pin name="M3" x="-25.4" y="15.24" length="middle"/>
-<pin name="VCC_B" x="12.7" y="38.1" length="middle" rot="R270"/>
-<pin name="ALERT" x="-2.54" y="38.1" length="middle" rot="R270"/>
-<pin name="MO" x="-7.62" y="38.1" length="middle" rot="R270"/>
-<pin name="DIR" x="-25.4" y="10.16" length="middle"/>
-<pin name="M2" x="-25.4" y="20.32" length="middle"/>
-<pin name="M1" x="-25.4" y="25.4" length="middle"/>
-<pin name="LATCH/AUTO" x="-25.4" y="-10.16" length="middle"/>
-<pin name="VREF" x="-25.4" y="-25.4" length="middle"/>
-<wire x1="-20.32" y1="-33.02" x2="-20.32" y2="33.02" width="0.254" layer="94"/>
-</symbol>
-</symbols>
-<devicesets>
-<deviceset name="TB6600-H">
-<description>TB6600HG
-
-PWM Chopper-Type bipolar
-Stepping Motor Driver IC
-
-The TB6600HG is a PWM chopper-type single-chip bipolar sinusoidal
-micro-step stepping motor driver.
-Forward and reverse rotation control is available with 2-phase,
-1-2-phase, W1-2-phase, 2W1-2-phase, and 4W1-2-phase excitation
-modes.
-2-phase bipolar-type stepping motor can be driven by only clock signal
-with low vibration and high efficiency.</description>
-<gates>
-<gate name="G$1" symbol="TB6600-H" x="10.16" y="-2.54"/>
-</gates>
-<devices>
-<device name="" package="TB6600-H">
-<connects>
-<connect gate="G$1" pin="ALERT" pad="1"/>
-<connect gate="G$1" pin="CLK" pad="21"/>
-<connect gate="G$1" pin="DIR" pad="22"/>
-<connect gate="G$1" pin="ENABLE" pad="18"/>
-<connect gate="G$1" pin="GND-A" pad="17"/>
-<connect gate="G$1" pin="GND-B" pad="13"/>
-<connect gate="G$1" pin="LATCH/AUTO" pad="4"/>
-<connect gate="G$1" pin="M1" pad="7"/>
-<connect gate="G$1" pin="M2" pad="8"/>
-<connect gate="G$1" pin="M3" pad="9"/>
-<connect gate="G$1" pin="MO" pad="25"/>
-<connect gate="G$1" pin="OSC" pad="23"/>
-<connect gate="G$1" pin="OUT-A1" pad="16"/>
-<connect gate="G$1" pin="OUT-A2" pad="14"/>
-<connect gate="G$1" pin="OUT-B1" pad="12"/>
-<connect gate="G$1" pin="OUT-B2" pad="10"/>
-<connect gate="G$1" pin="S-GND" pad="2"/>
-<connect gate="G$1" pin="SENS-A" pad="15"/>
-<connect gate="G$1" pin="SENS-B" pad="11"/>
-<connect gate="G$1" pin="TQ" pad="3"/>
-<connect gate="G$1" pin="VCC_A" pad="20"/>
-<connect gate="G$1" pin="VCC_B" pad="6"/>
-<connect gate="G$1" pin="VREF" pad="5"/>
-<connect gate="G$1" pin="VREG" pad="24"/>
-<connect gate="G$1" pin="_RESET" pad="19"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
-</devicesets>
-</library>
 <library name="SparkFun-Connectors" urn="urn:adsk.eagle:library:513">
 <description>&lt;h3&gt;SparkFun Connectors&lt;/h3&gt;
 This library contains electrically-functional connectors. 
@@ -11387,6 +11248,77 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 </deviceset>
 </devicesets>
 </library>
+<library name="COVVY-TB6600">
+<packages>
+<package name="COVVY_TB6600">
+<wire x1="-5.08" y1="8.89" x2="5.08" y2="8.89" width="0.127" layer="21"/>
+<wire x1="5.08" y1="8.89" x2="5.08" y2="-8.89" width="0.127" layer="21"/>
+<wire x1="5.08" y1="-8.89" x2="-5.08" y2="-8.89" width="0.127" layer="21"/>
+<wire x1="-5.08" y1="-8.89" x2="-5.08" y2="8.89" width="0.127" layer="21"/>
+<smd name="3" x="-5.08" y="1.27" dx="1.27" dy="0.635" layer="1"/>
+<smd name="2" x="-5.08" y="3.81" dx="1.27" dy="0.635" layer="1"/>
+<smd name="1" x="-5.08" y="6.35" dx="1.27" dy="0.635" layer="1"/>
+<smd name="4" x="-5.08" y="-1.27" dx="1.27" dy="0.635" layer="1"/>
+<smd name="5" x="-5.08" y="-3.81" dx="1.27" dy="0.635" layer="1"/>
+<smd name="6" x="-5.08" y="-6.35" dx="1.27" dy="0.635" layer="1"/>
+<smd name="12" x="5.08" y="-6.35" dx="1.27" dy="0.635" layer="1"/>
+<smd name="11" x="5.08" y="-3.81" dx="1.27" dy="0.635" layer="1"/>
+<smd name="10" x="5.08" y="-1.27" dx="1.27" dy="0.635" layer="1"/>
+<smd name="9" x="5.08" y="1.27" dx="1.27" dy="0.635" layer="1"/>
+<smd name="8" x="5.08" y="3.81" dx="1.27" dy="0.635" layer="1"/>
+<smd name="7" x="5.08" y="6.35" dx="1.27" dy="0.635" layer="1"/>
+</package>
+</packages>
+<symbols>
+<symbol name="COVVY_TB6600">
+<wire x1="-10.16" y1="17.78" x2="10.16" y2="17.78" width="0.254" layer="94"/>
+<wire x1="10.16" y1="17.78" x2="10.16" y2="-17.78" width="0.254" layer="94"/>
+<wire x1="-10.16" y1="-17.78" x2="-10.16" y2="17.78" width="0.254" layer="94"/>
+<wire x1="10.16" y1="-17.78" x2="-10.16" y2="-17.78" width="0.254" layer="94"/>
+<pin name="ENA-" x="-15.24" y="12.7" length="middle" direction="in"/>
+<pin name="ENA+" x="-15.24" y="7.62" length="middle" direction="in"/>
+<pin name="DIR-" x="-15.24" y="2.54" length="middle" direction="in"/>
+<pin name="DIR+" x="-15.24" y="-2.54" length="middle" direction="in"/>
+<pin name="PUL-" x="-15.24" y="-7.62" length="middle" direction="in"/>
+<pin name="PUL+" x="-15.24" y="-12.7" length="middle" direction="in"/>
+<pin name="B-" x="15.24" y="12.7" length="middle" direction="out" rot="R180"/>
+<pin name="B+" x="15.24" y="7.62" length="middle" direction="out" rot="R180"/>
+<pin name="A-" x="15.24" y="2.54" length="middle" direction="out" rot="R180"/>
+<pin name="A+" x="15.24" y="-2.54" length="middle" direction="out" rot="R180"/>
+<pin name="GND" x="15.24" y="-7.62" length="middle" direction="pwr" rot="R180"/>
+<pin name="VCC" x="15.24" y="-12.7" length="middle" direction="pwr" rot="R180"/>
+<text x="0" y="-20.32" size="1.778" layer="95" align="bottom-center">COVVY-TB6600</text>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="COVVY-TB6600">
+<gates>
+<gate name="G$1" symbol="COVVY_TB6600" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="COVVY_TB6600">
+<connects>
+<connect gate="G$1" pin="A+" pad="10"/>
+<connect gate="G$1" pin="A-" pad="9"/>
+<connect gate="G$1" pin="B+" pad="8"/>
+<connect gate="G$1" pin="B-" pad="7"/>
+<connect gate="G$1" pin="DIR+" pad="4"/>
+<connect gate="G$1" pin="DIR-" pad="3"/>
+<connect gate="G$1" pin="ENA+" pad="2"/>
+<connect gate="G$1" pin="ENA-" pad="1"/>
+<connect gate="G$1" pin="GND" pad="11"/>
+<connect gate="G$1" pin="PUL+" pad="6"/>
+<connect gate="G$1" pin="PUL-" pad="5"/>
+<connect gate="G$1" pin="VCC" pad="12"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -11398,29 +11330,29 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 </classes>
 <parts>
 <part name="B1" library="SparkFun-Boards" library_urn="urn:adsk.eagle:library:509" deviceset="ARDUINO_MEGA_R3" device="FULL" package3d_urn="urn:adsk.eagle:package:37320/1"/>
-<part name="REG_NEMA17" library="national-semiconductor" library_urn="urn:adsk.eagle:library:307" deviceset="LM2596" device="S" package3d_urn="urn:adsk.eagle:package:16438/2"/>
-<part name="REG_INCLINE" library="national-semiconductor" library_urn="urn:adsk.eagle:library:307" deviceset="LM2596" device="S" package3d_urn="urn:adsk.eagle:package:16438/2"/>
-<part name="REG_HEIGHT" library="national-semiconductor" library_urn="urn:adsk.eagle:library:307" deviceset="LM2596" device="S" package3d_urn="urn:adsk.eagle:package:16438/2"/>
+<part name="REGULATOR_RELEASE" library="national-semiconductor" library_urn="urn:adsk.eagle:library:307" deviceset="LM2596" device="S" package3d_urn="urn:adsk.eagle:package:16438/2"/>
+<part name="REGULATOR_INCLINE" library="national-semiconductor" library_urn="urn:adsk.eagle:library:307" deviceset="LM2596" device="S" package3d_urn="urn:adsk.eagle:package:16438/2"/>
+<part name="REGULATOR_ELEVATION" library="national-semiconductor" library_urn="urn:adsk.eagle:library:307" deviceset="LM2596" device="S" package3d_urn="urn:adsk.eagle:package:16438/2"/>
 <part name="DRIVER_INCLINE" library="st-microelectronics" library_urn="urn:adsk.eagle:library:368" deviceset="L298" device="" package3d_urn="urn:adsk.eagle:package:26823/1"/>
-<part name="DRIVER_HEIGHT" library="st-microelectronics" library_urn="urn:adsk.eagle:library:368" deviceset="L298" device="" package3d_urn="urn:adsk.eagle:package:26823/1"/>
+<part name="DRIVER_ELEVATION" library="st-microelectronics" library_urn="urn:adsk.eagle:library:368" deviceset="L298" device="" package3d_urn="urn:adsk.eagle:package:26823/1"/>
 <part name="P+1" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+24V" device=""/>
 <part name="PE1" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="PE" device=""/>
-<part name="OPTICAL_NEMA17_1" library="optocoupler" library_urn="urn:adsk.eagle:library:320" deviceset="SFH618?*" device="A" package3d_urn="urn:adsk.eagle:package:21960/1" technology="-2"/>
+<part name="OPTICAL_RELEASE_1" library="optocoupler" library_urn="urn:adsk.eagle:library:320" deviceset="SFH618?*" device="A" package3d_urn="urn:adsk.eagle:package:21960/1" technology="-2"/>
 <part name="PE2" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="PE" device=""/>
-<part name="OPTICAL_NEMA17_2" library="optocoupler" library_urn="urn:adsk.eagle:library:320" deviceset="SFH618?*" device="A" package3d_urn="urn:adsk.eagle:package:21960/1" technology="-2"/>
+<part name="OPTICAL_RELEASE_2" library="optocoupler" library_urn="urn:adsk.eagle:library:320" deviceset="SFH618?*" device="A" package3d_urn="urn:adsk.eagle:package:21960/1" technology="-2"/>
 <part name="PE3" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="PE" device=""/>
-<part name="OPTICAL_NEMA23_1" library="optocoupler" library_urn="urn:adsk.eagle:library:320" deviceset="SFH618?*" device="A" package3d_urn="urn:adsk.eagle:package:21960/1" technology="-2"/>
-<part name="OPTICAL_NEMA23_2" library="optocoupler" library_urn="urn:adsk.eagle:library:320" deviceset="SFH618?*" device="A" package3d_urn="urn:adsk.eagle:package:21960/1" technology="-2"/>
+<part name="OPTICAL_ROTATION_1" library="optocoupler" library_urn="urn:adsk.eagle:library:320" deviceset="SFH618?*" device="A" package3d_urn="urn:adsk.eagle:package:21960/1" technology="-2"/>
+<part name="OPTICAL_ROTATION_2" library="optocoupler" library_urn="urn:adsk.eagle:library:320" deviceset="SFH618?*" device="A" package3d_urn="urn:adsk.eagle:package:21960/1" technology="-2"/>
 <part name="PE4" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="PE" device=""/>
 <part name="PE12" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="PE" device=""/>
 <part name="INCLINE_ACTUATOR" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CONN_02" device="" package3d_urn="urn:adsk.eagle:package:38039/1"/>
 <part name="PE13" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="PE" device=""/>
-<part name="HEIGHT_ACTUATOR" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CONN_02" device="" package3d_urn="urn:adsk.eagle:package:38039/1"/>
+<part name="ELEVATION_ACTUATOR" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CONN_02" device="" package3d_urn="urn:adsk.eagle:package:38039/1"/>
 <part name="C2" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="EL-" device="BI35-12AXIAL" package3d_urn="urn:adsk.eagle:package:23715/1" value="100uF"/>
 <part name="PE14" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="PE" device=""/>
 <part name="C3" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="EL-" device="BI35-12AXIAL" package3d_urn="urn:adsk.eagle:package:23715/1" value="100uF"/>
 <part name="PE15" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="PE" device=""/>
-<part name="DRIVER_NEMA17" library="pololu-stepper-driver" deviceset="2985-A4988" device=""/>
+<part name="DRIVER_RELEASE" library="pololu-stepper-driver" deviceset="2985-A4988" device=""/>
 <part name="C1" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="EL-" device="BI35-12AXIAL" package3d_urn="urn:adsk.eagle:package:23715/1" value="100uF"/>
 <part name="PE11" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="PE" device=""/>
 <part name="NEMA17" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CONN_04" device="" package3d_urn="urn:adsk.eagle:package:38085/1"/>
@@ -11431,160 +11363,163 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 <part name="R1" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-US_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="10k"/>
 <part name="R2" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-US_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="10k"/>
 <part name="PE5" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="PE" device=""/>
-<part name="DRIVER_NEMA23" library="TB6600HG-H" deviceset="TB6600-H" device=""/>
 <part name="NEMA23" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CONN_04" device="" package3d_urn="urn:adsk.eagle:package:38085/1"/>
-<part name="PE6" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="PE" device=""/>
 <part name="PRESS_SENSOR" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-US_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="10k"/>
 <part name="R4" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-US_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="100k"/>
 <part name="PE7" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="PE" device=""/>
+<part name="DRIVER_ROTATION" library="COVVY-TB6600" deviceset="COVVY-TB6600" device="">
+<attribute name="DRIVER_ROTATION" value="1"/>
+</part>
+<part name="PE6" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="PE" device=""/>
 </parts>
 <sheets>
 <sheet>
 <plain>
-<text x="180.34" y="22.86" size="1.778" layer="95">DRIVER_NEMA23</text>
 </plain>
 <instances>
-<instance part="B1" gate="G$1" x="276.86" y="124.46" smashed="yes">
-<attribute name="NAME" x="261.62" y="178.562" size="1.778" layer="95"/>
-<attribute name="VALUE" x="261.62" y="68.58" size="1.778" layer="96"/>
+<instance part="B1" gate="G$1" x="119.38" y="86.36" smashed="yes">
+<attribute name="NAME" x="104.14" y="140.462" size="1.778" layer="95"/>
+<attribute name="VALUE" x="104.14" y="30.48" size="1.778" layer="96"/>
 </instance>
-<instance part="REG_NEMA17" gate="G$1" x="96.52" y="160.02" smashed="yes">
-<attribute name="NAME" x="86.36" y="168.91" size="1.778" layer="95"/>
-<attribute name="VALUE" x="86.36" y="149.86" size="1.778" layer="96"/>
+<instance part="REGULATOR_RELEASE" gate="G$1" x="-60.96" y="121.92" smashed="yes">
+<attribute name="NAME" x="-71.12" y="130.81" size="1.778" layer="95"/>
+<attribute name="VALUE" x="-71.12" y="111.76" size="1.778" layer="96"/>
 </instance>
-<instance part="REG_INCLINE" gate="G$1" x="96.52" y="109.22" smashed="yes">
-<attribute name="NAME" x="86.36" y="118.11" size="1.778" layer="95"/>
-<attribute name="VALUE" x="86.36" y="99.06" size="1.778" layer="96"/>
+<instance part="REGULATOR_INCLINE" gate="G$1" x="-60.96" y="71.12" smashed="yes">
+<attribute name="NAME" x="-71.12" y="80.01" size="1.778" layer="95"/>
+<attribute name="VALUE" x="-71.12" y="60.96" size="1.778" layer="96"/>
 </instance>
-<instance part="REG_HEIGHT" gate="G$1" x="96.52" y="68.58" smashed="yes">
-<attribute name="NAME" x="86.36" y="77.47" size="1.778" layer="95"/>
-<attribute name="VALUE" x="86.36" y="58.42" size="1.778" layer="96"/>
+<instance part="REGULATOR_ELEVATION" gate="G$1" x="-60.96" y="30.48" smashed="yes">
+<attribute name="NAME" x="-71.12" y="39.37" size="1.778" layer="95"/>
+<attribute name="VALUE" x="-71.12" y="20.32" size="1.778" layer="96"/>
 </instance>
-<instance part="DRIVER_INCLINE" gate="L298" x="180.34" y="96.52" smashed="yes" rot="MR0">
-<attribute name="NAME" x="193.04" y="115.57" size="1.778" layer="95" rot="MR0"/>
-<attribute name="VALUE" x="193.04" y="81.28" size="1.778" layer="96" rot="MR0"/>
+<instance part="DRIVER_INCLINE" gate="L298" x="22.86" y="58.42" smashed="yes" rot="MR0">
+<attribute name="NAME" x="35.56" y="77.47" size="1.778" layer="95" rot="MR0"/>
+<attribute name="VALUE" x="35.56" y="43.18" size="1.778" layer="96" rot="MR0"/>
 </instance>
-<instance part="DRIVER_HEIGHT" gate="L298" x="180.34" y="55.88" smashed="yes" rot="MR0">
-<attribute name="NAME" x="193.04" y="74.93" size="1.778" layer="95" rot="MR0"/>
-<attribute name="VALUE" x="193.04" y="40.64" size="1.778" layer="96" rot="MR0"/>
+<instance part="DRIVER_ELEVATION" gate="L298" x="22.86" y="17.78" smashed="yes" rot="MR0">
+<attribute name="NAME" x="35.56" y="36.83" size="1.778" layer="95" rot="MR0"/>
+<attribute name="VALUE" x="35.56" y="2.54" size="1.778" layer="96" rot="MR0"/>
 </instance>
-<instance part="P+1" gate="1" x="73.66" y="170.18" smashed="yes">
-<attribute name="VALUE" x="71.12" y="165.1" size="1.778" layer="96" rot="R90"/>
+<instance part="P+1" gate="1" x="-83.82" y="132.08" smashed="yes">
+<attribute name="VALUE" x="-86.36" y="127" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="PE1" gate="M" x="78.74" y="55.88" smashed="yes">
-<attribute name="VALUE" x="76.2" y="53.34" size="1.778" layer="96" rot="R90"/>
+<instance part="PE1" gate="M" x="-78.74" y="17.78" smashed="yes">
+<attribute name="VALUE" x="-81.28" y="15.24" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="OPTICAL_NEMA17_1" gate="G$1" x="264.16" y="38.1" smashed="yes">
-<attribute name="NAME" x="257.175" y="43.815" size="1.778" layer="95"/>
-<attribute name="VALUE" x="257.175" y="30.48" size="1.778" layer="96"/>
+<instance part="OPTICAL_RELEASE_1" gate="G$1" x="106.68" y="0" smashed="yes">
+<attribute name="NAME" x="99.695" y="5.715" size="1.778" layer="95"/>
+<attribute name="VALUE" x="99.695" y="-7.62" size="1.778" layer="96"/>
 </instance>
-<instance part="PE2" gate="M" x="251.46" y="68.58" smashed="yes">
-<attribute name="VALUE" x="248.92" y="66.04" size="1.778" layer="96" rot="R90"/>
+<instance part="PE2" gate="M" x="93.98" y="30.48" smashed="yes">
+<attribute name="VALUE" x="91.44" y="27.94" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="OPTICAL_NEMA17_2" gate="G$1" x="264.16" y="20.32" smashed="yes">
-<attribute name="NAME" x="257.175" y="26.035" size="1.778" layer="95"/>
-<attribute name="VALUE" x="257.175" y="12.7" size="1.778" layer="96"/>
+<instance part="OPTICAL_RELEASE_2" gate="G$1" x="106.68" y="-17.78" smashed="yes">
+<attribute name="NAME" x="99.695" y="-12.065" size="1.778" layer="95"/>
+<attribute name="VALUE" x="99.695" y="-25.4" size="1.778" layer="96"/>
 </instance>
-<instance part="PE3" gate="M" x="251.46" y="5.08" smashed="yes">
-<attribute name="VALUE" x="248.92" y="2.54" size="1.778" layer="96" rot="R90"/>
+<instance part="PE3" gate="M" x="93.98" y="-33.02" smashed="yes">
+<attribute name="VALUE" x="91.44" y="-35.56" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="OPTICAL_NEMA23_1" gate="G$1" x="266.7" y="-22.86" smashed="yes">
-<attribute name="NAME" x="259.715" y="-17.145" size="1.778" layer="95"/>
-<attribute name="VALUE" x="259.715" y="-30.48" size="1.778" layer="96"/>
+<instance part="OPTICAL_ROTATION_1" gate="G$1" x="109.22" y="-60.96" smashed="yes">
+<attribute name="NAME" x="102.235" y="-55.245" size="1.778" layer="95"/>
+<attribute name="VALUE" x="102.235" y="-68.58" size="1.778" layer="96"/>
 </instance>
-<instance part="OPTICAL_NEMA23_2" gate="G$1" x="266.7" y="-40.64" smashed="yes">
-<attribute name="NAME" x="259.715" y="-34.925" size="1.778" layer="95"/>
-<attribute name="VALUE" x="259.715" y="-48.26" size="1.778" layer="96"/>
+<instance part="OPTICAL_ROTATION_2" gate="G$1" x="109.22" y="-78.74" smashed="yes">
+<attribute name="NAME" x="102.235" y="-73.025" size="1.778" layer="95"/>
+<attribute name="VALUE" x="102.235" y="-86.36" size="1.778" layer="96"/>
 </instance>
-<instance part="PE4" gate="M" x="254" y="-55.88" smashed="yes">
-<attribute name="VALUE" x="251.46" y="-58.42" size="1.778" layer="96" rot="R90"/>
+<instance part="PE4" gate="M" x="96.52" y="-93.98" smashed="yes">
+<attribute name="VALUE" x="93.98" y="-96.52" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="PE12" gate="M" x="200.66" y="40.64" smashed="yes">
-<attribute name="VALUE" x="198.12" y="38.1" size="1.778" layer="96" rot="R90"/>
+<instance part="PE12" gate="M" x="43.18" y="2.54" smashed="yes">
+<attribute name="VALUE" x="40.64" y="0" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="INCLINE_ACTUATOR" gate="G$1" x="144.78" y="96.52" smashed="yes">
-<attribute name="VALUE" x="142.24" y="91.694" size="1.778" layer="96" font="vector"/>
-<attribute name="NAME" x="142.24" y="102.108" size="1.778" layer="95" font="vector"/>
+<instance part="INCLINE_ACTUATOR" gate="G$1" x="-20.32" y="58.42" smashed="yes">
+<attribute name="VALUE" x="-22.86" y="53.594" size="1.778" layer="96" font="vector"/>
+<attribute name="NAME" x="-22.86" y="64.008" size="1.778" layer="95" font="vector"/>
 </instance>
-<instance part="PE13" gate="M" x="200.66" y="81.28" smashed="yes">
-<attribute name="VALUE" x="198.12" y="78.74" size="1.778" layer="96" rot="R90"/>
+<instance part="PE13" gate="M" x="43.18" y="43.18" smashed="yes">
+<attribute name="VALUE" x="40.64" y="40.64" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="HEIGHT_ACTUATOR" gate="G$1" x="144.78" y="55.88" smashed="yes">
-<attribute name="VALUE" x="142.24" y="51.054" size="1.778" layer="96" font="vector"/>
-<attribute name="NAME" x="142.24" y="61.468" size="1.778" layer="95" font="vector"/>
+<instance part="ELEVATION_ACTUATOR" gate="G$1" x="-20.32" y="17.78" smashed="yes">
+<attribute name="VALUE" x="-22.86" y="12.954" size="1.778" layer="96" font="vector"/>
+<attribute name="NAME" x="-22.86" y="23.368" size="1.778" layer="95" font="vector"/>
 </instance>
-<instance part="C2" gate="G$1" x="116.84" y="63.5" smashed="yes">
-<attribute name="NAME" x="118.364" y="63.881" size="1.778" layer="95"/>
-<attribute name="VALUE" x="118.364" y="58.801" size="1.778" layer="96"/>
+<instance part="C2" gate="G$1" x="-40.64" y="25.4" smashed="yes">
+<attribute name="NAME" x="-39.116" y="25.781" size="1.778" layer="95"/>
+<attribute name="VALUE" x="-39.116" y="20.701" size="1.778" layer="96"/>
 </instance>
-<instance part="PE14" gate="M" x="116.84" y="53.34" smashed="yes">
-<attribute name="VALUE" x="114.3" y="50.8" size="1.778" layer="96" rot="R90"/>
+<instance part="PE14" gate="M" x="-40.64" y="15.24" smashed="yes">
+<attribute name="VALUE" x="-43.18" y="12.7" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="C3" gate="G$1" x="116.84" y="104.14" smashed="yes">
-<attribute name="NAME" x="118.364" y="104.521" size="1.778" layer="95"/>
-<attribute name="VALUE" x="118.364" y="99.441" size="1.778" layer="96"/>
+<instance part="C3" gate="G$1" x="-40.64" y="66.04" smashed="yes">
+<attribute name="NAME" x="-39.116" y="66.421" size="1.778" layer="95"/>
+<attribute name="VALUE" x="-39.116" y="61.341" size="1.778" layer="96"/>
 </instance>
-<instance part="PE15" gate="M" x="116.84" y="93.98" smashed="yes">
-<attribute name="VALUE" x="114.3" y="91.44" size="1.778" layer="96" rot="R90"/>
+<instance part="PE15" gate="M" x="-40.64" y="55.88" smashed="yes">
+<attribute name="VALUE" x="-43.18" y="53.34" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="DRIVER_NEMA17" gate="G$1" x="182.88" y="154.94" smashed="yes" rot="MR0">
-<attribute name="NAME" x="187.96" y="165.735" size="1.778" layer="95" rot="MR0"/>
-<attribute name="VALUE" x="187.96" y="139.7" size="1.778" layer="96" rot="MR0"/>
+<instance part="DRIVER_RELEASE" gate="G$1" x="25.4" y="116.84" smashed="yes" rot="MR0">
+<attribute name="NAME" x="35.56" y="127.635" size="1.778" layer="95" rot="MR0"/>
+<attribute name="VALUE" x="30.48" y="101.6" size="1.778" layer="96" rot="MR0"/>
 </instance>
-<instance part="C1" gate="G$1" x="116.84" y="154.94" smashed="yes">
-<attribute name="NAME" x="118.364" y="155.321" size="1.778" layer="95"/>
-<attribute name="VALUE" x="118.364" y="150.241" size="1.778" layer="96"/>
+<instance part="C1" gate="G$1" x="-40.64" y="116.84" smashed="yes">
+<attribute name="NAME" x="-39.116" y="117.221" size="1.778" layer="95"/>
+<attribute name="VALUE" x="-39.116" y="112.141" size="1.778" layer="96"/>
 </instance>
-<instance part="PE11" gate="M" x="116.84" y="144.78" smashed="yes">
-<attribute name="VALUE" x="114.3" y="142.24" size="1.778" layer="96" rot="R90"/>
+<instance part="PE11" gate="M" x="-40.64" y="106.68" smashed="yes">
+<attribute name="VALUE" x="-43.18" y="104.14" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="NEMA17" gate="G$1" x="139.7" y="152.4" smashed="yes">
-<attribute name="VALUE" x="134.62" y="145.034" size="1.778" layer="96" font="vector"/>
-<attribute name="NAME" x="134.62" y="160.528" size="1.778" layer="95" font="vector"/>
+<instance part="NEMA17" gate="G$1" x="-17.78" y="114.3" smashed="yes">
+<attribute name="VALUE" x="-22.86" y="106.934" size="1.778" layer="96" font="vector"/>
+<attribute name="NAME" x="-22.86" y="122.428" size="1.778" layer="95" font="vector"/>
 </instance>
-<instance part="PE16" gate="M" x="165.1" y="139.7" smashed="yes">
-<attribute name="VALUE" x="162.56" y="137.16" size="1.778" layer="96" rot="R90"/>
+<instance part="PE16" gate="M" x="7.62" y="101.6" smashed="yes">
+<attribute name="VALUE" x="5.08" y="99.06" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="POT_INCLINE" gate="G$1" x="233.68" y="152.4" smashed="yes">
-<attribute name="NAME" x="230.251" y="148.59" size="1.778" layer="95" rot="R90"/>
-<attribute name="VALUE" x="229.87" y="148.59" size="1.778" layer="96" rot="R90"/>
+<instance part="POT_INCLINE" gate="G$1" x="76.2" y="114.3" smashed="yes">
+<attribute name="NAME" x="72.771" y="110.49" size="1.778" layer="95" rot="R90"/>
+<attribute name="VALUE" x="72.39" y="110.49" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="PE17" gate="M" x="243.84" y="132.08" smashed="yes">
-<attribute name="VALUE" x="241.3" y="129.54" size="1.778" layer="96" rot="R90"/>
+<instance part="PE17" gate="M" x="86.36" y="93.98" smashed="yes">
+<attribute name="VALUE" x="83.82" y="91.44" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="POT_HEIGHT" gate="G$1" x="248.92" y="144.78" smashed="yes">
-<attribute name="NAME" x="245.491" y="140.97" size="1.778" layer="95" rot="R90"/>
-<attribute name="VALUE" x="245.11" y="140.97" size="1.778" layer="96" rot="R90"/>
+<instance part="POT_HEIGHT" gate="G$1" x="91.44" y="106.68" smashed="yes">
+<attribute name="NAME" x="88.011" y="102.87" size="1.778" layer="95" rot="R90"/>
+<attribute name="VALUE" x="87.63" y="102.87" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="R1" gate="G$1" x="213.36" y="134.62" smashed="yes" rot="R90">
-<attribute name="NAME" x="211.8614" y="130.81" size="1.778" layer="95" rot="R90"/>
-<attribute name="VALUE" x="209.042" y="130.81" size="1.778" layer="96" rot="R90"/>
+<instance part="R1" gate="G$1" x="55.88" y="96.52" smashed="yes" rot="R90">
+<attribute name="NAME" x="54.3814" y="92.71" size="1.778" layer="95" rot="R90"/>
+<attribute name="VALUE" x="51.562" y="92.71" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="R2" gate="G$1" x="203.2" y="134.62" smashed="yes" rot="R90">
-<attribute name="NAME" x="201.7014" y="130.81" size="1.778" layer="95" rot="R90"/>
-<attribute name="VALUE" x="198.882" y="130.81" size="1.778" layer="96" rot="R90"/>
+<instance part="R2" gate="G$1" x="45.72" y="96.52" smashed="yes" rot="R90">
+<attribute name="NAME" x="44.2214" y="92.71" size="1.778" layer="95" rot="R90"/>
+<attribute name="VALUE" x="41.402" y="92.71" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="PE5" gate="M" x="208.28" y="121.92" smashed="yes">
-<attribute name="VALUE" x="205.74" y="119.38" size="1.778" layer="96" rot="R90"/>
+<instance part="PE5" gate="M" x="50.8" y="83.82" smashed="yes">
+<attribute name="VALUE" x="48.26" y="81.28" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="DRIVER_NEMA23" gate="G$1" x="180.34" y="-17.78" smashed="yes" rot="MR0"/>
-<instance part="NEMA23" gate="G$1" x="137.16" y="-17.78" smashed="yes">
-<attribute name="VALUE" x="132.08" y="-25.146" size="1.778" layer="96" font="vector"/>
-<attribute name="NAME" x="132.08" y="-9.652" size="1.778" layer="95" font="vector"/>
+<instance part="NEMA23" gate="G$1" x="-7.62" y="-22.86" smashed="yes">
+<attribute name="VALUE" x="-12.7" y="-30.226" size="1.778" layer="96" font="vector"/>
+<attribute name="NAME" x="-12.7" y="-14.732" size="1.778" layer="95" font="vector"/>
 </instance>
-<instance part="PE6" gate="M" x="175.26" y="-63.5" smashed="yes">
-<attribute name="VALUE" x="172.72" y="-66.04" size="1.778" layer="96" rot="R90"/>
+<instance part="PRESS_SENSOR" gate="G$1" x="157.48" y="132.08" smashed="yes" rot="R90">
+<attribute name="NAME" x="155.9814" y="128.27" size="1.778" layer="95" rot="R90"/>
+<attribute name="VALUE" x="153.162" y="128.27" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="PRESS_SENSOR" gate="G$1" x="314.96" y="170.18" smashed="yes" rot="R90">
-<attribute name="NAME" x="313.4614" y="166.37" size="1.778" layer="95" rot="R90"/>
-<attribute name="VALUE" x="310.642" y="166.37" size="1.778" layer="96" rot="R90"/>
+<instance part="R4" gate="G$1" x="157.48" y="116.84" smashed="yes" rot="R90">
+<attribute name="NAME" x="155.9814" y="113.03" size="1.778" layer="95" rot="R90"/>
+<attribute name="VALUE" x="153.162" y="113.03" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="R4" gate="G$1" x="314.96" y="154.94" smashed="yes" rot="R90">
-<attribute name="NAME" x="313.4614" y="151.13" size="1.778" layer="95" rot="R90"/>
-<attribute name="VALUE" x="310.642" y="151.13" size="1.778" layer="96" rot="R90"/>
+<instance part="PE7" gate="M" x="157.48" y="106.68" smashed="yes">
+<attribute name="VALUE" x="154.94" y="104.14" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="PE7" gate="M" x="314.96" y="144.78" smashed="yes">
-<attribute name="VALUE" x="312.42" y="142.24" size="1.778" layer="96" rot="R90"/>
+<instance part="DRIVER_ROTATION" gate="G$1" x="20.32" y="-30.48" smashed="yes" rot="MR0">
+<attribute name="DRIVER_ROTATION" x="30.48" y="-10.16" size="1.778" layer="96" rot="MR0" display="name"/>
+</instance>
+<instance part="PE6" gate="M" x="-5.08" y="-38.1" smashed="yes" rot="R270">
+<attribute name="VALUE" x="-7.62" y="-35.56" size="1.778" layer="96"/>
 </instance>
 </instances>
 <busses>
@@ -11593,498 +11528,441 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 <net name="+24V" class="0">
 <segment>
 <pinref part="P+1" gate="1" pin="+24V"/>
-<wire x1="73.66" y1="167.64" x2="73.66" y2="165.1" width="0.1524" layer="91"/>
-<pinref part="REG_NEMA17" gate="G$1" pin="VIN"/>
-<wire x1="73.66" y1="165.1" x2="83.82" y2="165.1" width="0.1524" layer="91"/>
-<junction x="73.66" y="165.1"/>
-<pinref part="REG_HEIGHT" gate="G$1" pin="VIN"/>
-<wire x1="83.82" y1="73.66" x2="73.66" y2="73.66" width="0.1524" layer="91"/>
-<wire x1="73.66" y1="73.66" x2="73.66" y2="114.3" width="0.1524" layer="91"/>
-<pinref part="REG_INCLINE" gate="G$1" pin="VIN"/>
-<wire x1="73.66" y1="114.3" x2="73.66" y2="165.1" width="0.1524" layer="91"/>
-<wire x1="83.82" y1="114.3" x2="73.66" y2="114.3" width="0.1524" layer="91"/>
-<junction x="73.66" y="114.3"/>
-<wire x1="73.66" y1="73.66" x2="73.66" y2="27.94" width="0.1524" layer="91"/>
-<wire x1="73.66" y1="27.94" x2="170.18" y2="27.94" width="0.1524" layer="91"/>
-<junction x="73.66" y="73.66"/>
-<pinref part="DRIVER_NEMA23" gate="G$1" pin="VCC_A"/>
-<wire x1="172.72" y1="20.32" x2="172.72" y2="22.86" width="0.1524" layer="91"/>
-<wire x1="172.72" y1="22.86" x2="170.18" y2="22.86" width="0.1524" layer="91"/>
-<pinref part="DRIVER_NEMA23" gate="G$1" pin="VCC_B"/>
-<wire x1="170.18" y1="22.86" x2="167.64" y2="22.86" width="0.1524" layer="91"/>
-<wire x1="167.64" y1="22.86" x2="167.64" y2="20.32" width="0.1524" layer="91"/>
-<wire x1="170.18" y1="22.86" x2="170.18" y2="27.94" width="0.1524" layer="91"/>
-<junction x="170.18" y="22.86"/>
+<wire x1="-83.82" y1="129.54" x2="-83.82" y2="127" width="0.1524" layer="91"/>
+<pinref part="REGULATOR_RELEASE" gate="G$1" pin="VIN"/>
+<wire x1="-83.82" y1="127" x2="-73.66" y2="127" width="0.1524" layer="91"/>
+<junction x="-83.82" y="127"/>
+<pinref part="REGULATOR_ELEVATION" gate="G$1" pin="VIN"/>
+<wire x1="-73.66" y1="35.56" x2="-83.82" y2="35.56" width="0.1524" layer="91"/>
+<wire x1="-83.82" y1="35.56" x2="-83.82" y2="76.2" width="0.1524" layer="91"/>
+<pinref part="REGULATOR_INCLINE" gate="G$1" pin="VIN"/>
+<wire x1="-83.82" y1="76.2" x2="-83.82" y2="127" width="0.1524" layer="91"/>
+<wire x1="-73.66" y1="76.2" x2="-83.82" y2="76.2" width="0.1524" layer="91"/>
+<junction x="-83.82" y="76.2"/>
+<wire x1="-83.82" y1="35.56" x2="-83.82" y2="-10.16" width="0.1524" layer="91"/>
+<junction x="-83.82" y="35.56"/>
 </segment>
 </net>
 <net name="PE" class="0">
 <segment>
-<pinref part="REG_HEIGHT" gate="G$1" pin="GND"/>
-<wire x1="83.82" y1="63.5" x2="78.74" y2="63.5" width="0.1524" layer="91"/>
-<wire x1="78.74" y1="154.94" x2="78.74" y2="104.14" width="0.1524" layer="91"/>
-<pinref part="REG_NEMA17" gate="G$1" pin="GND"/>
-<wire x1="78.74" y1="104.14" x2="78.74" y2="63.5" width="0.1524" layer="91"/>
-<wire x1="83.82" y1="154.94" x2="78.74" y2="154.94" width="0.1524" layer="91"/>
+<pinref part="REGULATOR_ELEVATION" gate="G$1" pin="GND"/>
+<wire x1="-73.66" y1="25.4" x2="-78.74" y2="25.4" width="0.1524" layer="91"/>
+<wire x1="-78.74" y1="116.84" x2="-78.74" y2="66.04" width="0.1524" layer="91"/>
+<pinref part="REGULATOR_RELEASE" gate="G$1" pin="GND"/>
+<wire x1="-78.74" y1="66.04" x2="-78.74" y2="25.4" width="0.1524" layer="91"/>
+<wire x1="-73.66" y1="116.84" x2="-78.74" y2="116.84" width="0.1524" layer="91"/>
 <pinref part="PE1" gate="M" pin="PE"/>
-<wire x1="78.74" y1="58.42" x2="78.74" y2="63.5" width="0.1524" layer="91"/>
-<junction x="78.74" y="63.5"/>
-<pinref part="REG_INCLINE" gate="G$1" pin="GND"/>
-<wire x1="83.82" y1="104.14" x2="78.74" y2="104.14" width="0.1524" layer="91"/>
-<junction x="78.74" y="104.14"/>
+<wire x1="-78.74" y1="20.32" x2="-78.74" y2="25.4" width="0.1524" layer="91"/>
+<junction x="-78.74" y="25.4"/>
+<pinref part="REGULATOR_INCLINE" gate="G$1" pin="GND"/>
+<wire x1="-73.66" y1="66.04" x2="-78.74" y2="66.04" width="0.1524" layer="91"/>
+<junction x="-78.74" y="66.04"/>
 </segment>
 <segment>
 <pinref part="B1" gate="G$1" pin="GND@4"/>
 <pinref part="PE2" gate="M" pin="PE"/>
-<wire x1="259.08" y1="73.66" x2="251.46" y2="73.66" width="0.1524" layer="91"/>
-<wire x1="251.46" y1="73.66" x2="251.46" y2="71.12" width="0.1524" layer="91"/>
+<wire x1="101.6" y1="35.56" x2="93.98" y2="35.56" width="0.1524" layer="91"/>
+<wire x1="93.98" y1="35.56" x2="93.98" y2="33.02" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="OPTICAL_NEMA17_1" gate="G$1" pin="C"/>
+<pinref part="OPTICAL_RELEASE_1" gate="G$1" pin="C"/>
 <pinref part="PE3" gate="M" pin="PE"/>
-<wire x1="254" y1="35.56" x2="251.46" y2="35.56" width="0.1524" layer="91"/>
-<wire x1="251.46" y1="35.56" x2="251.46" y2="17.78" width="0.1524" layer="91"/>
-<pinref part="OPTICAL_NEMA17_2" gate="G$1" pin="C"/>
-<wire x1="251.46" y1="17.78" x2="251.46" y2="12.7" width="0.1524" layer="91"/>
-<wire x1="251.46" y1="12.7" x2="251.46" y2="7.62" width="0.1524" layer="91"/>
-<wire x1="254" y1="17.78" x2="251.46" y2="17.78" width="0.1524" layer="91"/>
-<junction x="251.46" y="17.78"/>
-<wire x1="251.46" y1="12.7" x2="287.02" y2="12.7" width="0.1524" layer="91"/>
-<junction x="251.46" y="12.7"/>
-<wire x1="287.02" y1="12.7" x2="287.02" y2="17.78" width="0.1524" layer="91"/>
-<pinref part="OPTICAL_NEMA17_2" gate="G$1" pin="EMIT"/>
-<wire x1="287.02" y1="17.78" x2="271.78" y2="17.78" width="0.1524" layer="91"/>
-<pinref part="OPTICAL_NEMA17_1" gate="G$1" pin="EMIT"/>
-<wire x1="271.78" y1="35.56" x2="287.02" y2="35.56" width="0.1524" layer="91"/>
-<wire x1="287.02" y1="35.56" x2="287.02" y2="17.78" width="0.1524" layer="91"/>
-<junction x="287.02" y="17.78"/>
+<wire x1="96.52" y1="-2.54" x2="93.98" y2="-2.54" width="0.1524" layer="91"/>
+<wire x1="93.98" y1="-2.54" x2="93.98" y2="-20.32" width="0.1524" layer="91"/>
+<pinref part="OPTICAL_RELEASE_2" gate="G$1" pin="C"/>
+<wire x1="93.98" y1="-20.32" x2="93.98" y2="-25.4" width="0.1524" layer="91"/>
+<wire x1="93.98" y1="-25.4" x2="93.98" y2="-30.48" width="0.1524" layer="91"/>
+<wire x1="96.52" y1="-20.32" x2="93.98" y2="-20.32" width="0.1524" layer="91"/>
+<junction x="93.98" y="-20.32"/>
+<wire x1="93.98" y1="-25.4" x2="129.54" y2="-25.4" width="0.1524" layer="91"/>
+<junction x="93.98" y="-25.4"/>
+<wire x1="129.54" y1="-25.4" x2="129.54" y2="-20.32" width="0.1524" layer="91"/>
+<pinref part="OPTICAL_RELEASE_2" gate="G$1" pin="EMIT"/>
+<wire x1="129.54" y1="-20.32" x2="114.3" y2="-20.32" width="0.1524" layer="91"/>
+<pinref part="OPTICAL_RELEASE_1" gate="G$1" pin="EMIT"/>
+<wire x1="114.3" y1="-2.54" x2="129.54" y2="-2.54" width="0.1524" layer="91"/>
+<wire x1="129.54" y1="-2.54" x2="129.54" y2="-20.32" width="0.1524" layer="91"/>
+<junction x="129.54" y="-20.32"/>
 </segment>
 <segment>
-<pinref part="OPTICAL_NEMA23_1" gate="G$1" pin="C"/>
+<pinref part="OPTICAL_ROTATION_1" gate="G$1" pin="C"/>
 <pinref part="PE4" gate="M" pin="PE"/>
-<wire x1="256.54" y1="-25.4" x2="254" y2="-25.4" width="0.1524" layer="91"/>
-<wire x1="254" y1="-25.4" x2="254" y2="-43.18" width="0.1524" layer="91"/>
-<pinref part="OPTICAL_NEMA23_2" gate="G$1" pin="C"/>
-<wire x1="254" y1="-43.18" x2="254" y2="-50.8" width="0.1524" layer="91"/>
-<wire x1="254" y1="-50.8" x2="254" y2="-53.34" width="0.1524" layer="91"/>
-<wire x1="256.54" y1="-43.18" x2="254" y2="-43.18" width="0.1524" layer="91"/>
-<junction x="254" y="-43.18"/>
-<wire x1="254" y1="-50.8" x2="287.02" y2="-50.8" width="0.1524" layer="91"/>
-<junction x="254" y="-50.8"/>
-<wire x1="287.02" y1="-50.8" x2="287.02" y2="-43.18" width="0.1524" layer="91"/>
-<pinref part="OPTICAL_NEMA23_2" gate="G$1" pin="EMIT"/>
-<wire x1="287.02" y1="-43.18" x2="274.32" y2="-43.18" width="0.1524" layer="91"/>
-<pinref part="OPTICAL_NEMA23_1" gate="G$1" pin="EMIT"/>
-<wire x1="274.32" y1="-25.4" x2="287.02" y2="-25.4" width="0.1524" layer="91"/>
-<wire x1="287.02" y1="-25.4" x2="287.02" y2="-43.18" width="0.1524" layer="91"/>
-<junction x="287.02" y="-43.18"/>
+<wire x1="99.06" y1="-63.5" x2="96.52" y2="-63.5" width="0.1524" layer="91"/>
+<wire x1="96.52" y1="-63.5" x2="96.52" y2="-81.28" width="0.1524" layer="91"/>
+<pinref part="OPTICAL_ROTATION_2" gate="G$1" pin="C"/>
+<wire x1="96.52" y1="-81.28" x2="96.52" y2="-88.9" width="0.1524" layer="91"/>
+<wire x1="96.52" y1="-88.9" x2="96.52" y2="-91.44" width="0.1524" layer="91"/>
+<wire x1="99.06" y1="-81.28" x2="96.52" y2="-81.28" width="0.1524" layer="91"/>
+<junction x="96.52" y="-81.28"/>
+<wire x1="96.52" y1="-88.9" x2="129.54" y2="-88.9" width="0.1524" layer="91"/>
+<junction x="96.52" y="-88.9"/>
+<wire x1="129.54" y1="-88.9" x2="129.54" y2="-81.28" width="0.1524" layer="91"/>
+<pinref part="OPTICAL_ROTATION_2" gate="G$1" pin="EMIT"/>
+<wire x1="129.54" y1="-81.28" x2="116.84" y2="-81.28" width="0.1524" layer="91"/>
+<pinref part="OPTICAL_ROTATION_1" gate="G$1" pin="EMIT"/>
+<wire x1="116.84" y1="-63.5" x2="129.54" y2="-63.5" width="0.1524" layer="91"/>
+<wire x1="129.54" y1="-63.5" x2="129.54" y2="-81.28" width="0.1524" layer="91"/>
+<junction x="129.54" y="-81.28"/>
 </segment>
 <segment>
-<pinref part="DRIVER_HEIGHT" gate="L298" pin="GND"/>
-<wire x1="195.58" y1="45.72" x2="200.66" y2="45.72" width="0.1524" layer="91"/>
-<wire x1="200.66" y1="45.72" x2="200.66" y2="43.18" width="0.1524" layer="91"/>
+<pinref part="DRIVER_ELEVATION" gate="L298" pin="GND"/>
+<wire x1="38.1" y1="7.62" x2="43.18" y2="7.62" width="0.1524" layer="91"/>
+<wire x1="43.18" y1="7.62" x2="43.18" y2="5.08" width="0.1524" layer="91"/>
 <pinref part="PE12" gate="M" pin="PE"/>
 </segment>
 <segment>
 <pinref part="DRIVER_INCLINE" gate="L298" pin="GND"/>
 <pinref part="PE13" gate="M" pin="PE"/>
-<wire x1="195.58" y1="86.36" x2="200.66" y2="86.36" width="0.1524" layer="91"/>
-<wire x1="200.66" y1="86.36" x2="200.66" y2="83.82" width="0.1524" layer="91"/>
+<wire x1="38.1" y1="48.26" x2="43.18" y2="48.26" width="0.1524" layer="91"/>
+<wire x1="43.18" y1="48.26" x2="43.18" y2="45.72" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="PE14" gate="M" pin="PE"/>
 <pinref part="C2" gate="G$1" pin="2"/>
-<wire x1="116.84" y1="55.88" x2="116.84" y2="58.42" width="0.1524" layer="91"/>
+<wire x1="-40.64" y1="17.78" x2="-40.64" y2="20.32" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="C3" gate="G$1" pin="2"/>
 <pinref part="PE15" gate="M" pin="PE"/>
-<wire x1="116.84" y1="99.06" x2="116.84" y2="96.52" width="0.1524" layer="91"/>
+<wire x1="-40.64" y1="60.96" x2="-40.64" y2="58.42" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="PE11" gate="M" pin="PE"/>
 <pinref part="C1" gate="G$1" pin="2"/>
-<wire x1="116.84" y1="147.32" x2="116.84" y2="149.86" width="0.1524" layer="91"/>
+<wire x1="-40.64" y1="109.22" x2="-40.64" y2="111.76" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="PE16" gate="M" pin="PE"/>
-<wire x1="165.1" y1="142.24" x2="165.1" y2="144.78" width="0.1524" layer="91"/>
-<pinref part="DRIVER_NEMA17" gate="G$1" pin="GND1"/>
-<wire x1="170.18" y1="144.78" x2="165.1" y2="144.78" width="0.1524" layer="91"/>
+<wire x1="7.62" y1="104.14" x2="7.62" y2="106.68" width="0.1524" layer="91"/>
+<pinref part="DRIVER_RELEASE" gate="G$1" pin="GND1"/>
+<wire x1="12.7" y1="106.68" x2="7.62" y2="106.68" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="POT_HEIGHT" gate="G$1" pin="A"/>
-<wire x1="248.92" y1="139.7" x2="248.92" y2="137.16" width="0.1524" layer="91"/>
-<wire x1="248.92" y1="137.16" x2="243.84" y2="137.16" width="0.1524" layer="91"/>
+<wire x1="91.44" y1="101.6" x2="91.44" y2="99.06" width="0.1524" layer="91"/>
+<wire x1="91.44" y1="99.06" x2="86.36" y2="99.06" width="0.1524" layer="91"/>
 <pinref part="PE17" gate="M" pin="PE"/>
-<wire x1="243.84" y1="137.16" x2="243.84" y2="134.62" width="0.1524" layer="91"/>
+<wire x1="86.36" y1="99.06" x2="86.36" y2="96.52" width="0.1524" layer="91"/>
 <pinref part="POT_INCLINE" gate="G$1" pin="A"/>
-<wire x1="233.68" y1="147.32" x2="233.68" y2="137.16" width="0.1524" layer="91"/>
-<wire x1="233.68" y1="137.16" x2="243.84" y2="137.16" width="0.1524" layer="91"/>
-<junction x="243.84" y="137.16"/>
+<wire x1="76.2" y1="109.22" x2="76.2" y2="99.06" width="0.1524" layer="91"/>
+<wire x1="76.2" y1="99.06" x2="86.36" y2="99.06" width="0.1524" layer="91"/>
+<junction x="86.36" y="99.06"/>
 </segment>
 <segment>
 <pinref part="R2" gate="G$1" pin="1"/>
-<wire x1="203.2" y1="129.54" x2="203.2" y2="127" width="0.1524" layer="91"/>
-<wire x1="203.2" y1="127" x2="208.28" y2="127" width="0.1524" layer="91"/>
+<wire x1="45.72" y1="91.44" x2="45.72" y2="88.9" width="0.1524" layer="91"/>
+<wire x1="45.72" y1="88.9" x2="50.8" y2="88.9" width="0.1524" layer="91"/>
 <pinref part="PE5" gate="M" pin="PE"/>
-<wire x1="208.28" y1="127" x2="208.28" y2="124.46" width="0.1524" layer="91"/>
+<wire x1="50.8" y1="88.9" x2="50.8" y2="86.36" width="0.1524" layer="91"/>
 <pinref part="R1" gate="G$1" pin="1"/>
-<wire x1="213.36" y1="129.54" x2="213.36" y2="127" width="0.1524" layer="91"/>
-<wire x1="213.36" y1="127" x2="208.28" y2="127" width="0.1524" layer="91"/>
-<junction x="208.28" y="127"/>
+<wire x1="55.88" y1="91.44" x2="55.88" y2="88.9" width="0.1524" layer="91"/>
+<wire x1="55.88" y1="88.9" x2="50.8" y2="88.9" width="0.1524" layer="91"/>
+<junction x="50.8" y="88.9"/>
 </segment>
 <segment>
-<pinref part="DRIVER_NEMA23" gate="G$1" pin="GND-B"/>
-<wire x1="170.18" y1="-55.88" x2="170.18" y2="-58.42" width="0.1524" layer="91"/>
-<pinref part="DRIVER_NEMA23" gate="G$1" pin="S-GND"/>
-<wire x1="170.18" y1="-58.42" x2="175.26" y2="-58.42" width="0.1524" layer="91"/>
-<wire x1="175.26" y1="-58.42" x2="180.34" y2="-58.42" width="0.1524" layer="91"/>
-<wire x1="180.34" y1="-58.42" x2="180.34" y2="-55.88" width="0.1524" layer="91"/>
 <pinref part="PE6" gate="M" pin="PE"/>
-<wire x1="175.26" y1="-60.96" x2="175.26" y2="-58.42" width="0.1524" layer="91"/>
-<junction x="175.26" y="-58.42"/>
-<pinref part="DRIVER_NEMA23" gate="G$1" pin="GND-A"/>
-<wire x1="175.26" y1="-55.88" x2="175.26" y2="-58.42" width="0.1524" layer="91"/>
+<pinref part="DRIVER_ROTATION" gate="G$1" pin="GND"/>
+<wire x1="-2.54" y1="-38.1" x2="5.08" y2="-38.1" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="V12_NEMA17" class="0">
 <segment>
-<pinref part="REG_NEMA17" gate="G$1" pin="OUT"/>
-<wire x1="109.22" y1="162.56" x2="116.84" y2="162.56" width="0.1524" layer="91"/>
-<pinref part="DRIVER_NEMA17" gate="G$1" pin="VMOT"/>
+<pinref part="REGULATOR_RELEASE" gate="G$1" pin="OUT"/>
+<wire x1="-48.26" y1="124.46" x2="-40.64" y2="124.46" width="0.1524" layer="91"/>
+<pinref part="DRIVER_RELEASE" gate="G$1" pin="VMOT"/>
 <pinref part="C1" gate="G$1" pin="1"/>
-<wire x1="116.84" y1="162.56" x2="170.18" y2="162.56" width="0.1524" layer="91"/>
-<wire x1="116.84" y1="157.48" x2="116.84" y2="162.56" width="0.1524" layer="91"/>
-<junction x="116.84" y="162.56"/>
+<wire x1="-40.64" y1="124.46" x2="12.7" y2="124.46" width="0.1524" layer="91"/>
+<wire x1="-40.64" y1="119.38" x2="-40.64" y2="124.46" width="0.1524" layer="91"/>
+<junction x="-40.64" y="124.46"/>
 </segment>
 </net>
-<net name="INTERRUPT_NEMA17" class="0">
+<net name="INTERRUPT_RELEASE" class="0">
 <segment>
 <pinref part="B1" gate="G$1" pin="2"/>
-<wire x1="259.08" y1="111.76" x2="228.6" y2="111.76" width="0.1524" layer="91"/>
-<junction x="228.6" y="111.76"/>
-<label x="228.6" y="111.76" size="1.778" layer="95"/>
+<wire x1="101.6" y1="73.66" x2="71.12" y2="73.66" width="0.1524" layer="91"/>
+<junction x="71.12" y="73.66"/>
+<label x="71.12" y="73.66" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="OPTICAL_NEMA17_2" gate="G$1" pin="COL"/>
-<wire x1="271.78" y1="22.86" x2="289.56" y2="22.86" width="0.1524" layer="91"/>
-<wire x1="289.56" y1="22.86" x2="289.56" y2="33.02" width="0.1524" layer="91"/>
-<pinref part="OPTICAL_NEMA17_1" gate="G$1" pin="COL"/>
-<wire x1="289.56" y1="33.02" x2="289.56" y2="40.64" width="0.1524" layer="91"/>
-<wire x1="289.56" y1="40.64" x2="271.78" y2="40.64" width="0.1524" layer="91"/>
-<label x="292.1" y="33.02" size="1.778" layer="95"/>
-<junction x="289.56" y="33.02"/>
-<wire x1="289.56" y1="33.02" x2="317.5" y2="33.02" width="0.1524" layer="91"/>
-<junction x="317.5" y="33.02"/>
+<pinref part="OPTICAL_RELEASE_2" gate="G$1" pin="COL"/>
+<wire x1="114.3" y1="-15.24" x2="132.08" y2="-15.24" width="0.1524" layer="91"/>
+<wire x1="132.08" y1="-15.24" x2="132.08" y2="-5.08" width="0.1524" layer="91"/>
+<pinref part="OPTICAL_RELEASE_1" gate="G$1" pin="COL"/>
+<wire x1="132.08" y1="-5.08" x2="132.08" y2="2.54" width="0.1524" layer="91"/>
+<wire x1="132.08" y1="2.54" x2="114.3" y2="2.54" width="0.1524" layer="91"/>
+<label x="134.62" y="-5.08" size="1.778" layer="95"/>
+<junction x="132.08" y="-5.08"/>
+<wire x1="132.08" y1="-5.08" x2="162.56" y2="-5.08" width="0.1524" layer="91"/>
+<junction x="162.56" y="-5.08"/>
 </segment>
 </net>
-<net name="INTERRUPT_NEMA24" class="0">
+<net name="INTERRUPT_ROTATION" class="0">
 <segment>
-<pinref part="OPTICAL_NEMA23_2" gate="G$1" pin="COL"/>
-<wire x1="274.32" y1="-38.1" x2="289.56" y2="-38.1" width="0.1524" layer="91"/>
-<wire x1="289.56" y1="-38.1" x2="289.56" y2="-27.94" width="0.1524" layer="91"/>
-<pinref part="OPTICAL_NEMA23_1" gate="G$1" pin="COL"/>
-<wire x1="289.56" y1="-27.94" x2="289.56" y2="-20.32" width="0.1524" layer="91"/>
-<wire x1="289.56" y1="-20.32" x2="274.32" y2="-20.32" width="0.1524" layer="91"/>
-<label x="292.1" y="-27.94" size="1.778" layer="95"/>
-<wire x1="289.56" y1="-27.94" x2="317.5" y2="-27.94" width="0.1524" layer="91"/>
-<junction x="289.56" y="-27.94"/>
-<junction x="317.5" y="-27.94"/>
+<pinref part="OPTICAL_ROTATION_2" gate="G$1" pin="COL"/>
+<wire x1="116.84" y1="-76.2" x2="132.08" y2="-76.2" width="0.1524" layer="91"/>
+<wire x1="132.08" y1="-76.2" x2="132.08" y2="-66.04" width="0.1524" layer="91"/>
+<pinref part="OPTICAL_ROTATION_1" gate="G$1" pin="COL"/>
+<wire x1="132.08" y1="-66.04" x2="132.08" y2="-58.42" width="0.1524" layer="91"/>
+<wire x1="132.08" y1="-58.42" x2="116.84" y2="-58.42" width="0.1524" layer="91"/>
+<label x="134.62" y="-66.04" size="1.778" layer="95"/>
+<wire x1="132.08" y1="-66.04" x2="162.56" y2="-66.04" width="0.1524" layer="91"/>
+<junction x="132.08" y="-66.04"/>
+<junction x="162.56" y="-66.04"/>
 </segment>
 </net>
 <net name="V5_LOGIC" class="0">
 <segment>
 <pinref part="B1" gate="G$1" pin="5V@1"/>
-<wire x1="259.08" y1="170.18" x2="248.92" y2="170.18" width="0.1524" layer="91"/>
-<junction x="215.9" y="170.18"/>
-<label x="215.9" y="170.18" size="1.778" layer="95"/>
+<wire x1="101.6" y1="132.08" x2="91.44" y2="132.08" width="0.1524" layer="91"/>
+<junction x="58.42" y="132.08"/>
+<label x="58.42" y="132.08" size="1.778" layer="95"/>
 <pinref part="POT_INCLINE" gate="G$1" pin="E"/>
-<wire x1="248.92" y1="170.18" x2="233.68" y2="170.18" width="0.1524" layer="91"/>
-<wire x1="233.68" y1="170.18" x2="215.9" y2="170.18" width="0.1524" layer="91"/>
-<wire x1="233.68" y1="157.48" x2="233.68" y2="170.18" width="0.1524" layer="91"/>
-<junction x="233.68" y="170.18"/>
+<wire x1="91.44" y1="132.08" x2="76.2" y2="132.08" width="0.1524" layer="91"/>
+<wire x1="76.2" y1="132.08" x2="58.42" y2="132.08" width="0.1524" layer="91"/>
+<wire x1="76.2" y1="119.38" x2="76.2" y2="132.08" width="0.1524" layer="91"/>
+<junction x="76.2" y="132.08"/>
 <pinref part="POT_HEIGHT" gate="G$1" pin="E"/>
-<wire x1="248.92" y1="149.86" x2="248.92" y2="170.18" width="0.1524" layer="91"/>
-<junction x="248.92" y="170.18"/>
+<wire x1="91.44" y1="111.76" x2="91.44" y2="132.08" width="0.1524" layer="91"/>
+<junction x="91.44" y="132.08"/>
 </segment>
 <segment>
-<pinref part="OPTICAL_NEMA17_2" gate="G$1" pin="A"/>
-<wire x1="254" y1="22.86" x2="248.92" y2="22.86" width="0.1524" layer="91"/>
-<wire x1="248.92" y1="22.86" x2="248.92" y2="40.64" width="0.1524" layer="91"/>
-<pinref part="OPTICAL_NEMA17_1" gate="G$1" pin="A"/>
-<wire x1="248.92" y1="40.64" x2="254" y2="40.64" width="0.1524" layer="91"/>
-<junction x="248.92" y="40.64"/>
-<label x="248.92" y="53.34" size="1.778" layer="95"/>
-<wire x1="248.92" y1="40.64" x2="248.92" y2="50.8" width="0.1524" layer="91"/>
-<junction x="248.92" y="50.8"/>
+<pinref part="OPTICAL_RELEASE_2" gate="G$1" pin="A"/>
+<wire x1="96.52" y1="-15.24" x2="91.44" y2="-15.24" width="0.1524" layer="91"/>
+<wire x1="91.44" y1="-15.24" x2="91.44" y2="2.54" width="0.1524" layer="91"/>
+<pinref part="OPTICAL_RELEASE_1" gate="G$1" pin="A"/>
+<wire x1="91.44" y1="2.54" x2="96.52" y2="2.54" width="0.1524" layer="91"/>
+<junction x="91.44" y="2.54"/>
+<label x="91.44" y="15.24" size="1.778" layer="95"/>
+<wire x1="91.44" y1="2.54" x2="91.44" y2="12.7" width="0.1524" layer="91"/>
+<junction x="91.44" y="12.7"/>
 </segment>
 <segment>
-<pinref part="OPTICAL_NEMA23_2" gate="G$1" pin="A"/>
-<wire x1="256.54" y1="-38.1" x2="251.46" y2="-38.1" width="0.1524" layer="91"/>
-<wire x1="251.46" y1="-38.1" x2="251.46" y2="-20.32" width="0.1524" layer="91"/>
-<pinref part="OPTICAL_NEMA23_1" gate="G$1" pin="A"/>
-<wire x1="251.46" y1="-20.32" x2="256.54" y2="-20.32" width="0.1524" layer="91"/>
-<junction x="251.46" y="-20.32"/>
-<label x="251.46" y="-7.62" size="1.778" layer="95"/>
-<wire x1="251.46" y1="-20.32" x2="251.46" y2="-10.16" width="0.1524" layer="91"/>
-<junction x="251.46" y="-10.16"/>
+<pinref part="OPTICAL_ROTATION_2" gate="G$1" pin="A"/>
+<wire x1="99.06" y1="-76.2" x2="93.98" y2="-76.2" width="0.1524" layer="91"/>
+<wire x1="93.98" y1="-76.2" x2="93.98" y2="-58.42" width="0.1524" layer="91"/>
+<pinref part="OPTICAL_ROTATION_1" gate="G$1" pin="A"/>
+<wire x1="93.98" y1="-58.42" x2="99.06" y2="-58.42" width="0.1524" layer="91"/>
+<junction x="93.98" y="-58.42"/>
+<label x="93.98" y="-45.72" size="1.778" layer="95"/>
+<wire x1="93.98" y1="-58.42" x2="93.98" y2="-48.26" width="0.1524" layer="91"/>
+<junction x="93.98" y="-48.26"/>
 </segment>
 <segment>
-<pinref part="DRIVER_NEMA17" gate="G$1" pin="VDD"/>
-<wire x1="170.18" y1="147.32" x2="149.86" y2="147.32" width="0.1524" layer="91"/>
-<junction x="149.86" y="147.32"/>
-<label x="149.86" y="147.32" size="1.778" layer="95"/>
+<pinref part="DRIVER_RELEASE" gate="G$1" pin="VDD"/>
+<wire x1="12.7" y1="109.22" x2="-7.62" y2="109.22" width="0.1524" layer="91"/>
+<junction x="-7.62" y="109.22"/>
+<label x="-7.62" y="109.22" size="1.778" layer="95"/>
 </segment>
 <segment>
 <pinref part="PRESS_SENSOR" gate="G$1" pin="2"/>
-<wire x1="314.96" y1="175.26" x2="314.96" y2="180.34" width="0.1524" layer="91"/>
-<junction x="314.96" y="180.34"/>
-<label x="314.96" y="182.88" size="1.778" layer="95"/>
+<wire x1="157.48" y1="137.16" x2="157.48" y2="142.24" width="0.1524" layer="91"/>
+<junction x="157.48" y="142.24"/>
+<label x="157.48" y="144.78" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="DIR_NEMA24" class="0">
 <segment>
 <pinref part="B1" gate="G$1" pin="51"/>
-<wire x1="294.64" y1="78.74" x2="312.42" y2="78.74" width="0.1524" layer="91"/>
-<junction x="312.42" y="78.74"/>
-<label x="297.18" y="78.74" size="1.778" layer="95"/>
+<wire x1="137.16" y1="40.64" x2="154.94" y2="40.64" width="0.1524" layer="91"/>
+<junction x="154.94" y="40.64"/>
+<label x="139.7" y="40.64" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="PUL_NEMA24" class="0">
 <segment>
 <pinref part="B1" gate="G$1" pin="50"/>
-<wire x1="294.64" y1="81.28" x2="312.42" y2="81.28" width="0.1524" layer="91"/>
-<junction x="312.42" y="81.28"/>
-<label x="297.18" y="81.28" size="1.778" layer="95"/>
+<wire x1="137.16" y1="43.18" x2="154.94" y2="43.18" width="0.1524" layer="91"/>
+<junction x="154.94" y="43.18"/>
+<label x="139.7" y="43.18" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="N$10" class="0">
 <segment>
-<pinref part="HEIGHT_ACTUATOR" gate="G$1" pin="2"/>
-<pinref part="DRIVER_HEIGHT" gate="L298" pin="OUT1"/>
-<wire x1="152.4" y1="58.42" x2="165.1" y2="58.42" width="0.1524" layer="91"/>
+<pinref part="ELEVATION_ACTUATOR" gate="G$1" pin="2"/>
+<pinref part="DRIVER_ELEVATION" gate="L298" pin="OUT1"/>
+<wire x1="-12.7" y1="20.32" x2="7.62" y2="20.32" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$11" class="0">
 <segment>
-<pinref part="HEIGHT_ACTUATOR" gate="G$1" pin="1"/>
-<pinref part="DRIVER_HEIGHT" gate="L298" pin="OUT2"/>
-<wire x1="152.4" y1="55.88" x2="165.1" y2="55.88" width="0.1524" layer="91"/>
+<pinref part="ELEVATION_ACTUATOR" gate="G$1" pin="1"/>
+<pinref part="DRIVER_ELEVATION" gate="L298" pin="OUT2"/>
+<wire x1="-12.7" y1="17.78" x2="7.62" y2="17.78" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$14" class="0">
 <segment>
-<pinref part="DRIVER_HEIGHT" gate="L298" pin="VS"/>
-<pinref part="REG_HEIGHT" gate="G$1" pin="OUT"/>
-<wire x1="165.1" y1="71.12" x2="116.84" y2="71.12" width="0.1524" layer="91"/>
+<pinref part="DRIVER_ELEVATION" gate="L298" pin="VS"/>
+<pinref part="REGULATOR_ELEVATION" gate="G$1" pin="OUT"/>
+<wire x1="7.62" y1="33.02" x2="-40.64" y2="33.02" width="0.1524" layer="91"/>
 <pinref part="C2" gate="G$1" pin="1"/>
-<wire x1="116.84" y1="71.12" x2="109.22" y2="71.12" width="0.1524" layer="91"/>
-<wire x1="116.84" y1="66.04" x2="116.84" y2="71.12" width="0.1524" layer="91"/>
-<junction x="116.84" y="71.12"/>
+<wire x1="-40.64" y1="33.02" x2="-48.26" y2="33.02" width="0.1524" layer="91"/>
+<wire x1="-40.64" y1="27.94" x2="-40.64" y2="33.02" width="0.1524" layer="91"/>
+<junction x="-40.64" y="33.02"/>
 </segment>
 </net>
 <net name="N$12" class="0">
 <segment>
 <pinref part="INCLINE_ACTUATOR" gate="G$1" pin="2"/>
 <pinref part="DRIVER_INCLINE" gate="L298" pin="OUT1"/>
-<wire x1="152.4" y1="99.06" x2="165.1" y2="99.06" width="0.1524" layer="91"/>
+<wire x1="-12.7" y1="60.96" x2="7.62" y2="60.96" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$13" class="0">
 <segment>
 <pinref part="DRIVER_INCLINE" gate="L298" pin="OUT2"/>
 <pinref part="INCLINE_ACTUATOR" gate="G$1" pin="1"/>
-<wire x1="165.1" y1="96.52" x2="152.4" y2="96.52" width="0.1524" layer="91"/>
+<wire x1="7.62" y1="58.42" x2="-12.7" y2="58.42" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$15" class="0">
 <segment>
-<pinref part="REG_INCLINE" gate="G$1" pin="OUT"/>
+<pinref part="REGULATOR_INCLINE" gate="G$1" pin="OUT"/>
 <pinref part="DRIVER_INCLINE" gate="L298" pin="VS"/>
-<wire x1="109.22" y1="111.76" x2="116.84" y2="111.76" width="0.1524" layer="91"/>
+<wire x1="-48.26" y1="73.66" x2="-40.64" y2="73.66" width="0.1524" layer="91"/>
 <pinref part="C3" gate="G$1" pin="1"/>
-<wire x1="116.84" y1="111.76" x2="165.1" y2="111.76" width="0.1524" layer="91"/>
-<wire x1="116.84" y1="106.68" x2="116.84" y2="111.76" width="0.1524" layer="91"/>
-<junction x="116.84" y="111.76"/>
+<wire x1="-40.64" y1="73.66" x2="7.62" y2="73.66" width="0.1524" layer="91"/>
+<wire x1="-40.64" y1="68.58" x2="-40.64" y2="73.66" width="0.1524" layer="91"/>
+<junction x="-40.64" y="73.66"/>
 </segment>
 </net>
 <net name="N$16" class="0">
 <segment>
 <pinref part="NEMA17" gate="G$1" pin="4"/>
-<pinref part="DRIVER_NEMA17" gate="G$1" pin="2B"/>
-<wire x1="144.78" y1="157.48" x2="170.18" y2="157.48" width="0.1524" layer="91"/>
+<pinref part="DRIVER_RELEASE" gate="G$1" pin="2B"/>
+<wire x1="-12.7" y1="119.38" x2="12.7" y2="119.38" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$17" class="0">
 <segment>
 <pinref part="NEMA17" gate="G$1" pin="3"/>
-<pinref part="DRIVER_NEMA17" gate="G$1" pin="2A"/>
-<wire x1="144.78" y1="154.94" x2="170.18" y2="154.94" width="0.1524" layer="91"/>
+<pinref part="DRIVER_RELEASE" gate="G$1" pin="2A"/>
+<wire x1="-12.7" y1="116.84" x2="12.7" y2="116.84" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$18" class="0">
 <segment>
 <pinref part="NEMA17" gate="G$1" pin="2"/>
-<pinref part="DRIVER_NEMA17" gate="G$1" pin="1A"/>
-<wire x1="144.78" y1="152.4" x2="170.18" y2="152.4" width="0.1524" layer="91"/>
+<pinref part="DRIVER_RELEASE" gate="G$1" pin="1A"/>
+<wire x1="-12.7" y1="114.3" x2="12.7" y2="114.3" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$19" class="0">
 <segment>
 <pinref part="NEMA17" gate="G$1" pin="1"/>
-<pinref part="DRIVER_NEMA17" gate="G$1" pin="1B"/>
-<wire x1="144.78" y1="149.86" x2="170.18" y2="149.86" width="0.1524" layer="91"/>
+<pinref part="DRIVER_RELEASE" gate="G$1" pin="1B"/>
+<wire x1="-12.7" y1="111.76" x2="12.7" y2="111.76" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$20" class="0">
 <segment>
-<pinref part="DRIVER_NEMA17" gate="G$1" pin="!SLP"/>
-<wire x1="195.58" y1="149.86" x2="198.12" y2="149.86" width="0.1524" layer="91"/>
-<wire x1="198.12" y1="149.86" x2="198.12" y2="152.4" width="0.1524" layer="91"/>
-<pinref part="DRIVER_NEMA17" gate="G$1" pin="!RST"/>
-<wire x1="198.12" y1="152.4" x2="195.58" y2="152.4" width="0.1524" layer="91"/>
+<pinref part="DRIVER_RELEASE" gate="G$1" pin="!SLP"/>
+<wire x1="38.1" y1="111.76" x2="40.64" y2="111.76" width="0.1524" layer="91"/>
+<wire x1="40.64" y1="111.76" x2="40.64" y2="114.3" width="0.1524" layer="91"/>
+<pinref part="DRIVER_RELEASE" gate="G$1" pin="!RST"/>
+<wire x1="40.64" y1="114.3" x2="38.1" y2="114.3" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$21" class="0">
 <segment>
-<wire x1="226.06" y1="91.44" x2="226.06" y2="55.88" width="0.1524" layer="91"/>
-<pinref part="DRIVER_HEIGHT" gate="L298" pin="INPUT2"/>
-<wire x1="226.06" y1="55.88" x2="195.58" y2="55.88" width="0.1524" layer="91"/>
+<wire x1="68.58" y1="53.34" x2="68.58" y2="17.78" width="0.1524" layer="91"/>
+<pinref part="DRIVER_ELEVATION" gate="L298" pin="INPUT2"/>
+<wire x1="68.58" y1="17.78" x2="38.1" y2="17.78" width="0.1524" layer="91"/>
 <pinref part="B1" gate="G$1" pin="10"/>
-<wire x1="226.06" y1="91.44" x2="259.08" y2="91.44" width="0.1524" layer="91"/>
+<wire x1="68.58" y1="53.34" x2="101.6" y2="53.34" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$22" class="0">
 <segment>
-<pinref part="DRIVER_HEIGHT" gate="L298" pin="INPUT1"/>
-<wire x1="195.58" y1="58.42" x2="223.52" y2="58.42" width="0.1524" layer="91"/>
-<wire x1="223.52" y1="58.42" x2="223.52" y2="93.98" width="0.1524" layer="91"/>
+<pinref part="DRIVER_ELEVATION" gate="L298" pin="INPUT1"/>
+<wire x1="38.1" y1="20.32" x2="66.04" y2="20.32" width="0.1524" layer="91"/>
+<wire x1="66.04" y1="20.32" x2="66.04" y2="55.88" width="0.1524" layer="91"/>
 <pinref part="B1" gate="G$1" pin="9"/>
-<wire x1="223.52" y1="93.98" x2="259.08" y2="93.98" width="0.1524" layer="91"/>
+<wire x1="66.04" y1="55.88" x2="101.6" y2="55.88" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$23" class="0">
 <segment>
 <pinref part="B1" gate="G$1" pin="8"/>
-<wire x1="195.58" y1="96.52" x2="259.08" y2="96.52" width="0.1524" layer="91"/>
+<wire x1="38.1" y1="58.42" x2="101.6" y2="58.42" width="0.1524" layer="91"/>
 <pinref part="DRIVER_INCLINE" gate="L298" pin="INPUT2"/>
 </segment>
 </net>
 <net name="N$25" class="0">
 <segment>
-<pinref part="DRIVER_NEMA17" gate="G$1" pin="DIR"/>
-<wire x1="195.58" y1="144.78" x2="203.2" y2="144.78" width="0.1524" layer="91"/>
-<wire x1="203.2" y1="144.78" x2="223.52" y2="144.78" width="0.1524" layer="91"/>
-<wire x1="223.52" y1="144.78" x2="223.52" y2="101.6" width="0.1524" layer="91"/>
+<pinref part="DRIVER_RELEASE" gate="G$1" pin="DIR"/>
+<wire x1="38.1" y1="106.68" x2="45.72" y2="106.68" width="0.1524" layer="91"/>
+<wire x1="45.72" y1="106.68" x2="66.04" y2="106.68" width="0.1524" layer="91"/>
+<wire x1="66.04" y1="106.68" x2="66.04" y2="63.5" width="0.1524" layer="91"/>
 <pinref part="R2" gate="G$1" pin="2"/>
-<wire x1="203.2" y1="139.7" x2="203.2" y2="144.78" width="0.1524" layer="91"/>
-<junction x="203.2" y="144.78"/>
+<wire x1="45.72" y1="101.6" x2="45.72" y2="106.68" width="0.1524" layer="91"/>
+<junction x="45.72" y="106.68"/>
 <pinref part="B1" gate="G$1" pin="6"/>
-<wire x1="223.52" y1="101.6" x2="259.08" y2="101.6" width="0.1524" layer="91"/>
+<wire x1="66.04" y1="63.5" x2="101.6" y2="63.5" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$26" class="0">
 <segment>
-<wire x1="226.06" y1="104.14" x2="226.06" y2="147.32" width="0.1524" layer="91"/>
-<pinref part="DRIVER_NEMA17" gate="G$1" pin="STEP"/>
-<wire x1="226.06" y1="147.32" x2="213.36" y2="147.32" width="0.1524" layer="91"/>
+<wire x1="68.58" y1="66.04" x2="68.58" y2="109.22" width="0.1524" layer="91"/>
+<pinref part="DRIVER_RELEASE" gate="G$1" pin="STEP"/>
+<wire x1="68.58" y1="109.22" x2="55.88" y2="109.22" width="0.1524" layer="91"/>
 <pinref part="R1" gate="G$1" pin="2"/>
-<wire x1="213.36" y1="147.32" x2="195.58" y2="147.32" width="0.1524" layer="91"/>
-<wire x1="213.36" y1="139.7" x2="213.36" y2="147.32" width="0.1524" layer="91"/>
-<junction x="213.36" y="147.32"/>
+<wire x1="55.88" y1="109.22" x2="38.1" y2="109.22" width="0.1524" layer="91"/>
+<wire x1="55.88" y1="101.6" x2="55.88" y2="109.22" width="0.1524" layer="91"/>
+<junction x="55.88" y="109.22"/>
 <pinref part="B1" gate="G$1" pin="5"/>
-<wire x1="226.06" y1="104.14" x2="259.08" y2="104.14" width="0.1524" layer="91"/>
+<wire x1="68.58" y1="66.04" x2="101.6" y2="66.04" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$27" class="0">
 <segment>
 <pinref part="B1" gate="G$1" pin="A2"/>
 <pinref part="POT_INCLINE" gate="G$1" pin="S"/>
-<wire x1="259.08" y1="152.4" x2="238.76" y2="152.4" width="0.1524" layer="91"/>
+<wire x1="101.6" y1="114.3" x2="81.28" y2="114.3" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$28" class="0">
 <segment>
 <pinref part="POT_HEIGHT" gate="G$1" pin="S"/>
-<wire x1="254" y1="144.78" x2="256.54" y2="144.78" width="0.1524" layer="91"/>
-<wire x1="256.54" y1="144.78" x2="256.54" y2="149.86" width="0.1524" layer="91"/>
+<wire x1="96.52" y1="106.68" x2="99.06" y2="106.68" width="0.1524" layer="91"/>
+<wire x1="99.06" y1="106.68" x2="99.06" y2="111.76" width="0.1524" layer="91"/>
 <pinref part="B1" gate="G$1" pin="A3"/>
-<wire x1="256.54" y1="149.86" x2="259.08" y2="149.86" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$29" class="0">
-<segment>
-<pinref part="NEMA23" gate="G$1" pin="4"/>
-<wire x1="142.24" y1="-12.7" x2="144.78" y2="-12.7" width="0.1524" layer="91"/>
-<wire x1="144.78" y1="-12.7" x2="144.78" y2="2.54" width="0.1524" layer="91"/>
-<pinref part="DRIVER_NEMA23" gate="G$1" pin="OUT-A1"/>
-<wire x1="144.78" y1="2.54" x2="154.94" y2="2.54" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$30" class="0">
-<segment>
-<pinref part="DRIVER_NEMA23" gate="G$1" pin="OUT-A2"/>
-<wire x1="154.94" y1="-2.54" x2="149.86" y2="-2.54" width="0.1524" layer="91"/>
-<pinref part="NEMA23" gate="G$1" pin="3"/>
-<wire x1="149.86" y1="-2.54" x2="149.86" y2="-15.24" width="0.1524" layer="91"/>
-<wire x1="149.86" y1="-15.24" x2="142.24" y2="-15.24" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$31" class="0">
-<segment>
-<pinref part="NEMA23" gate="G$1" pin="2"/>
-<wire x1="142.24" y1="-17.78" x2="149.86" y2="-17.78" width="0.1524" layer="91"/>
-<wire x1="149.86" y1="-17.78" x2="149.86" y2="-25.4" width="0.1524" layer="91"/>
-<pinref part="DRIVER_NEMA23" gate="G$1" pin="OUT-B1"/>
-<wire x1="149.86" y1="-25.4" x2="154.94" y2="-25.4" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$32" class="0">
-<segment>
-<pinref part="NEMA23" gate="G$1" pin="1"/>
-<wire x1="142.24" y1="-20.32" x2="144.78" y2="-20.32" width="0.1524" layer="91"/>
-<wire x1="144.78" y1="-20.32" x2="144.78" y2="-30.48" width="0.1524" layer="91"/>
-<pinref part="DRIVER_NEMA23" gate="G$1" pin="OUT-B2"/>
-<wire x1="144.78" y1="-30.48" x2="154.94" y2="-30.48" width="0.1524" layer="91"/>
+<wire x1="99.06" y1="111.76" x2="101.6" y2="111.76" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$34" class="0">
 <segment>
-<pinref part="DRIVER_NEMA23" gate="G$1" pin="DIR"/>
-<wire x1="205.74" y1="-7.62" x2="228.6" y2="-7.62" width="0.1524" layer="91"/>
 <pinref part="B1" gate="G$1" pin="11"/>
-<wire x1="228.6" y1="-7.62" x2="228.6" y2="88.9" width="0.1524" layer="91"/>
-<wire x1="228.6" y1="88.9" x2="259.08" y2="88.9" width="0.1524" layer="91"/>
+<wire x1="71.12" y1="-45.72" x2="71.12" y2="50.8" width="0.1524" layer="91"/>
+<wire x1="71.12" y1="50.8" x2="101.6" y2="50.8" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$35" class="0">
 <segment>
 <pinref part="B1" gate="G$1" pin="12"/>
-<wire x1="259.08" y1="86.36" x2="231.14" y2="86.36" width="0.1524" layer="91"/>
-<pinref part="DRIVER_NEMA23" gate="G$1" pin="CLK"/>
-<wire x1="231.14" y1="86.36" x2="231.14" y2="-12.7" width="0.1524" layer="91"/>
-<wire x1="231.14" y1="-12.7" x2="205.74" y2="-12.7" width="0.1524" layer="91"/>
+<wire x1="101.6" y1="48.26" x2="73.66" y2="48.26" width="0.1524" layer="91"/>
+<wire x1="73.66" y1="48.26" x2="73.66" y2="-50.8" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$24" class="0">
 <segment>
 <pinref part="DRIVER_INCLINE" gate="L298" pin="INPUT1"/>
 <pinref part="B1" gate="G$1" pin="7"/>
-<wire x1="195.58" y1="99.06" x2="259.08" y2="99.06" width="0.1524" layer="91"/>
+<wire x1="38.1" y1="60.96" x2="101.6" y2="60.96" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="INTERRUPT_NEMA23" class="0">
 <segment>
 <pinref part="B1" gate="G$1" pin="3"/>
-<wire x1="259.08" y1="109.22" x2="228.6" y2="109.22" width="0.1524" layer="91"/>
-<junction x="228.6" y="109.22"/>
-<label x="228.6" y="109.22" size="1.778" layer="95"/>
+<wire x1="101.6" y1="71.12" x2="71.12" y2="71.12" width="0.1524" layer="91"/>
+<junction x="71.12" y="71.12"/>
+<label x="71.12" y="71.12" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="N$2" class="0">
 <segment>
 <pinref part="R4" gate="G$1" pin="1"/>
-<wire x1="314.96" y1="149.86" x2="314.96" y2="147.32" width="0.1524" layer="91"/>
+<wire x1="157.48" y1="111.76" x2="157.48" y2="109.22" width="0.1524" layer="91"/>
 <pinref part="PE7" gate="M" pin="PE"/>
 </segment>
 </net>
@@ -12092,11 +11970,51 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 <segment>
 <pinref part="PRESS_SENSOR" gate="G$1" pin="1"/>
 <pinref part="R4" gate="G$1" pin="2"/>
-<wire x1="314.96" y1="165.1" x2="314.96" y2="162.56" width="0.1524" layer="91"/>
+<wire x1="157.48" y1="127" x2="157.48" y2="124.46" width="0.1524" layer="91"/>
 <pinref part="B1" gate="G$1" pin="18(TX1)"/>
-<wire x1="314.96" y1="162.56" x2="314.96" y2="160.02" width="0.1524" layer="91"/>
-<wire x1="294.64" y1="162.56" x2="314.96" y2="162.56" width="0.1524" layer="91"/>
-<junction x="314.96" y="162.56"/>
+<wire x1="157.48" y1="124.46" x2="157.48" y2="121.92" width="0.1524" layer="91"/>
+<wire x1="137.16" y1="124.46" x2="157.48" y2="124.46" width="0.1524" layer="91"/>
+<junction x="157.48" y="124.46"/>
+</segment>
+</net>
+<net name="N$3" class="0">
+<segment>
+<pinref part="NEMA23" gate="G$1" pin="4"/>
+<pinref part="DRIVER_ROTATION" gate="G$1" pin="B-"/>
+<wire x1="-2.54" y1="-17.78" x2="5.08" y2="-17.78" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$4" class="0">
+<segment>
+<pinref part="NEMA23" gate="G$1" pin="3"/>
+<wire x1="-2.54" y1="-20.32" x2="2.54" y2="-20.32" width="0.1524" layer="91"/>
+<wire x1="2.54" y1="-20.32" x2="2.54" y2="-22.86" width="0.1524" layer="91"/>
+<pinref part="DRIVER_ROTATION" gate="G$1" pin="B+"/>
+<wire x1="2.54" y1="-22.86" x2="5.08" y2="-22.86" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$5" class="0">
+<segment>
+<pinref part="NEMA23" gate="G$1" pin="2"/>
+<wire x1="-2.54" y1="-22.86" x2="0" y2="-22.86" width="0.1524" layer="91"/>
+<wire x1="0" y1="-22.86" x2="0" y2="-27.94" width="0.1524" layer="91"/>
+<pinref part="DRIVER_ROTATION" gate="G$1" pin="A-"/>
+<wire x1="0" y1="-27.94" x2="5.08" y2="-27.94" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$6" class="0">
+<segment>
+<pinref part="NEMA23" gate="G$1" pin="1"/>
+<wire x1="-2.54" y1="-25.4" x2="-2.54" y2="-33.02" width="0.1524" layer="91"/>
+<pinref part="DRIVER_ROTATION" gate="G$1" pin="A+"/>
+<wire x1="-2.54" y1="-33.02" x2="5.08" y2="-33.02" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$7" class="0">
+<segment>
+<pinref part="DRIVER_ROTATION" gate="G$1" pin="VCC"/>
+<wire x1="5.08" y1="-43.18" x2="-83.82" y2="-43.18" width="0.1524" layer="91"/>
+<wire x1="-83.82" y1="-43.18" x2="-83.82" y2="-10.16" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
