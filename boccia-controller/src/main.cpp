@@ -27,7 +27,7 @@ BocciaStepper nema23(AccelStepper::DRIVER, nema23_pin_step, nema23_pin_dir);
 // - Incline actuator
 int incline_pin1 = 7;
 int incline_pin2 = 8;           
-int incline_pin_pot = 2;          // Analog pin for potentiometer
+int incline_pin_pot = 4;          // Analog pin for potentiometer
 int incline_speed_threshold = 15;
 int incline_speed_factor = 50;
 int incline_pin_sensor = 0;       // If pin sensor is enabled (i.e., !0), the calibration depends on the pin sensor trigger
@@ -79,19 +79,19 @@ void setup() {
   Serial.println("Calibration");
 
   // - Nema 17
-  Serial.println("Nema 17 - Calibration started");
-  nema17.findRange();
-  Serial.println("Nema 17 - Calibration ended");
+  // Serial.println("Nema 17 - Calibration started");
+  // nema17.findRange();
+  // Serial.println("Nema 17 - Calibration ended");
  
   // - Nema 23
-  Serial.println("Nema 23 - Calibration started");
-  nema23.findRange();
-  Serial.println("Nema 23 - Calibration ended");
+  // Serial.println("Nema 23 - Calibration started");
+  // nema23.findRange();
+  // Serial.println("Nema 23 - Calibration ended");
 
   // - Incline actuator
-  Serial.println("Incline - Calibration started");
-  inclineActuator.findRange();
-  Serial.println("Incline - Calibration ended");
+  // Serial.println("Incline - Calibration started");
+  // inclineActuator.findRange();
+  // Serial.println("Incline - Calibration ended");
 
   //  - Elevator actuator
   Serial.println("Elevator - Calibration started");
