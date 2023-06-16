@@ -4,7 +4,7 @@
 // - Note that you must change the values in the setup section to control the
 //   appropriate motor
 // -- Elevation: pin1=9, pin2=10, pin_pot=3
-// -- Rotation: pin1=7, pin2=8, pin_pot=2 
+// -- Rotation: pin1=7, pin2=8, pin_pot=4 
 
 // Private variables
   // Settings for motor to be tested
