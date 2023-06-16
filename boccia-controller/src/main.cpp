@@ -8,6 +8,11 @@
 int n_steps = 200;
 int dir = 1;
 
+// NEMA 8 motor for testing purposes
+int nema8_pin_step = 3;
+int nema8_pin_dir = 6;
+BocciaStepper nema8(AccelStepper::DRIVER, nema8_pin_step, nema8_pin_dir);
+
 // Build motor objects
 // - Nema 17
 int nema17_pin_step = 5;
