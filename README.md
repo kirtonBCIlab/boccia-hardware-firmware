@@ -10,6 +10,8 @@ The folders are divided into the following:
 - [PlatformIO](https://platformio.org/platformio-ide) requires the [Arduino IDE](https://www.arduino.cc/en/software/) to be installed.
 - When developing for the main project, in Visual Studio Code open the [boccia controller](/boccia-controller/) folder directly with the following shortcut:
 ```
-Windows:  Ctrl + K, Ctrl + O
+Windows: Ctrl + K, Ctrl + O
 Mac: Command + K, Command + O
 ```
+
+- 
