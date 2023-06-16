@@ -78,15 +78,15 @@ void setup() {
   // Calibration steps - Enable sections as needed
   Serial.println("Calibration");
 
-  // - Nema 17
-  // Serial.println("Nema 17 - Calibration started");
-  // nema17.findRange();
-  // Serial.println("Nema 17 - Calibration ended");
+  - Nema 17
+  Serial.println("Nema 17 - Calibration started");
+  nema17.findRange();
+  Serial.println("Nema 17 - Calibration ended");
  
-  // - Nema 23
-  // Serial.println("Nema 23 - Calibration started");
-  // nema23.findRange();
-  // Serial.println("Nema 23 - Calibration ended");
+  - Nema 23
+  Serial.println("Nema 23 - Calibration started");
+  nema23.findRange();
+  Serial.println("Nema 23 - Calibration ended");
 
   // - Incline actuator
   Serial.println("Incline - Calibration started");
@@ -143,9 +143,42 @@ void decodeCommand()
 
   // Determine which motor to move
   int motor_select = 1000;  // Units to select motor and determine movement
+   int gross_motor_select = 100000;  // Units to select gross movement
   int motor = abs(floor(command/motor_select));
   int movement = command % motor_select;
   String motor_name;
+
+  // Check if the command includes gross movement
+  if (command >= gross_motor_select) {
+        int gross_move = abs(floor(command/gross_motor_select));
+        int gross_rotation = gross_move % 10;
+        int gross_elevation = gross_move / 10;
+
+        // Handle rotation(assuming 1.8 degree per step)
+        switch(gross_rotation) {
+            case 1: nema23.moveRun(-22); break;
+            case 2: nema23.moveRun(-11); break;
+            case 3: nema23.moveRun(0); break;
+            case 4: nema23.moveRun(11); break;
+            case 5: nema23.moveRun(22); break;
+            default: Serial.println("Invalid gross rotation command"); break;
+        }
+
+        // Handle elevation
+        switch(gross_elevation) {
+            case 1: elevatorActuator.moveToPercentage(20); break;
+            case 2: elevatorActuator.moveToPercentage(40); break;
+            case 3: elevatorActuator.moveToPercentage(60); break;
+            case 4: elevatorActuator.moveToPercentage(80); break;
+            case 5: elevatorActuator.moveToPercentage(100); break;
+            default: Serial.println("Invalid gross elevation command"); break;
+        }
+
+        // use motor and movement for the regular command
+        motor = command % gross_motor_select / motor_select;
+        movement = command % motor_select;
+    }
+
 
   switch (motor)
   {
@@ -192,4 +225,3 @@ void decodeCommand()
   Serial.println("- Movement: " + String(movement));
 
   Serial.println("\nSelect motor and movement...");
-}
