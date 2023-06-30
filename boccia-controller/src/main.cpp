@@ -15,9 +15,11 @@ bool release_interrupt_flag = false;
 
 // Build motor objects
 // - Release
-int release_pin_step = 5;
-int release_pin_dir = 6;
-BocciaStepper release(AccelStepper::DRIVER, release_pin_step, release_pin_dir);
+uint8_t release_pin_step = 5;
+uint8_t release_pin_dir = 6;
+int release_interrupt_pins[2] = {2, 0};
+BocciaStepper release(release_pin_step, release_pin_dir, release_interrupt_pin);
+// BocciaStepper release(AccelStepper::DRIVER, release_pin_step, release_pin_dir);
 
 // - Rotation
 int rotation_pin_step = 12;
