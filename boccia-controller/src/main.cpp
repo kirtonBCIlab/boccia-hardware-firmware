@@ -5,6 +5,7 @@
 #include <Functions.h>
 #include <AccelStepper.h>
 
+int release_interrupt_pin = 2;
 bool release_interrupt_flag = false;
 
 // NEMA 8 motor for testing purposes
