@@ -18,7 +18,7 @@ int signum(float a, float b)
   return c;
 }
 
-bool digitalReadDebounce(int pin, unsigned long msec_debounce)
+bool digitalReadDebounce(int pin, unsigned long msec_debounce, bool is_rising)
 {
   // read the state of the switch into a local variable:
   int r0 = digitalRead(pin);    // Initial reading
@@ -26,25 +26,18 @@ bool digitalReadDebounce(int pin, unsigned long msec_debounce)
   unsigned long t0 = millis();  // Set start time
   unsigned long t1;             // Updated time
 
-  // Initial reading
-  r0 = digitalRead(pin);
-  t0 = millis();
-
-  // Set a msec_debounce window, if reading changes before the window ends, reset window
+  // Set a msec_debounce window, if reading changes before the window ends, exit and return false
   do
   {
-    // Updated reading
+    // Take updated readings
     r1 = digitalRead(pin);
     t1 = millis();
 
-    // If value changed, restart time window
-    if (r1 != r0)
-    {
-      r0 = r1;
-      t0 = millis();
-    }
+    // Check if value has changed 
+    if (is_rising && (r1 == 0)) { return false; }
+    else if (!is_rising && (r1 == 1)) { return false; }
 
   } while ((t1-t0) < msec_debounce);
   
-  return r0;
+  return true;
 }
