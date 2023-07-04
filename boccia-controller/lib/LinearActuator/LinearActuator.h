@@ -1,6 +1,5 @@
 #ifndef LinearActuator_H
 #define LinearActuator_H
-#include <AccelStepper.h>
 #include <Arduino.h>
 
 class LinearActuator
