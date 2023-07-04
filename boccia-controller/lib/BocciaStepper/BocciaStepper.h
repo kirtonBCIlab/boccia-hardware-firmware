@@ -6,9 +6,9 @@
 class BocciaStepper:public AccelStepper
 {
   private:
-    int _pin_step;                // Pin connected to step input of driver
-    int _pin_dir;                 // Pin connected to dir input of driver
-    int _interrupt_pins[2] = {0}; // List with pins connected to interrupts
+    uint8_t _pin_step;                // Pin connected to step input of driver
+    uint8_t _pin_dir;                 // Pin connected to dir input of driver
+    uint8_t _interrupt_pins[2] = {0}; // List with pins connected to interrupts [left, rigth]
     int _nsteps = 200;            // Number of steps for a full rotation
     int _nsteps_return = 1;       // Number of steps to return if limitDetected()
     int _default_speed;           // Default speed [steps/sec]
@@ -26,8 +26,15 @@ class BocciaStepper:public AccelStepper
   // using AccelStepper::AccelStepper;
   
   public:
-    BocciaStepper(int pin_step, int pin_dir, int interrupt_pins[2], int nsteps=200, int nsteps_return=5, int default_speed=200, int default_accel=10)
-    : AccelStepper(AccelStepper::DRIVER, pin_step, pin_dir){};
+    /// @brief Creates a stepper motor object
+    /// @param pin_step       Pin used for step input in stepper driver
+    /// @param pin_dir        Pin used for direction input in stepper driver
+    /// @param interrupt_pins List of pins used for interrupts [max 2] [left, right]   
+    /// @param nsteps         Number of steps for a full rotation of stepper motor
+    /// @param nsteps_return  Number of steps to return motor once it has it a limit
+    /// @param default_speed  Default speed [steps/sec]
+    /// @param default_accel  Default acceleration [steps/(sec^2)]
+    BocciaStepper(uint8_t pin_step, uint8_t pin_dir, uint8_t interrupt_pins[2], int nsteps=200, int nsteps_return=5, int default_speed=200, int default_accel=10);
 
     /// @brief Moves the stepper the desired amount of steps
     /// @param relative Number of steps that the stepper motor will move.
@@ -44,6 +51,9 @@ class BocciaStepper:public AccelStepper
     /// @brief Moves the motor a full rotation clockwise, and then
     /// moves the motor a full rotation anticlocwise. 
     void findRange();
+
+    /// @brief Sets step and dir inputs to 0, to avoid any unwanted movements.
+    void groundInputs();
 };
 
 

@@ -1,7 +1,7 @@
 #include <BocciaStepper.h>
 #include <AccelStepper.h>
   
-  BocciaStepper::BocciaStepper(int pin_step, int pin_dir, int interrupt_pins[2], int nsteps, int nsteps_return, int default_speed, int default_accel)
+  BocciaStepper::BocciaStepper(uint8_t pin_step, uint8_t pin_dir, uint8_t interrupt_pins[2], int nsteps, int nsteps_return, int default_speed, int default_accel)
   {
     _pin_step = pin_step;
     _pin_dir = pin_dir;
@@ -9,11 +9,14 @@
     _nsteps_return = nsteps_return;
     _default_speed = default_speed;
     _default_accel = default_accel;
-    for (int i=0; i<sizeof(_interrupt_pins); i++)
+
+    uint8_t size = sizeof(interrupt_pins)/sizeof(*interrupt_pins);
+    for (uint8_t i=0; i<size; i++)
     {
       _interrupt_pins[i] = interrupt_pins[i];
     }
 
+    AccelStepper(AccelStepper::DRIVER, _pin_step, _pin_dir);
   }
 
   void BocciaStepper::moveRun(long relative)
@@ -114,4 +117,10 @@
     moveRun(_nsteps);
     moveRun(-_nsteps);
 
+  }
+
+  void BocciaStepper::groundInputs()
+  {
+    digitalWrite(_pin_step, 0);
+    digitalWrite(_pin_dir, 0);
   }
