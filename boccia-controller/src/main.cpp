@@ -17,14 +17,19 @@ bool release_interrupt_flag = false;
 // - Release
 uint8_t release_pin_step = 5;
 uint8_t release_pin_dir = 6;
-int release_interrupt_pins[2] = {2, 0};
-BocciaStepper release(release_pin_step, release_pin_dir, release_interrupt_pin);
+uint8_t release_interrupt_pins[2] = {2, 0};
+int release_nsteps = 200;
+int release_nsteps_return = 10;
+BocciaStepper release(release_pin_step, release_pin_dir, release_interrupt_pins, release_nsteps, release_nsteps_return);
 // BocciaStepper release(AccelStepper::DRIVER, release_pin_step, release_pin_dir);
 
 // - Rotation
-int rotation_pin_step = 12;
-int rotation_pin_dir = 11;
-BocciaStepper rotation(AccelStepper::DRIVER, rotation_pin_step, rotation_pin_dir);
+uint8_t rotation_pin_step = 12;
+uint8_t rotation_pin_dir = 11;
+uint8_t rotation_interrupt_pins[2] = {3,19};
+int rotation_nsteps = 200;
+int rotation_nsteps_return = 10;
+BocciaStepper rotation(rotation_pin_step, rotation_pin_dir, rotation_interrupt_pins, rotation_nsteps, rotation_nsteps_return);
 
 // - Incline actuator
 int incline_pin1 = 7;
@@ -56,34 +61,34 @@ void setup() {
 
   // Set motor settings
   // - Release
-  release.setReturnSteps(10);
-  release.setDefaultSpeed(400);      // Default speed [steps/sec]
-  release.setDefaultAccel(10);
-  release.setMaxSpeed(1000);         // Maximum speed [steps/sec]
-  release.setInterruptPin(release_interrupt_pin);
-  release.setNoSteps(200);           // Number of steps for complete rotation [steps]
-  digitalWrite(release_pin_dir, 0);  // Set pins to ground to avoid that initial jump
-  digitalWrite(release_pin_step, 0);
+  // release.setReturnSteps(10);
+  // release.setDefaultSpeed(400);      // Default speed [steps/sec]
+  // release.setDefaultAccel(10);
+  // release.setMaxSpeed(1000);         // Maximum speed [steps/sec]
+  // release.setInterruptPin(release_interrupt_pin);
+  // release.setNoSteps(200);           // Number of steps for complete rotation [steps]
+  // digitalWrite(release_pin_dir, 0);  // Set pins to ground to avoid that initial jump
+  // digitalWrite(release_pin_step, 0);
 
   // - Rotation
-  rotation.setReturnSteps(10);
-  rotation.setDefaultSpeed(400);  // Default speed [steps/sec]
-  rotation.setDefaultAccel(10);
-  rotation.setMaxSpeed(1000);     // Maximum speed [steps/sec]
-  rotation.setInterruptPin(3);
-  rotation.setNoSteps(800);       // Number of steps for complete rotation [steps]
+  // rotation.setReturnSteps(10);
+  // rotation.setDefaultSpeed(400);  // Default speed [steps/sec]
+  // rotation.setDefaultAccel(10);
+  // rotation.setMaxSpeed(1000);     // Maximum speed [steps/sec]
+  // rotation.setInterruptPin(3);
+  // rotation.setNoSteps(800);       // Number of steps for complete rotation [steps]
 
   // Interrupts
-  attachInterrupt(digitalPinToInterrupt(release.getInterruptPin()), releaseLimit, RISING);
-  attachInterrupt(digitalPinToInterrupt(rotation.getInterruptPin()), rotationLimit, RISING);
+  attachInterrupt(digitalPinToInterrupt(release_interrupt_pins[0]), releaseLimit, RISING);
+  attachInterrupt(digitalPinToInterrupt(rotation_interrupt_pins[0]), rotationLimit, RISING);
 
   // Calibration steps - Enable sections as needed
   Serial.println("Calibration");
 
   // - Release
-  Serial.println("Release - Calibration started");
-  release.findRange();
-  Serial.println("Release - Calibration ended");
+  // Serial.println("Release - Calibration started");
+  // release.findRange();
+  // Serial.println("Release - Calibration ended");
  
   // - Rotation
   // Serial.println("Rotation - Calibration started");
@@ -144,11 +149,15 @@ void decodeCommand()
   }
 
   // Determine which motor to move
+  String motor_names[4] = {"release", "rotation", "incline", "elevation"};
   int motor_select = 1000;  // Units to select motor and determine movement
   // int gross_motor_select = 100000;  // Units to select gross movement
   int motor = abs(floor(command/motor_select));
   int movement = command % motor_select;
-  String motor_name;
+  
+  
+  String motor_name = motor_names[motor-1];
+  Serial.println("Selected motor " + motor_name + " - " + String(motor));
 
   // Check if the command includes gross movement
   // if (command >= gross_motor_select) {
@@ -185,25 +194,30 @@ void decodeCommand()
   {
   case 1:
     release.moveRun(movement);
-    motor_name = "release";
+    // motor_name = "release";
+    break;
 
   case 2:
-    // rotation.moveRun(movement);
-    motor_name = "rotation";
+    rotation.moveRun(movement);
+    // motor_name = "rotation";
+    break;
   
   case 3:
     incline.moveToPercentage(movement);
-    motor_name = "Incline actuator";
+    // motor_name = "Incline actuator";
     break;
 
-   case 4:
+  case 4:
     elevation.moveToPercentage(movement);
-    motor_name = "Elevator Actuator";
+    // motor_name = "Elevator Actuator";
     break;
 
   case 9:
+  {
     int motor_calibration = abs(floor(movement/100));
-    
+    motor_name = motor_names[motor_calibration-1];
+    Serial.println("Recalibrating: " + String(motor_name));
+
     switch (motor_calibration)
     {
     case 1: release.findRange(); break;   
@@ -212,14 +226,15 @@ void decodeCommand()
     case 4: elevation.findRange(); break;
     default: Serial.println("Incorrect command to calibrate"); break;
     }
-    
-    Serial.print("Recalibrating: " + String(motor_name));
+    break;
+  }    
 
   default:
     Serial.println("Incorrect command: " + String(command));
     break;
   }
 
+  // TODO: Fix this so that it only gets called if the motor movement is called, not when the calibration is requested
   Serial.println("\nCommand received: " + String(command));
   Serial.println("Movement request: ");
   Serial.println("- Motor: " + motor_name);
