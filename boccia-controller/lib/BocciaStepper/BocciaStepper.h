@@ -6,9 +6,9 @@
 class BocciaStepper:public AccelStepper
 {
   private:
-    uint8_t _pin_step;                // Pin connected to step input of driver
-    uint8_t _pin_dir;                 // Pin connected to dir input of driver
-    uint8_t _interrupt_pins[2] = {0}; // List with pins connected to interrupts [left, rigth]
+    int _pin_step;                // Pin connected to step input of driver
+    int _pin_dir;                 // Pin connected to dir input of driver
+    int _interrupt_pins[2] = {0}; // List with pins connected to interrupts [left, rigth]
     int _nsteps = 200;            // Number of steps for a full rotation
     int _nsteps_return = 1;       // Number of steps to return if limitDetected()
     int _default_speed;           // Default speed [steps/sec]
@@ -34,7 +34,7 @@ class BocciaStepper:public AccelStepper
     /// @param nsteps_return  Number of steps to return motor once it has it a limit
     /// @param default_speed  Default speed [steps/sec]
     /// @param default_accel  Default acceleration [steps/(sec^2)]
-    BocciaStepper(uint8_t pin_step, uint8_t pin_dir, uint8_t interrupt_pins[2], int nsteps=200, int nsteps_return=5, int default_speed=200, int default_accel=10);
+    BocciaStepper(int pin_step, int pin_dir, int interrupt_pins[2], int nsteps=200, int nsteps_return=5, int default_speed=200, int default_accel=10);
 
     /// @brief Moves the stepper the desired amount of steps
     /// @param relative Number of steps that the stepper motor will move.

@@ -5,7 +5,6 @@
 #include <Functions.h>
 #include <AccelStepper.h>
 
-int release_interrupt_pin = 2;
 bool release_interrupt_flag = false;
 
 // NEMA 8 motor for testing purposes
@@ -15,18 +14,17 @@ bool release_interrupt_flag = false;
 
 // Build motor objects
 // - Release
-uint8_t release_pin_step = 5;
-uint8_t release_pin_dir = 6;
-uint8_t release_interrupt_pins[2] = {2, 0};
+int release_pin_step = 5;
+int release_pin_dir = 6;
+int release_interrupt_pins[2] = {2,0};
 int release_nsteps = 200;
 int release_nsteps_return = 10;
 BocciaStepper release(release_pin_step, release_pin_dir, release_interrupt_pins, release_nsteps, release_nsteps_return);
-// BocciaStepper release(AccelStepper::DRIVER, release_pin_step, release_pin_dir);
 
 // - Rotation
-uint8_t rotation_pin_step = 12;
-uint8_t rotation_pin_dir = 11;
-uint8_t rotation_interrupt_pins[2] = {3,19};
+int rotation_pin_step = 12;
+int rotation_pin_dir = 11;
+int rotation_interrupt_pins[2] = {3,19};
 int rotation_nsteps = 200;
 int rotation_nsteps_return = 10;
 BocciaStepper rotation(rotation_pin_step, rotation_pin_dir, rotation_interrupt_pins, rotation_nsteps, rotation_nsteps_return);
@@ -79,8 +77,8 @@ void setup() {
   // rotation.setNoSteps(800);       // Number of steps for complete rotation [steps]
 
   // Interrupts
-  attachInterrupt(digitalPinToInterrupt(release_interrupt_pins[0]), releaseLimit, RISING);
-  attachInterrupt(digitalPinToInterrupt(rotation_interrupt_pins[0]), rotationLimit, RISING);
+  // attachInterrupt(digitalPinToInterrupt(release_interrupt_pins[0]), releaseLimit, RISING);
+  // attachInterrupt(digitalPinToInterrupt(rotation_interrupt_pins[0]), rotationLimit, RISING);
 
   // Calibration steps - Enable sections as needed
   Serial.println("Calibration");
@@ -121,6 +119,7 @@ void loop()
 
 void releaseLimit()
 {
+  Serial.println("Release limit");
   release_interrupt_flag = true;
 }
 
@@ -192,25 +191,10 @@ void decodeCommand()
 
   switch (motor)
   {
-  case 1:
-    release.moveRun(movement);
-    // motor_name = "release";
-    break;
-
-  case 2:
-    rotation.moveRun(movement);
-    // motor_name = "rotation";
-    break;
-  
-  case 3:
-    incline.moveToPercentage(movement);
-    // motor_name = "Incline actuator";
-    break;
-
-  case 4:
-    elevation.moveToPercentage(movement);
-    // motor_name = "Elevator Actuator";
-    break;
+  case 1: release.moveRun(movement);            break;
+  case 2: rotation.moveRun(movement);           break;  
+  case 3: incline.moveToPercentage(movement);   break;
+  case 4: elevation.moveToPercentage(movement); break;
 
   case 9:
   {
@@ -234,11 +218,14 @@ void decodeCommand()
     break;
   }
 
-  // TODO: Fix this so that it only gets called if the motor movement is called, not when the calibration is requested
-  Serial.println("\nCommand received: " + String(command));
-  Serial.println("Movement request: ");
-  Serial.println("- Motor: " + motor_name);
-  Serial.println("- Movement: " + String(movement));
+  if (motor != 9)
+  {
+    Serial.println("\nCommand received: " + String(command));
+    Serial.println("Movement request: ");
+    Serial.println("- Motor: " + motor_name);
+    Serial.println("- Movement: " + String(movement));
 
-  Serial.println("\nSelect motor and movement...");
+    Serial.println("\nSelect motor and movement...");
+  }
+
 }

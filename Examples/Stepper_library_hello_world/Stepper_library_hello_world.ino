@@ -7,8 +7,8 @@
 #include <AccelStepper.h>
 
 // Define pin connections
-const int pin_dir = 3;
-const int pin_step = 2;
+const int pin_dir = 6;
+const int pin_step = 5;
 
 // Define motor interface type and speed
 const int motor_interface_type = 1;
