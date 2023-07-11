@@ -7,6 +7,11 @@
 
 bool release_interrupt_flag = false;
 
+// TODO, There seems to be an issue when I want to create the object before SETUP is called
+// For whatever reason the interrupt pins don't work if I create the instance of the object before setup
+// This is fixed when creating the object again in setup
+// I need to find a way to call a pointer before setup and then create the object in setup
+
 // NEMA 8 motor for testing purposes
 // int nema8_pin_step = 3;
 // int nema8_pin_dir = 6;
@@ -19,7 +24,8 @@ int release_pin_dir = 6;
 int release_interrupt_pins[2] = {2,0};
 int release_nsteps = 200;
 int release_nsteps_return = 10;
-BocciaStepper release(release_pin_step, release_pin_dir, release_interrupt_pins, release_nsteps, release_nsteps_return);
+BocciaStepper release;
+// BocciaStepper release(release_pin_step, release_pin_dir, release_interrupt_pins, release_nsteps, release_nsteps_return);
 
 // - Rotation
 int rotation_pin_step = 12;
@@ -58,27 +64,11 @@ void setup() {
   Serial.println("Begin setup");
 
   // Set motor settings
-  // - Release
-  // release.setReturnSteps(10);
-  // release.setDefaultSpeed(400);      // Default speed [steps/sec]
-  // release.setDefaultAccel(10);
-  // release.setMaxSpeed(1000);         // Maximum speed [steps/sec]
-  // release.setInterruptPin(release_interrupt_pin);
-  // release.setNoSteps(200);           // Number of steps for complete rotation [steps]
-  // digitalWrite(release_pin_dir, 0);  // Set pins to ground to avoid that initial jump
-  // digitalWrite(release_pin_step, 0);
-
-  // - Rotation
-  // rotation.setReturnSteps(10);
-  // rotation.setDefaultSpeed(400);  // Default speed [steps/sec]
-  // rotation.setDefaultAccel(10);
-  // rotation.setMaxSpeed(1000);     // Maximum speed [steps/sec]
-  // rotation.setInterruptPin(3);
-  // rotation.setNoSteps(800);       // Number of steps for complete rotation [steps]
 
   // Interrupts
-  // attachInterrupt(digitalPinToInterrupt(release_interrupt_pins[0]), releaseLimit, RISING);
-  // attachInterrupt(digitalPinToInterrupt(rotation_interrupt_pins[0]), rotationLimit, RISING);
+  release = new BocciaStepper(release_pin_step, release_pin_dir, release_interrupt_pins, release_nsteps, release_nsteps_return);
+  attachInterrupt(digitalPinToInterrupt(release_interrupt_pins[0]), releaseLimit, RISING);
+  attachInterrupt(digitalPinToInterrupt(rotation_interrupt_pins[0]), rotationLimit, RISING);
 
   // Calibration steps - Enable sections as needed
   Serial.println("Calibration");
