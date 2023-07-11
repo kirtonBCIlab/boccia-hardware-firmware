@@ -8,10 +8,11 @@ class BocciaStepper:public AccelStepper
   private:
     int nsteps=200;           // Number of steps for a full rotation
     int nreturn = 1;          // Number of steps to return if limitDetected()
-    int pin_interrupt = 2;    // Pin for interrupt
+    int pin_interrupt = 18;    // Pin for interrupt
     int limits[2] = {0};      // Limits [low, high]
     bool homing_flag = 0;     // Homing flag (raised when homing is finished)
     bool limit_flag = 0;      // Limit flag (raised when an interrupt has activated)
+    bool release_flag =0;
     int default_speed = 200;  // Default speed [steps/sec]
     int default_accel = 10;   // Default acceleration [steps/(sec^2)]
 
@@ -28,6 +29,7 @@ class BocciaStepper:public AccelStepper
     /// If the limits are already set, and the sensor is triggered, the limits
     /// are updated.
     void moveRun(long relative);
+    void releaseBall(long relative);
 
     void setReturnSteps(int steps);
     
@@ -44,6 +46,7 @@ class BocciaStepper:public AccelStepper
     
     /// @brief ISR activated when one of the optiocal sensors is triggered
     void limitDetected();
+    void stopDetected();
 
     /// @brief Moves the motor a full rotation clockwise, and then
     /// moves the motor a full rotation anticlocwise. 

@@ -5,8 +5,7 @@
 #include <Functions.h>
 #include <AccelStepper.h>
 
-int release_interrupt_pin = 2;
-bool release_interrupt_flag = false;
+int release_interrupt_pin = 18;
 
 // NEMA 8 motor for testing purposes
 // int nema8_pin_step = 3;
@@ -15,8 +14,8 @@ bool release_interrupt_flag = false;
 
 // Build motor objects
 // - Release
-int release_pin_step = 5;
-int release_pin_dir = 6;
+int release_pin_step = 3;
+int release_pin_dir = 2;
 BocciaStepper release(AccelStepper::DRIVER, release_pin_step, release_pin_dir);
 
 // - Rotation
@@ -36,7 +35,7 @@ LinearActuator incline(incline_pin1, incline_pin2, incline_pin_pot, incline_spee
 // - Elevator actuator
 int elevator_pin1 = 9;
 int elevator_pin2 = 10;
-int elevator_pin_pot = 3;
+int elevator_pin_pot = 17;
 int elevator_speed_threshold = 15;
 int elevator_speed_factor = 50;
 LinearActuator elevation(elevator_pin1, elevator_pin2, elevator_pin_pot, elevator_speed_threshold, elevator_speed_factor);
@@ -63,58 +62,59 @@ void setup() {
   digitalWrite(release_pin_dir, 0);  // Set pins to ground to avoid that initial jump
   digitalWrite(release_pin_step, 0);
 
-  // - Rotation
+  // // - Rotation
   rotation.setReturnSteps(10);
   rotation.setDefaultSpeed(400);  // Default speed [steps/sec]
   rotation.setDefaultAccel(10);
   rotation.setMaxSpeed(1000);     // Maximum speed [steps/sec]
-  rotation.setInterruptPin(3);
+  rotation.setInterruptPin(19);
   rotation.setNoSteps(800);       // Number of steps for complete rotation [steps]
 
-  // Interrupts
+  // // Interrupts
   attachInterrupt(digitalPinToInterrupt(release.getInterruptPin()), releaseLimit, RISING);
   attachInterrupt(digitalPinToInterrupt(rotation.getInterruptPin()), rotationLimit, RISING);
 
   // Calibration steps - Enable sections as needed
-  Serial.println("Calibration");
+  // Serial.println("Calibration");
 
   // - Release
-  Serial.println("Release - Calibration started");
-  release.findRange();
-  Serial.println("Release - Calibration ended");
+  // Serial.println("Release - Calibration started");
+  // release.findRange();
+  // Serial.println("Release - Calibration ended");
  
-  // - Rotation
+  //- Rotation
   // Serial.println("Rotation - Calibration started");
   // rotation.findRange();
   // Serial.println("Rotation - Calibration ended");
 
-  // - Incline actuator
+  //- Incline actuator
   // Serial.println("Incline - Calibration started");
-  // inclineActuator.findRange();
+  // incline.findRange();
   // Serial.println("Incline - Calibration ended");
 
-  //  - Elevator actuator
+  // - Elevator actuator
   // Serial.println("Elevator - Calibration started");
-  // elevatorActuator.findRange();
+  // elevation.findRange();
   // Serial.println("Elevator - Calibration ended");
 
-  Serial.println("\nSelect motor and movement...");
+  // Serial.println("\nSelect motor and movement...");
 }
 
-void loop() 
-{
-  if (Serial.available())
-  {
-    decodeCommand();
-  }
+void loop() {
+  release.releaseBall(500);
+// release.moveRun(100);
+  
+  // if (Serial.available())
+  // {
+  //   decodeCommand();
+  // }
 
-  waitMillis(250);  // Wait a bit while decoding command
+  // waitMillis(250);  // Wait a bit while decoding command
 }
-
 
 void releaseLimit()
 {
-  release_interrupt_flag = true;
+  release.stopDetected();
 }
 
 void rotationLimit()
@@ -182,12 +182,15 @@ void decodeCommand()
   switch (motor)
   {
   case 1:
-    release.moveRun(movement);
+    release.releaseBall(movement);
+//  releaseBall
     motor_name = "release";
+    break;
 
   case 2:
-    // rotation.moveRun(movement);
+    rotation.moveRun(movement);
     motor_name = "rotation";
+    break;
   
   case 3:
     incline.moveToPercentage(movement);

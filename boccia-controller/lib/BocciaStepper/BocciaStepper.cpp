@@ -1,5 +1,6 @@
 #include <BocciaStepper.h>
 #include <AccelStepper.h>
+#include <Functions.h>
   
   void BocciaStepper::moveRun(long relative)
     {
@@ -41,7 +42,21 @@
         limit_flag = 0; // Restart flag
       }
 
+      if (release_flag)
+      {
+        Serial.println("Detected Again");
+        relative = 0;
+        release_flag =0; //Restart flag
+      }
+
     }
+
+  void BocciaStepper::releaseBall(long relative)
+  {
+    moveRun(relative);
+    move(-70);
+    runToPosition();
+  }
 
   void BocciaStepper::setNoSteps(int steps)
   {
@@ -131,6 +146,13 @@
   void BocciaStepper::limitDetected()
   {
     limit_flag = 1;
+    setAcceleration(10 * getDefaultAccel());  // Change acceleration to stop quickly
+    stop();
+  }
+
+  void BocciaStepper::stopDetected()
+  {
+    release_flag = 1;
     setAcceleration(10 * getDefaultAccel());  // Change acceleration to stop quickly
     stop();
   }
