@@ -44,6 +44,10 @@ class LinearActuator
         /// @param pin_sensor Pin number for the force sensor [optional]
         LinearActuator(int pin1, int pin2, int pin_pot, int speed_threshold, int speed_factor, int pin_sensor=0);
 
+        /// @brief Initializes the pins associated with the motor to input or output
+        /// accordingly.
+        void initializePins();
+
         /// @brief Returns pin of the pressure sensor
         int getSensorPin();
 

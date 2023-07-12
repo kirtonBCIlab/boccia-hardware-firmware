@@ -24,8 +24,7 @@ int release_pin_dir = 6;
 int release_interrupt_pins[2] = {2,0};
 int release_nsteps = 200;
 int release_nsteps_return = 10;
-BocciaStepper release;
-// BocciaStepper release(release_pin_step, release_pin_dir, release_interrupt_pins, release_nsteps, release_nsteps_return);
+BocciaStepper release(release_pin_step, release_pin_dir, release_interrupt_pins, release_nsteps, release_nsteps_return);
 
 // - Rotation
 int rotation_pin_step = 12;
@@ -63,10 +62,14 @@ void setup() {
   Serial.begin(9600);
   Serial.println("Begin setup");
 
-  // Set motor settings
-
+  // Initialize motors
+  release.initializePins();
+  rotation.initializePins();
+  incline.initializePins();
+  elevation.initializePins();
+  
   // Interrupts
-  release = new BocciaStepper(release_pin_step, release_pin_dir, release_interrupt_pins, release_nsteps, release_nsteps_return);
+  // release.setInterruptPins();
   attachInterrupt(digitalPinToInterrupt(release_interrupt_pins[0]), releaseLimit, RISING);
   attachInterrupt(digitalPinToInterrupt(rotation_interrupt_pins[0]), rotationLimit, RISING);
 

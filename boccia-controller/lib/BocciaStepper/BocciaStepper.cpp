@@ -9,15 +9,20 @@
     _nsteps_return = nsteps_return;
     _default_speed = default_speed;
     _default_accel = default_accel;
-
-    for (int i=0; i<2; i++)
-    {      
-      // if (interrupt_pins[i] != 0) { pinMode(interrupt_pins[i], INPUT); }
-      pinMode(interrupt_pins[i], INPUT);
-      _interrupt_pins[i] = interrupt_pins[i];
-    }
+    
+    for (int i=0; i<2; i++) { _interrupt_pins[i] = interrupt_pins[i]; }
 
     AccelStepper(AccelStepper::DRIVER, _pin_step, _pin_dir);
+  }
+
+  void BocciaStepper::initializePins()
+  {
+    pinMode(_pin_step, OUTPUT);
+    pinMode(_pin_dir, OUTPUT);
+    for (int i=0; i<2; i++) 
+    {
+      if (_interrupt_pins[i] != 0) { pinMode(_interrupt_pins[i], INPUT); }
+    }
   }
 
   void BocciaStepper::moveRun(long relative)

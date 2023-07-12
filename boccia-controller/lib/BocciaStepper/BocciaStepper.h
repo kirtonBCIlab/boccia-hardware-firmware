@@ -22,6 +22,8 @@ class BocciaStepper:public AccelStepper
     int default_accel = 10;   // Default acceleration [steps/(sec^2)]
 
     void setLimits();
+
+    // BocciaStepper* bocciaStepper;
   
   // using AccelStepper::AccelStepper;
   
@@ -36,6 +38,10 @@ class BocciaStepper:public AccelStepper
     /// @param default_accel  Default acceleration [steps/(sec^2)]
     BocciaStepper(int pin_step, int pin_dir, int interrupt_pins[2], int nsteps=200, int nsteps_return=5, int default_speed=200, int default_accel=10);
 
+    /// @brief Initializes the pins associated with the motor to input or output
+    /// accordingly.
+    void initializePins();
+    
     /// @brief Moves the stepper the desired amount of steps
     /// @param relative Number of steps that the stepper motor will move.
     /// positive numbers will rotate clockwise, negative numbers will rotate
