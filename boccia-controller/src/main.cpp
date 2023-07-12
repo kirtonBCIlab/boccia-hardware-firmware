@@ -24,7 +24,8 @@ int release_pin_dir = 6;
 int release_interrupt_pins[2] = {2,0};
 int release_nsteps = 200;
 int release_nsteps_return = 10;
-BocciaStepper release(release_pin_step, release_pin_dir, release_interrupt_pins, release_nsteps, release_nsteps_return);
+int release_default_speed = 400;
+BocciaStepper release(release_pin_step, release_pin_dir, release_interrupt_pins, release_nsteps, release_nsteps_return, release_default_speed);
 
 // - Rotation
 int rotation_pin_step = 12;
@@ -77,9 +78,9 @@ void setup() {
   Serial.println("Calibration");
 
   // - Release
-  // Serial.println("Release - Calibration started");
-  // release.findRange();
-  // Serial.println("Release - Calibration ended");
+  Serial.println("Release - Calibration started");
+  release.findRange();
+  Serial.println("Release - Calibration ended");
  
   // - Rotation
   // Serial.println("Rotation - Calibration started");
@@ -135,16 +136,13 @@ void decodeCommand()
   long command = Serial.parseInt();
 
   // Empty serial port
-  for (int n=0; n<Serial.available(); n++)
-  {
-    Serial.read();
-  }
+  for (int n=0; n<Serial.available(); n++) { Serial.read(); }
 
   // Determine which motor to move
   String motor_names[4] = {"release", "rotation", "incline", "elevation"};
   int motor_select = 1000;  // Units to select motor and determine movement
   // int gross_motor_select = 100000;  // Units to select gross movement
-  int motor = abs(floor(command/motor_select));
+  int motor = abs(floor(command/motor_select)); 
   int movement = command % motor_select;
   
   

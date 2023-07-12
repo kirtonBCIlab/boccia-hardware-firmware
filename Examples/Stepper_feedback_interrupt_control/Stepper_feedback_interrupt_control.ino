@@ -10,7 +10,7 @@ const int pin_sense = 2;  // Digital pin for digital interrupt
 #include <AccelStepper.h>
 
 const int pin_dir = 6;  // Direction pin
-const int pin_step = 2; // Step pin
+const int pin_step = 5; // Step pin
 int lim0;               // Lower limit of the stepper motor [steps]
 int lim1;               // Higher limit of the stepper motor [steps]
 int range;              // Range of movement of the stepper [steps]

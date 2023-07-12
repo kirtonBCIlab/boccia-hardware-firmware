@@ -23,6 +23,8 @@
     {
       if (_interrupt_pins[i] != 0) { pinMode(_interrupt_pins[i], INPUT); }
     }
+    setMaxSpeed(1000);  // Recommended max speed
+    setCurrentPosition(0);
   }
 
   void BocciaStepper::moveRun(long relative)
@@ -48,10 +50,16 @@
       }
 
       // Set movement and get there
+      Serial.print(relative);
       if (relative!=0)
       {
         move(relative);
-        runToPosition();
+        do
+        {
+          run();
+        } while (distanceToGo() != 0);
+        
+        // runToPosition();
       }
       
       // If limit detected, quickly stop
