@@ -8,24 +8,17 @@ class BocciaStepper:public AccelStepper
   private:
     int _pin_step;                // Pin connected to step input of driver
     int _pin_dir;                 // Pin connected to dir input of driver
-    int _interrupt_pins[2] = {0}; // List with pins connected to interrupts [left, rigth]
+    int _interrupt_pins[2] = {0}; // List with pins connected to interrupts [left, right]
     int _nsteps = 200;            // Number of steps for a full rotation
     int _nsteps_return = 1;       // Number of steps to return if limitDetected()
     int _default_speed;           // Default speed [steps/sec]
     int _default_accel;           // Default acceleration [steps/(sec^2)]
 
-    int pin_interrupt = 2;    // Pin for interrupt
-    int _limits[2] = {0};      // Limits [low, high]
+    int _limits[2] = {0};     // Step position of limits [low, high]
     bool homing_flag = 0;     // Homing flag (raised when homing is finished)
-    bool limit_flag = 0;      // Limit flag (raised when an interrupt has activated)
-    int default_speed = 200;  // Default speed [steps/sec]
-    int default_accel = 10;   // Default acceleration [steps/(sec^2)]
+    bool _limit_flag = 0;     // Limit flag (raised when an interrupt has activated)
 
     void setLimits();
-
-    // BocciaStepper* bocciaStepper;
-  
-  // using AccelStepper::AccelStepper;
   
   public:
     /// @brief Creates a stepper motor object
@@ -57,7 +50,7 @@ class BocciaStepper:public AccelStepper
     /// are updated.
     void moveRun(long relative);
     
-    /// @brief ISR activated when one of the optiocal sensors is triggered
+    /// @brief ISR activated when one of the optical sensors is triggered
     void limitDetected();
 
     /// @brief Moves the motor a full rotation clockwise, and then

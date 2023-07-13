@@ -5,8 +5,6 @@
 #include <Functions.h>
 #include <AccelStepper.h>
 
-bool release_interrupt_flag = false;
-
 // Build motor objects
 // - Release
 int release_pin_step = 5;
@@ -61,30 +59,30 @@ void setup() {
   
   // Interrupts
   attachInterrupt(digitalPinToInterrupt(release_interrupt_pins[0]), releaseLimit, RISING);
-  // attachInterrupt(digitalPinToInterrupt(rotation_interrupt_pins[0]), rotationLimit, RISING);
+  attachInterrupt(digitalPinToInterrupt(rotation_interrupt_pins[0]), rotationLimit, RISING);
 
   // Calibration steps - Enable sections as needed
   Serial.println("Calibration");
 
   // - Release
-  // Serial.println("Release - Calibration started");
-  // release.findRange();
-  // Serial.println("Release - Calibration ended");
+  Serial.println("Release - Calibration started");
+  release.findRange();
+  Serial.println("Release - Calibration ended");
  
   // - Rotation
-  // Serial.println("Rotation - Calibration started");
-  // rotation.findRange();
-  // Serial.println("Rotation - Calibration ended");
+  Serial.println("Rotation - Calibration started");
+  rotation.findRange();
+  Serial.println("Rotation - Calibration ended");
 
   // - Incline actuator
-  // Serial.println("Incline - Calibration started");
-  // inclineActuator.findRange();
-  // Serial.println("Incline - Calibration ended");
+  Serial.println("Incline - Calibration started");
+  incline.findRange();
+  Serial.println("Incline - Calibration ended");
 
   //  - Elevator actuator
-  // Serial.println("Elevator - Calibration started");
-  // elevatorActuator.findRange();
-  // Serial.println("Elevator - Calibration ended");
+  Serial.println("Elevator - Calibration started");
+  elevation.findRange();
+  Serial.println("Elevator - Calibration ended");
 
   Serial.println("\nSelect motor and movement...");
 }
@@ -97,8 +95,7 @@ void loop()
 
 void releaseLimit()
 {
-  Serial.println("Release limit");
-  release_interrupt_flag = true;
+  release.limitDetected();
 }
 
 void rotationLimit()
