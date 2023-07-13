@@ -7,16 +7,6 @@
 
 bool release_interrupt_flag = false;
 
-// TODO, There seems to be an issue when I want to create the object before SETUP is called
-// For whatever reason the interrupt pins don't work if I create the instance of the object before setup
-// This is fixed when creating the object again in setup
-// I need to find a way to call a pointer before setup and then create the object in setup
-
-// NEMA 8 motor for testing purposes
-// int nema8_pin_step = 3;
-// int nema8_pin_dir = 6;
-// BocciaStepper nema8(AccelStepper::DRIVER, nema8_pin_step, nema8_pin_dir);
-
 // Build motor objects
 // - Release
 int release_pin_step = 5;
@@ -64,23 +54,22 @@ void setup() {
   Serial.println("Begin setup");
 
   // Initialize motors
-  release.initializePins();
-  rotation.initializePins();
-  incline.initializePins();
-  elevation.initializePins();
+  // release.initializePins();
+  // rotation.initializePins();
+  // incline.initializePins();
+  // elevation.initializePins();
   
   // Interrupts
-  // release.setInterruptPins();
   attachInterrupt(digitalPinToInterrupt(release_interrupt_pins[0]), releaseLimit, RISING);
-  attachInterrupt(digitalPinToInterrupt(rotation_interrupt_pins[0]), rotationLimit, RISING);
+  // attachInterrupt(digitalPinToInterrupt(rotation_interrupt_pins[0]), rotationLimit, RISING);
 
   // Calibration steps - Enable sections as needed
   Serial.println("Calibration");
 
   // - Release
-  Serial.println("Release - Calibration started");
-  release.findRange();
-  Serial.println("Release - Calibration ended");
+  // Serial.println("Release - Calibration started");
+  // release.findRange();
+  // Serial.println("Release - Calibration ended");
  
   // - Rotation
   // Serial.println("Rotation - Calibration started");
@@ -102,14 +91,9 @@ void setup() {
 
 void loop() 
 {
-  if (Serial.available())
-  {
-    decodeCommand();
-  }
-
+  if (Serial.available()) { decodeCommand(); }
   waitMillis(250);  // Wait a bit while decoding command
 }
-
 
 void releaseLimit()
 {
