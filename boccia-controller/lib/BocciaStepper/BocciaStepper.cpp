@@ -1,144 +1,132 @@
 #include <BocciaStepper.h>
 #include <AccelStepper.h>
   
+  BocciaStepper::BocciaStepper(int pin_step, int pin_dir, int interrupt_pins[2], int nsteps, int nsteps_return, int default_speed, int default_accel):
+  AccelStepper(AccelStepper::DRIVER, pin_step, pin_dir)
+  {
+    _pin_step = pin_step;
+    _pin_dir = pin_dir;
+    _nsteps = nsteps;
+    _nsteps_return = nsteps_return;
+    _default_speed = default_speed;
+    _default_accel = default_accel;
+    
+    for (int i=0; i<2; i++) { _interrupt_pins[i] = interrupt_pins[i]; }
+  }
+
+  void BocciaStepper::initializePins()
+  {
+    pinMode(_pin_step, OUTPUT);
+    pinMode(_pin_dir, OUTPUT);
+    for (int i=0; i<2; i++) 
+    {
+      if (_interrupt_pins[i] != 0) { pinMode(_interrupt_pins[i], INPUT); }
+    }
+    setMaxSpeed(1000);  // Recommended max speed
+    setCurrentPosition(0);
+  }
+
   void BocciaStepper::moveRun(long relative)
     {
       // Set default values before moving
-      setSpeed(getDefaultSpeed());
-      setAcceleration(getDefaultAccel());
+      setSpeed(_default_speed);
+      setAcceleration(_default_accel);
     
       // If limits exist, make sure requested movement is within limits
-      if (limits[0]!=0 && limits[1]!=0)
+      if (_limits[0]!=0 && _limits[1]!=0)
       {
         long end_position = relative + currentPosition(); 
-        if (end_position < limits[0])
+        if (end_position < _limits[0])
           {
             Serial.println("The requested movement will hit the lower limit\nReadjusting value");
-            relative = limits[0] - currentPosition(); 
+            relative = _limits[0] - currentPosition(); 
           }
-        else if (end_position > limits[1])
+        else if (end_position > _limits[1])
           {
             Serial.println("The requested movement will hit the higher limit\nReadjusting value");
-            relative = limits[1] - currentPosition();
+            relative = _limits[1] - currentPosition();
           }
       }
 
       // Set movement and get there
-      if (relative!=0)
+      move(relative);
+      do
       {
-        move(relative);
-        runToPosition();
-      }
-      
-      // If limit detected, quickly stop
-      if (limit_flag)
-      {
-        setAcceleration(default_accel);
-        int step_dir = (relative>0) - (relative<0); // Current direction
-        move(nreturn*-step_dir);
-        runToPosition();
-        setLimits();
-        limit_flag = 0; // Restart flag
-      }
+        run();
 
+        // If limit detected, quickly stop and return motor
+        if (_limit_flag)
+        {
+          // Stop motor
+          setAcceleration(_default_accel * 10);
+          stop();
+          runToPosition();
+          
+          // Return motor _nsteps_return
+          int step_dir = (relative>0) - (relative<0); // Current direction
+          setAcceleration(_default_accel);
+          move(_nsteps_return*-step_dir);
+          runToPosition();
+          setLimits();
+          _limit_flag = 0; // Restart flag
+        }
+      } while (distanceToGo() != 0);  
     }
-
-  void BocciaStepper::setNoSteps(int steps)
-  {
-    nsteps = steps;
-  }
-
-  void BocciaStepper::setReturnSteps(int steps)
-  {
-    nreturn = steps;
-  }
 
   void BocciaStepper::setLimits()
   {
-    int temp;
-
-    // Set limits for the first time
-    if (limits[0]==0 && limits[1]==0)
+    // Set _limits for the first time
+    if (_limits[0]==0 && _limits[1]==0)
     { 
-      Serial.println("No limits set");
-      limits[1] = currentPosition();
-      Serial.println("Upper limit = " + String(limits[1]));
+      _limits[1] = currentPosition();
+      Serial.println("No limits set, upper limit = " + String(_limits[1]));
     }
     // Set lower limit if higher limit is already set
-    else if (limits[0]==0)
+    else if (_limits[0]==0)
     { 
-      limits[0] = currentPosition();
-      Serial.println("Lower limit = " + String(limits[0]));
+      _limits[0] = currentPosition();
+      Serial.println("Lower limit = " + String(_limits[0]));
     }
-    // Update limits
+    // Update _limits
     else
     {
-      Serial.println("Limits updated");
-      temp = currentPosition();
+      int curr_pos = currentPosition();
 
       // If higher limit was touched
-      if (abs(limits[1]-temp) < abs(limits[0]-temp))
+      if (abs(_limits[1]-curr_pos) < abs(_limits[0]-curr_pos))
       {
-        limits[0] += temp-limits[1];
-        limits[1] = temp; 
+        _limits[0] += curr_pos-_limits[1];
+        _limits[1] = curr_pos; 
       }
 
       // Else, lower limit was touched
       else
       {
-        limits[1] += temp-limits[0];
-        limits[0] = temp;
+        _limits[1] += curr_pos-_limits[0];
+        _limits[0] = curr_pos;
       }
 
-      Serial.println("Low limit =" + String(limits[0]));
-      Serial.println("High limit = " + String(limits[1]));
+      Serial.println("limits updated");
+      Serial.println("- New upper limit = " + String(_limits[1]));
+      Serial.println("- New lower limit = " + String(_limits[0]));
       }
 
-  }
-
-  void BocciaStepper::setInterruptPin(int pin_sensor)
-  {
-    pin_interrupt = pin_sensor;
-    pinMode(pin_interrupt, INPUT);
-    Serial.println("Interrupt pin set: " + String(pin_interrupt));  
-  }
-
-  int BocciaStepper::getInterruptPin()
-  {
-    return pin_interrupt;
-  }
-
-  void BocciaStepper::setDefaultSpeed(int speed_val)
-  {
-    default_speed = speed_val;
-  }
-
-  int BocciaStepper::getDefaultSpeed()
-  {
-    return default_speed;
-  }
-
-  void BocciaStepper::setDefaultAccel(int accel_val)
-  {
-    default_accel = accel_val;
-  }
-
-  int BocciaStepper::getDefaultAccel()
-  {
-    return default_accel;
   }
 
   void BocciaStepper::limitDetected()
   {
-    limit_flag = 1;
-    setAcceleration(10 * getDefaultAccel());  // Change acceleration to stop quickly
-    stop();
+    _limit_flag = 1;
   }
 
   void BocciaStepper::findRange()
   {
     // int starting_pos = currentPosition();
-    moveRun(nsteps);
-    moveRun(-nsteps);
+    moveRun(_nsteps);
+    moveRun(-_nsteps);
+  }
 
+  void BocciaStepper::groundInputs()
+  {
+    digitalWrite(_pin_step, 0);
+    digitalWrite(_pin_dir, 0);
   }

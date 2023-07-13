@@ -19,6 +19,14 @@ LinearActuator::LinearActuator(int pin_1, int pin_2, int pin_pot, int speed_thre
     }   
 }
 
+void LinearActuator::initializePins()
+{
+    pinMode(_pin1, OUTPUT);
+    pinMode(_pin2, OUTPUT);
+    pinMode(_pin_pot, INPUT);
+    if (_pin_sensor != 0) { pinMode(_pin_sensor, INPUT); }
+}
+
 void LinearActuator::driveActuator(int direction)
 {
     switch(direction)

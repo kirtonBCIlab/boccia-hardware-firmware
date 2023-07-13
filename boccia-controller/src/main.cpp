@@ -5,24 +5,23 @@
 #include <Functions.h>
 #include <AccelStepper.h>
 
-int release_interrupt_pin = 2;
-bool release_interrupt_flag = false;
-
-// NEMA 8 motor for testing purposes
-// int nema8_pin_step = 3;
-// int nema8_pin_dir = 6;
-// BocciaStepper nema8(AccelStepper::DRIVER, nema8_pin_step, nema8_pin_dir);
-
 // Build motor objects
 // - Release
 int release_pin_step = 5;
 int release_pin_dir = 6;
-BocciaStepper release(AccelStepper::DRIVER, release_pin_step, release_pin_dir);
+int release_interrupt_pins[2] = {2,0};
+int release_nsteps = 200;
+int release_nsteps_return = 10;
+int release_default_speed = 400;
+BocciaStepper release(release_pin_step, release_pin_dir, release_interrupt_pins, release_nsteps, release_nsteps_return, release_default_speed);
 
 // - Rotation
 int rotation_pin_step = 12;
 int rotation_pin_dir = 11;
-BocciaStepper rotation(AccelStepper::DRIVER, rotation_pin_step, rotation_pin_dir);
+int rotation_interrupt_pins[2] = {3,19};
+int rotation_nsteps = 200;
+int rotation_nsteps_return = 10;
+BocciaStepper rotation(rotation_pin_step, rotation_pin_dir, rotation_interrupt_pins, rotation_nsteps, rotation_nsteps_return);
 
 // - Incline actuator
 int incline_pin1 = 7;
@@ -52,28 +51,15 @@ void setup() {
   Serial.begin(9600);
   Serial.println("Begin setup");
 
-  // Set motor settings
-  // - Release
-  release.setReturnSteps(10);
-  release.setDefaultSpeed(400);      // Default speed [steps/sec]
-  release.setDefaultAccel(10);
-  release.setMaxSpeed(1000);         // Maximum speed [steps/sec]
-  release.setInterruptPin(release_interrupt_pin);
-  release.setNoSteps(200);           // Number of steps for complete rotation [steps]
-  digitalWrite(release_pin_dir, 0);  // Set pins to ground to avoid that initial jump
-  digitalWrite(release_pin_step, 0);
-
-  // - Rotation
-  rotation.setReturnSteps(10);
-  rotation.setDefaultSpeed(400);  // Default speed [steps/sec]
-  rotation.setDefaultAccel(10);
-  rotation.setMaxSpeed(1000);     // Maximum speed [steps/sec]
-  rotation.setInterruptPin(3);
-  rotation.setNoSteps(800);       // Number of steps for complete rotation [steps]
-
+  // Initialize motors
+  // release.initializePins();
+  // rotation.initializePins();
+  // incline.initializePins();
+  // elevation.initializePins();
+  
   // Interrupts
-  attachInterrupt(digitalPinToInterrupt(release.getInterruptPin()), releaseLimit, RISING);
-  attachInterrupt(digitalPinToInterrupt(rotation.getInterruptPin()), rotationLimit, RISING);
+  attachInterrupt(digitalPinToInterrupt(release_interrupt_pins[0]), releaseLimit, RISING);
+  attachInterrupt(digitalPinToInterrupt(rotation_interrupt_pins[0]), rotationLimit, RISING);
 
   // Calibration steps - Enable sections as needed
   Serial.println("Calibration");
@@ -84,37 +70,32 @@ void setup() {
   Serial.println("Release - Calibration ended");
  
   // - Rotation
-  // Serial.println("Rotation - Calibration started");
-  // rotation.findRange();
-  // Serial.println("Rotation - Calibration ended");
+  Serial.println("Rotation - Calibration started");
+  rotation.findRange();
+  Serial.println("Rotation - Calibration ended");
 
   // - Incline actuator
-  // Serial.println("Incline - Calibration started");
-  // inclineActuator.findRange();
-  // Serial.println("Incline - Calibration ended");
+  Serial.println("Incline - Calibration started");
+  incline.findRange();
+  Serial.println("Incline - Calibration ended");
 
   //  - Elevator actuator
-  // Serial.println("Elevator - Calibration started");
-  // elevatorActuator.findRange();
-  // Serial.println("Elevator - Calibration ended");
+  Serial.println("Elevator - Calibration started");
+  elevation.findRange();
+  Serial.println("Elevator - Calibration ended");
 
   Serial.println("\nSelect motor and movement...");
 }
 
 void loop() 
 {
-  if (Serial.available())
-  {
-    decodeCommand();
-  }
-
+  if (Serial.available()) { decodeCommand(); }
   waitMillis(250);  // Wait a bit while decoding command
 }
 
-
 void releaseLimit()
 {
-  release_interrupt_flag = true;
+  release.limitDetected();
 }
 
 void rotationLimit()
@@ -136,17 +117,18 @@ void decodeCommand()
   long command = Serial.parseInt();
 
   // Empty serial port
-  for (int n=0; n<Serial.available(); n++)
-  {
-    Serial.read();
-  }
+  for (int n=0; n<Serial.available(); n++) { Serial.read(); }
 
   // Determine which motor to move
+  String motor_names[4] = {"release", "rotation", "incline", "elevation"};
   int motor_select = 1000;  // Units to select motor and determine movement
   // int gross_motor_select = 100000;  // Units to select gross movement
-  int motor = abs(floor(command/motor_select));
+  int motor = abs(floor(command/motor_select)); 
   int movement = command % motor_select;
-  String motor_name;
+  
+  
+  String motor_name = motor_names[motor-1];
+  Serial.println("Selected motor " + motor_name + " - " + String(motor));
 
   // Check if the command includes gross movement
   // if (command >= gross_motor_select) {
@@ -181,27 +163,17 @@ void decodeCommand()
 
   switch (motor)
   {
-  case 1:
-    release.moveRun(movement);
-    motor_name = "release";
-
-  case 2:
-    // rotation.moveRun(movement);
-    motor_name = "rotation";
-  
-  case 3:
-    incline.moveToPercentage(movement);
-    motor_name = "Incline actuator";
-    break;
-
-   case 4:
-    elevation.moveToPercentage(movement);
-    motor_name = "Elevator Actuator";
-    break;
+  case 1: release.moveRun(movement);            break;
+  case 2: rotation.moveRun(movement);           break;  
+  case 3: incline.moveToPercentage(movement);   break;
+  case 4: elevation.moveToPercentage(movement); break;
 
   case 9:
+  {
     int motor_calibration = abs(floor(movement/100));
-    
+    motor_name = motor_names[motor_calibration-1];
+    Serial.println("Recalibrating: " + String(motor_name));
+
     switch (motor_calibration)
     {
     case 1: release.findRange(); break;   
@@ -210,18 +182,22 @@ void decodeCommand()
     case 4: elevation.findRange(); break;
     default: Serial.println("Incorrect command to calibrate"); break;
     }
-    
-    Serial.print("Recalibrating: " + String(motor_name));
+    break;
+  }    
 
   default:
     Serial.println("Incorrect command: " + String(command));
     break;
   }
 
-  Serial.println("\nCommand received: " + String(command));
-  Serial.println("Movement request: ");
-  Serial.println("- Motor: " + motor_name);
-  Serial.println("- Movement: " + String(movement));
+  if (motor != 9)
+  {
+    Serial.println("\nCommand received: " + String(command));
+    Serial.println("Movement request: ");
+    Serial.println("- Motor: " + motor_name);
+    Serial.println("- Movement: " + String(movement));
 
-  Serial.println("\nSelect motor and movement...");
+    Serial.println("\nSelect motor and movement...");
+  }
+
 }
