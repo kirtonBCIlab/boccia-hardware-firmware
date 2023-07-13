@@ -49,34 +49,28 @@
       }
 
       // Set movement and get there
-      if (relative!=0)
+      move(relative);
+      do
       {
-        move(relative);
-        do
+        run();
+
+        // If limit detected, quickly stop and return motor
+        if (_limit_flag)
         {
-          run();
-
-          // If limit detected, quickly stop and return motor
-          if (_limit_flag)
-          {
-            // Stop motor
-            setAcceleration(_default_accel * 10);
-            stop();
-            runToPosition();
-            
-            // Return motor _nsteps_return
-            int step_dir = (relative>0) - (relative<0); // Current direction
-            setAcceleration(_default_accel);
-            move(_nsteps_return*-step_dir);
-            runToPosition();
-            setLimits();
-            _limit_flag = 0; // Restart flag
-          }
-        } while (distanceToGo() != 0);
-      }
-      
-
-
+          // Stop motor
+          setAcceleration(_default_accel * 10);
+          stop();
+          runToPosition();
+          
+          // Return motor _nsteps_return
+          int step_dir = (relative>0) - (relative<0); // Current direction
+          setAcceleration(_default_accel);
+          move(_nsteps_return*-step_dir);
+          runToPosition();
+          setLimits();
+          _limit_flag = 0; // Restart flag
+        }
+      } while (distanceToGo() != 0);  
     }
 
   void BocciaStepper::setLimits()
