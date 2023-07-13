@@ -13193,6 +13193,15 @@ Wickmann</description>
 <part name="F2" library="fuse" library_urn="urn:adsk.eagle:library:233" deviceset="FUSE" device="BLANK_5X20MM" package3d_urn="urn:adsk.eagle:package:14079/1"/>
 <part name="F3" library="fuse" library_urn="urn:adsk.eagle:library:233" deviceset="FUSE" device="BLANK_5X20MM" package3d_urn="urn:adsk.eagle:package:14079/1"/>
 <part name="F4" library="fuse" library_urn="urn:adsk.eagle:library:233" deviceset="FUSE" device="BLANK_5X20MM" package3d_urn="urn:adsk.eagle:package:14079/1"/>
+<part name="R3" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-US_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="15k"/>
+<part name="C4" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="EL-" device="BI35-12AXIAL" package3d_urn="urn:adsk.eagle:package:23715/1" value="1nF"/>
+<part name="PE8" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="PE" device=""/>
+<part name="R5" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-US_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="15k"/>
+<part name="C5" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="EL-" device="BI35-12AXIAL" package3d_urn="urn:adsk.eagle:package:23715/1" value="1nF"/>
+<part name="PE9" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="PE" device=""/>
+<part name="R6" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-US_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="15k"/>
+<part name="C6" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="EL-" device="BI35-12AXIAL" package3d_urn="urn:adsk.eagle:package:23715/1" value="1nF"/>
+<part name="PE10" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="PE" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -13241,14 +13250,14 @@ Wickmann</description>
 </instance>
 <instance part="OPTICAL_ROTATION_1" gate="G$1" x="109.22" y="-40.64" smashed="yes">
 <attribute name="NAME" x="102.235" y="-34.925" size="1.778" layer="95"/>
-<attribute name="VALUE" x="102.235" y="-48.26" size="1.778" layer="96"/>
+<attribute name="VALUE" x="102.235" y="-53.34" size="1.778" layer="96"/>
 </instance>
-<instance part="OPTICAL_ROTATION_2" gate="G$1" x="109.22" y="-58.42" smashed="yes">
-<attribute name="NAME" x="102.235" y="-52.705" size="1.778" layer="95"/>
-<attribute name="VALUE" x="102.235" y="-66.04" size="1.778" layer="96"/>
+<instance part="OPTICAL_ROTATION_2" gate="G$1" x="109.22" y="-63.5" smashed="yes">
+<attribute name="NAME" x="102.235" y="-57.785" size="1.778" layer="95"/>
+<attribute name="VALUE" x="102.235" y="-71.12" size="1.778" layer="96"/>
 </instance>
-<instance part="PE4" gate="M" x="96.52" y="-73.66" smashed="yes">
-<attribute name="VALUE" x="93.98" y="-76.2" size="1.778" layer="96" rot="R90"/>
+<instance part="PE4" gate="M" x="96.52" y="-78.74" smashed="yes">
+<attribute name="VALUE" x="93.98" y="-81.28" size="1.778" layer="96" rot="R90"/>
 </instance>
 <instance part="PE12" gate="M" x="43.18" y="2.54" smashed="yes">
 <attribute name="VALUE" x="40.64" y="0" size="1.778" layer="96" rot="R90"/>
@@ -13355,6 +13364,39 @@ Wickmann</description>
 <attribute name="NAME" x="-100.33" y="-41.783" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-100.33" y="-46.101" size="1.778" layer="96"/>
 </instance>
+<instance part="R3" gate="G$1" x="124.46" y="2.54" smashed="yes" rot="R180">
+<attribute name="NAME" x="128.27" y="1.0414" size="1.778" layer="95" rot="R180"/>
+<attribute name="VALUE" x="128.27" y="-1.778" size="1.778" layer="96" rot="R180"/>
+</instance>
+<instance part="C4" gate="G$1" x="132.08" y="-2.54" smashed="yes">
+<attribute name="NAME" x="133.604" y="-2.159" size="1.778" layer="95"/>
+<attribute name="VALUE" x="133.604" y="-7.239" size="1.778" layer="96"/>
+</instance>
+<instance part="PE8" gate="M" x="132.08" y="-12.7" smashed="yes">
+<attribute name="VALUE" x="129.54" y="-15.24" size="1.778" layer="96" rot="R90"/>
+</instance>
+<instance part="R5" gate="G$1" x="134.62" y="-38.1" smashed="yes" rot="R180">
+<attribute name="NAME" x="138.43" y="-39.5986" size="1.778" layer="95" rot="R180"/>
+<attribute name="VALUE" x="138.43" y="-42.418" size="1.778" layer="96" rot="R180"/>
+</instance>
+<instance part="C5" gate="G$1" x="142.24" y="-43.18" smashed="yes">
+<attribute name="NAME" x="143.764" y="-42.799" size="1.778" layer="95"/>
+<attribute name="VALUE" x="143.764" y="-47.879" size="1.778" layer="96"/>
+</instance>
+<instance part="PE9" gate="M" x="142.24" y="-53.34" smashed="yes">
+<attribute name="VALUE" x="139.7" y="-55.88" size="1.778" layer="96" rot="R90"/>
+</instance>
+<instance part="R6" gate="G$1" x="137.16" y="-60.96" smashed="yes" rot="R180">
+<attribute name="NAME" x="140.97" y="-62.4586" size="1.778" layer="95" rot="R180"/>
+<attribute name="VALUE" x="140.97" y="-65.278" size="1.778" layer="96" rot="R180"/>
+</instance>
+<instance part="C6" gate="G$1" x="144.78" y="-66.04" smashed="yes">
+<attribute name="NAME" x="146.304" y="-65.659" size="1.778" layer="95"/>
+<attribute name="VALUE" x="146.304" y="-70.739" size="1.778" layer="96"/>
+</instance>
+<instance part="PE10" gate="M" x="144.78" y="-76.2" smashed="yes">
+<attribute name="VALUE" x="142.24" y="-78.74" size="1.778" layer="96" rot="R90"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -13395,21 +13437,21 @@ Wickmann</description>
 <pinref part="OPTICAL_ROTATION_1" gate="G$1" pin="C"/>
 <pinref part="PE4" gate="M" pin="PE"/>
 <wire x1="99.06" y1="-43.18" x2="96.52" y2="-43.18" width="0.1524" layer="91"/>
-<wire x1="96.52" y1="-43.18" x2="96.52" y2="-60.96" width="0.1524" layer="91"/>
+<wire x1="96.52" y1="-43.18" x2="96.52" y2="-66.04" width="0.1524" layer="91"/>
 <pinref part="OPTICAL_ROTATION_2" gate="G$1" pin="C"/>
-<wire x1="96.52" y1="-60.96" x2="96.52" y2="-68.58" width="0.1524" layer="91"/>
-<wire x1="96.52" y1="-68.58" x2="96.52" y2="-71.12" width="0.1524" layer="91"/>
-<wire x1="99.06" y1="-60.96" x2="96.52" y2="-60.96" width="0.1524" layer="91"/>
-<junction x="96.52" y="-60.96"/>
-<wire x1="96.52" y1="-68.58" x2="129.54" y2="-68.58" width="0.1524" layer="91"/>
-<junction x="96.52" y="-68.58"/>
-<wire x1="129.54" y1="-68.58" x2="129.54" y2="-60.96" width="0.1524" layer="91"/>
+<wire x1="96.52" y1="-66.04" x2="96.52" y2="-73.66" width="0.1524" layer="91"/>
+<wire x1="96.52" y1="-73.66" x2="96.52" y2="-76.2" width="0.1524" layer="91"/>
+<wire x1="99.06" y1="-66.04" x2="96.52" y2="-66.04" width="0.1524" layer="91"/>
+<junction x="96.52" y="-66.04"/>
+<wire x1="96.52" y1="-73.66" x2="129.54" y2="-73.66" width="0.1524" layer="91"/>
+<junction x="96.52" y="-73.66"/>
+<wire x1="129.54" y1="-73.66" x2="129.54" y2="-66.04" width="0.1524" layer="91"/>
 <pinref part="OPTICAL_ROTATION_2" gate="G$1" pin="EMIT"/>
-<wire x1="129.54" y1="-60.96" x2="116.84" y2="-60.96" width="0.1524" layer="91"/>
+<wire x1="129.54" y1="-66.04" x2="116.84" y2="-66.04" width="0.1524" layer="91"/>
 <pinref part="OPTICAL_ROTATION_1" gate="G$1" pin="EMIT"/>
 <wire x1="116.84" y1="-43.18" x2="129.54" y2="-43.18" width="0.1524" layer="91"/>
-<wire x1="129.54" y1="-43.18" x2="129.54" y2="-60.96" width="0.1524" layer="91"/>
-<junction x="129.54" y="-60.96"/>
+<wire x1="129.54" y1="-43.18" x2="129.54" y2="-66.04" width="0.1524" layer="91"/>
+<junction x="129.54" y="-66.04"/>
 </segment>
 <segment>
 <pinref part="DRIVER_ELEVATION" gate="L298" pin="GND"/>
@@ -13483,6 +13525,21 @@ Wickmann</description>
 <junction x="38.1" y="-38.1"/>
 <junction x="20.32" y="-53.34"/>
 </segment>
+<segment>
+<pinref part="C4" gate="G$1" pin="2"/>
+<pinref part="PE8" gate="M" pin="PE"/>
+<wire x1="132.08" y1="-7.62" x2="132.08" y2="-10.16" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="C5" gate="G$1" pin="2"/>
+<pinref part="PE9" gate="M" pin="PE"/>
+<wire x1="142.24" y1="-48.26" x2="142.24" y2="-50.8" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="C6" gate="G$1" pin="2"/>
+<pinref part="PE10" gate="M" pin="PE"/>
+<wire x1="144.78" y1="-71.12" x2="144.78" y2="-73.66" width="0.1524" layer="91"/>
+</segment>
 </net>
 <net name="V12_NEMA17" class="0">
 <segment>
@@ -13503,24 +13560,32 @@ Wickmann</description>
 <label x="71.12" y="73.66" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="OPTICAL_RELEASE" gate="G$1" pin="COL"/>
-<wire x1="162.56" y1="2.54" x2="114.3" y2="2.54" width="0.1524" layer="91"/>
-<label x="134.62" y="2.54" size="1.778" layer="95"/>
-<junction x="162.56" y="2.54"/>
+<pinref part="R3" gate="G$1" pin="1"/>
+<pinref part="C4" gate="G$1" pin="1"/>
+<wire x1="129.54" y1="2.54" x2="132.08" y2="2.54" width="0.1524" layer="91"/>
+<wire x1="132.08" y1="2.54" x2="132.08" y2="0" width="0.1524" layer="91"/>
+<wire x1="132.08" y1="2.54" x2="167.64" y2="2.54" width="0.1524" layer="91"/>
+<junction x="132.08" y="2.54"/>
+<junction x="167.64" y="2.54"/>
+<label x="139.7" y="2.54" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="INTERRUPT_ROTATION_1" class="0">
-<segment>
-<pinref part="OPTICAL_ROTATION_1" gate="G$1" pin="COL"/>
-<label x="134.62" y="-38.1" size="1.778" layer="95"/>
-<wire x1="116.84" y1="-38.1" x2="167.64" y2="-38.1" width="0.1524" layer="91"/>
-<junction x="167.64" y="-38.1"/>
-</segment>
 <segment>
 <pinref part="B1" gate="G$1" pin="3"/>
 <wire x1="101.6" y1="71.12" x2="71.12" y2="71.12" width="0.1524" layer="91"/>
 <junction x="71.12" y="71.12"/>
 <label x="71.12" y="71.12" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="R5" gate="G$1" pin="1"/>
+<pinref part="C5" gate="G$1" pin="1"/>
+<wire x1="139.7" y1="-38.1" x2="142.24" y2="-38.1" width="0.1524" layer="91"/>
+<wire x1="142.24" y1="-38.1" x2="142.24" y2="-40.64" width="0.1524" layer="91"/>
+<wire x1="142.24" y1="-38.1" x2="177.8" y2="-38.1" width="0.1524" layer="91"/>
+<junction x="142.24" y="-38.1"/>
+<label x="147.32" y="-38.1" size="1.778" layer="95"/>
+<junction x="177.8" y="-38.1"/>
 </segment>
 </net>
 <net name="V5_LOGIC" class="0">
@@ -13547,8 +13612,8 @@ Wickmann</description>
 </segment>
 <segment>
 <pinref part="OPTICAL_ROTATION_2" gate="G$1" pin="A"/>
-<wire x1="99.06" y1="-55.88" x2="93.98" y2="-55.88" width="0.1524" layer="91"/>
-<wire x1="93.98" y1="-55.88" x2="93.98" y2="-38.1" width="0.1524" layer="91"/>
+<wire x1="99.06" y1="-60.96" x2="93.98" y2="-60.96" width="0.1524" layer="91"/>
+<wire x1="93.98" y1="-60.96" x2="93.98" y2="-38.1" width="0.1524" layer="91"/>
 <pinref part="OPTICAL_ROTATION_1" gate="G$1" pin="A"/>
 <wire x1="93.98" y1="-38.1" x2="99.06" y2="-38.1" width="0.1524" layer="91"/>
 <junction x="93.98" y="-38.1"/>
@@ -13785,16 +13850,20 @@ Wickmann</description>
 </net>
 <net name="INTERRUPT_ROTATION_2" class="0">
 <segment>
-<pinref part="OPTICAL_ROTATION_2" gate="G$1" pin="COL"/>
-<wire x1="116.84" y1="-55.88" x2="167.64" y2="-55.88" width="0.1524" layer="91"/>
-<junction x="167.64" y="-55.88"/>
-<label x="134.62" y="-55.88" size="1.778" layer="95"/>
-</segment>
-<segment>
 <pinref part="B1" gate="G$1" pin="19(RX1)"/>
 <wire x1="137.16" y1="121.92" x2="170.18" y2="121.92" width="0.1524" layer="91"/>
 <junction x="170.18" y="121.92"/>
 <label x="139.7" y="121.92" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="R6" gate="G$1" pin="1"/>
+<pinref part="C6" gate="G$1" pin="1"/>
+<wire x1="142.24" y1="-60.96" x2="144.78" y2="-60.96" width="0.1524" layer="91"/>
+<wire x1="144.78" y1="-60.96" x2="144.78" y2="-63.5" width="0.1524" layer="91"/>
+<wire x1="144.78" y1="-60.96" x2="180.34" y2="-60.96" width="0.1524" layer="91"/>
+<junction x="144.78" y="-60.96"/>
+<label x="149.86" y="-60.96" size="1.778" layer="95"/>
+<junction x="180.34" y="-60.96"/>
 </segment>
 </net>
 <net name="N$9" class="0">
@@ -13859,6 +13928,27 @@ Wickmann</description>
 <pinref part="F2" gate="G$1" pin="2"/>
 <pinref part="REGULATOR_INCLINE" gate="G$1" pin="VIN"/>
 <wire x1="-91.44" y1="76.2" x2="-73.66" y2="76.2" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$27" class="0">
+<segment>
+<pinref part="OPTICAL_RELEASE" gate="G$1" pin="COL"/>
+<pinref part="R3" gate="G$1" pin="2"/>
+<wire x1="114.3" y1="2.54" x2="119.38" y2="2.54" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$31" class="0">
+<segment>
+<pinref part="R5" gate="G$1" pin="2"/>
+<pinref part="OPTICAL_ROTATION_1" gate="G$1" pin="COL"/>
+<wire x1="129.54" y1="-38.1" x2="116.84" y2="-38.1" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$32" class="0">
+<segment>
+<pinref part="R6" gate="G$1" pin="2"/>
+<pinref part="OPTICAL_ROTATION_2" gate="G$1" pin="COL"/>
+<wire x1="132.08" y1="-60.96" x2="116.84" y2="-60.96" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
