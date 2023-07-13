@@ -11398,11 +11398,11 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 </classes>
 <parts>
 <part name="B1" library="SparkFun-Boards" library_urn="urn:adsk.eagle:library:509" deviceset="ARDUINO_MEGA_R3" device="FULL" package3d_urn="urn:adsk.eagle:package:37320/1"/>
-<part name="REG_NEMA17" library="national-semiconductor" library_urn="urn:adsk.eagle:library:307" deviceset="LM2596" device="S" package3d_urn="urn:adsk.eagle:package:16438/2"/>
-<part name="REG_INCLINE" library="national-semiconductor" library_urn="urn:adsk.eagle:library:307" deviceset="LM2596" device="S" package3d_urn="urn:adsk.eagle:package:16438/2"/>
-<part name="REG_HEIGHT" library="national-semiconductor" library_urn="urn:adsk.eagle:library:307" deviceset="LM2596" device="S" package3d_urn="urn:adsk.eagle:package:16438/2"/>
+<part name="REGULATOR_RELEASE" library="national-semiconductor" library_urn="urn:adsk.eagle:library:307" deviceset="LM2596" device="S" package3d_urn="urn:adsk.eagle:package:16438/2"/>
+<part name="REGULATOR_INCLINE" library="national-semiconductor" library_urn="urn:adsk.eagle:library:307" deviceset="LM2596" device="S" package3d_urn="urn:adsk.eagle:package:16438/2"/>
+<part name="REGULATOR_ELEVATION" library="national-semiconductor" library_urn="urn:adsk.eagle:library:307" deviceset="LM2596" device="S" package3d_urn="urn:adsk.eagle:package:16438/2"/>
 <part name="DRIVER_INCLINE" library="st-microelectronics" library_urn="urn:adsk.eagle:library:368" deviceset="L298" device="" package3d_urn="urn:adsk.eagle:package:26823/1"/>
-<part name="DRIVER_HEIGHT" library="st-microelectronics" library_urn="urn:adsk.eagle:library:368" deviceset="L298" device="" package3d_urn="urn:adsk.eagle:package:26823/1"/>
+<part name="DRIVER_ELEVATION" library="st-microelectronics" library_urn="urn:adsk.eagle:library:368" deviceset="L298" device="" package3d_urn="urn:adsk.eagle:package:26823/1"/>
 <part name="P+1" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+24V" device=""/>
 <part name="PE1" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="PE" device=""/>
 <part name="OPTICAL_NEMA17_1" library="optocoupler" library_urn="urn:adsk.eagle:library:320" deviceset="SFH618?*" device="A" package3d_urn="urn:adsk.eagle:package:21960/1" technology="-2"/>
@@ -11415,12 +11415,12 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 <part name="PE12" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="PE" device=""/>
 <part name="INCLINE_ACTUATOR" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CONN_02" device="" package3d_urn="urn:adsk.eagle:package:38039/1"/>
 <part name="PE13" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="PE" device=""/>
-<part name="HEIGHT_ACTUATOR" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CONN_02" device="" package3d_urn="urn:adsk.eagle:package:38039/1"/>
+<part name="ELEVATION_ACTUATOR" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CONN_02" device="" package3d_urn="urn:adsk.eagle:package:38039/1"/>
 <part name="C2" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="EL-" device="BI35-12AXIAL" package3d_urn="urn:adsk.eagle:package:23715/1" value="100uF"/>
 <part name="PE14" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="PE" device=""/>
 <part name="C3" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="EL-" device="BI35-12AXIAL" package3d_urn="urn:adsk.eagle:package:23715/1" value="100uF"/>
 <part name="PE15" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="PE" device=""/>
-<part name="DRIVER_NEMA17" library="pololu-stepper-driver" deviceset="2985-A4988" device=""/>
+<part name="DRIVER_RELEASE" library="pololu-stepper-driver" deviceset="2985-A4988" device=""/>
 <part name="C1" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="EL-" device="BI35-12AXIAL" package3d_urn="urn:adsk.eagle:package:23715/1" value="100uF"/>
 <part name="PE11" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="PE" device=""/>
 <part name="NEMA17" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CONN_04" device="" package3d_urn="urn:adsk.eagle:package:38085/1"/>
@@ -11448,15 +11448,15 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 <attribute name="NAME" x="104.14" y="140.462" size="1.778" layer="95"/>
 <attribute name="VALUE" x="104.14" y="30.48" size="1.778" layer="96"/>
 </instance>
-<instance part="REG_NEMA17" gate="G$1" x="-60.96" y="121.92" smashed="yes">
+<instance part="REGULATOR_RELEASE" gate="G$1" x="-60.96" y="121.92" smashed="yes">
 <attribute name="NAME" x="-71.12" y="130.81" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-71.12" y="111.76" size="1.778" layer="96"/>
 </instance>
-<instance part="REG_INCLINE" gate="G$1" x="-60.96" y="71.12" smashed="yes">
+<instance part="REGULATOR_INCLINE" gate="G$1" x="-60.96" y="71.12" smashed="yes">
 <attribute name="NAME" x="-71.12" y="80.01" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-71.12" y="60.96" size="1.778" layer="96"/>
 </instance>
-<instance part="REG_HEIGHT" gate="G$1" x="-60.96" y="30.48" smashed="yes">
+<instance part="REGULATOR_ELEVATION" gate="G$1" x="-60.96" y="30.48" smashed="yes">
 <attribute name="NAME" x="-71.12" y="39.37" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-71.12" y="20.32" size="1.778" layer="96"/>
 </instance>
@@ -11464,7 +11464,7 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 <attribute name="NAME" x="35.56" y="77.47" size="1.778" layer="95" rot="MR0"/>
 <attribute name="VALUE" x="35.56" y="43.18" size="1.778" layer="96" rot="MR0"/>
 </instance>
-<instance part="DRIVER_HEIGHT" gate="L298" x="22.86" y="17.78" smashed="yes" rot="MR0">
+<instance part="DRIVER_ELEVATION" gate="L298" x="22.86" y="17.78" smashed="yes" rot="MR0">
 <attribute name="NAME" x="35.56" y="36.83" size="1.778" layer="95" rot="MR0"/>
 <attribute name="VALUE" x="35.56" y="2.54" size="1.778" layer="96" rot="MR0"/>
 </instance>
@@ -11502,16 +11502,16 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 <instance part="PE12" gate="M" x="43.18" y="2.54" smashed="yes">
 <attribute name="VALUE" x="40.64" y="0" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="INCLINE_ACTUATOR" gate="G$1" x="-12.7" y="58.42" smashed="yes">
-<attribute name="VALUE" x="-15.24" y="53.594" size="1.778" layer="96" font="vector"/>
-<attribute name="NAME" x="-15.24" y="64.008" size="1.778" layer="95" font="vector"/>
+<instance part="INCLINE_ACTUATOR" gate="G$1" x="-20.32" y="58.42" smashed="yes">
+<attribute name="VALUE" x="-22.86" y="53.594" size="1.778" layer="96" font="vector"/>
+<attribute name="NAME" x="-22.86" y="64.008" size="1.778" layer="95" font="vector"/>
 </instance>
 <instance part="PE13" gate="M" x="43.18" y="43.18" smashed="yes">
 <attribute name="VALUE" x="40.64" y="40.64" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="HEIGHT_ACTUATOR" gate="G$1" x="-12.7" y="17.78" smashed="yes">
-<attribute name="VALUE" x="-15.24" y="12.954" size="1.778" layer="96" font="vector"/>
-<attribute name="NAME" x="-15.24" y="23.368" size="1.778" layer="95" font="vector"/>
+<instance part="ELEVATION_ACTUATOR" gate="G$1" x="-20.32" y="17.78" smashed="yes">
+<attribute name="VALUE" x="-22.86" y="12.954" size="1.778" layer="96" font="vector"/>
+<attribute name="NAME" x="-22.86" y="23.368" size="1.778" layer="95" font="vector"/>
 </instance>
 <instance part="C2" gate="G$1" x="-40.64" y="25.4" smashed="yes">
 <attribute name="NAME" x="-39.116" y="25.781" size="1.778" layer="95"/>
@@ -11527,8 +11527,8 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 <instance part="PE15" gate="M" x="-40.64" y="55.88" smashed="yes">
 <attribute name="VALUE" x="-43.18" y="53.34" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="DRIVER_NEMA17" gate="G$1" x="25.4" y="116.84" smashed="yes" rot="MR0">
-<attribute name="NAME" x="30.48" y="127.635" size="1.778" layer="95" rot="MR0"/>
+<instance part="DRIVER_RELEASE" gate="G$1" x="25.4" y="116.84" smashed="yes" rot="MR0">
+<attribute name="NAME" x="35.56" y="127.635" size="1.778" layer="95" rot="MR0"/>
 <attribute name="VALUE" x="30.48" y="101.6" size="1.778" layer="96" rot="MR0"/>
 </instance>
 <instance part="C1" gate="G$1" x="-40.64" y="116.84" smashed="yes">
@@ -11594,13 +11594,13 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 <segment>
 <pinref part="P+1" gate="1" pin="+24V"/>
 <wire x1="-83.82" y1="129.54" x2="-83.82" y2="127" width="0.1524" layer="91"/>
-<pinref part="REG_NEMA17" gate="G$1" pin="VIN"/>
+<pinref part="REGULATOR_RELEASE" gate="G$1" pin="VIN"/>
 <wire x1="-83.82" y1="127" x2="-73.66" y2="127" width="0.1524" layer="91"/>
 <junction x="-83.82" y="127"/>
-<pinref part="REG_HEIGHT" gate="G$1" pin="VIN"/>
+<pinref part="REGULATOR_ELEVATION" gate="G$1" pin="VIN"/>
 <wire x1="-73.66" y1="35.56" x2="-83.82" y2="35.56" width="0.1524" layer="91"/>
 <wire x1="-83.82" y1="35.56" x2="-83.82" y2="76.2" width="0.1524" layer="91"/>
-<pinref part="REG_INCLINE" gate="G$1" pin="VIN"/>
+<pinref part="REGULATOR_INCLINE" gate="G$1" pin="VIN"/>
 <wire x1="-83.82" y1="76.2" x2="-83.82" y2="127" width="0.1524" layer="91"/>
 <wire x1="-73.66" y1="76.2" x2="-83.82" y2="76.2" width="0.1524" layer="91"/>
 <junction x="-83.82" y="76.2"/>
@@ -11619,16 +11619,16 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 </net>
 <net name="PE" class="0">
 <segment>
-<pinref part="REG_HEIGHT" gate="G$1" pin="GND"/>
+<pinref part="REGULATOR_ELEVATION" gate="G$1" pin="GND"/>
 <wire x1="-73.66" y1="25.4" x2="-78.74" y2="25.4" width="0.1524" layer="91"/>
 <wire x1="-78.74" y1="116.84" x2="-78.74" y2="66.04" width="0.1524" layer="91"/>
-<pinref part="REG_NEMA17" gate="G$1" pin="GND"/>
+<pinref part="REGULATOR_RELEASE" gate="G$1" pin="GND"/>
 <wire x1="-78.74" y1="66.04" x2="-78.74" y2="25.4" width="0.1524" layer="91"/>
 <wire x1="-73.66" y1="116.84" x2="-78.74" y2="116.84" width="0.1524" layer="91"/>
 <pinref part="PE1" gate="M" pin="PE"/>
 <wire x1="-78.74" y1="20.32" x2="-78.74" y2="25.4" width="0.1524" layer="91"/>
 <junction x="-78.74" y="25.4"/>
-<pinref part="REG_INCLINE" gate="G$1" pin="GND"/>
+<pinref part="REGULATOR_INCLINE" gate="G$1" pin="GND"/>
 <wire x1="-73.66" y1="66.04" x2="-78.74" y2="66.04" width="0.1524" layer="91"/>
 <junction x="-78.74" y="66.04"/>
 </segment>
@@ -11679,7 +11679,7 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 <junction x="129.54" y="-81.28"/>
 </segment>
 <segment>
-<pinref part="DRIVER_HEIGHT" gate="L298" pin="GND"/>
+<pinref part="DRIVER_ELEVATION" gate="L298" pin="GND"/>
 <wire x1="38.1" y1="7.62" x2="43.18" y2="7.62" width="0.1524" layer="91"/>
 <wire x1="43.18" y1="7.62" x2="43.18" y2="5.08" width="0.1524" layer="91"/>
 <pinref part="PE12" gate="M" pin="PE"/>
@@ -11708,7 +11708,7 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 <segment>
 <pinref part="PE16" gate="M" pin="PE"/>
 <wire x1="7.62" y1="104.14" x2="7.62" y2="106.68" width="0.1524" layer="91"/>
-<pinref part="DRIVER_NEMA17" gate="G$1" pin="GND1"/>
+<pinref part="DRIVER_RELEASE" gate="G$1" pin="GND1"/>
 <wire x1="12.7" y1="106.68" x2="7.62" y2="106.68" width="0.1524" layer="91"/>
 </segment>
 <segment>
@@ -11749,9 +11749,9 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 </net>
 <net name="V12_NEMA17" class="0">
 <segment>
-<pinref part="REG_NEMA17" gate="G$1" pin="OUT"/>
+<pinref part="REGULATOR_RELEASE" gate="G$1" pin="OUT"/>
 <wire x1="-48.26" y1="124.46" x2="-40.64" y2="124.46" width="0.1524" layer="91"/>
-<pinref part="DRIVER_NEMA17" gate="G$1" pin="VMOT"/>
+<pinref part="DRIVER_RELEASE" gate="G$1" pin="VMOT"/>
 <pinref part="C1" gate="G$1" pin="1"/>
 <wire x1="-40.64" y1="124.46" x2="12.7" y2="124.46" width="0.1524" layer="91"/>
 <wire x1="-40.64" y1="119.38" x2="-40.64" y2="124.46" width="0.1524" layer="91"/>
@@ -11830,7 +11830,7 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 <junction x="93.98" y="-48.26"/>
 </segment>
 <segment>
-<pinref part="DRIVER_NEMA17" gate="G$1" pin="VDD"/>
+<pinref part="DRIVER_RELEASE" gate="G$1" pin="VDD"/>
 <wire x1="12.7" y1="109.22" x2="-7.62" y2="109.22" width="0.1524" layer="91"/>
 <junction x="-7.62" y="109.22"/>
 <label x="-7.62" y="109.22" size="1.778" layer="95"/>
@@ -11860,22 +11860,22 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 </net>
 <net name="N$10" class="0">
 <segment>
-<pinref part="HEIGHT_ACTUATOR" gate="G$1" pin="2"/>
-<pinref part="DRIVER_HEIGHT" gate="L298" pin="OUT1"/>
-<wire x1="-5.08" y1="20.32" x2="7.62" y2="20.32" width="0.1524" layer="91"/>
+<pinref part="ELEVATION_ACTUATOR" gate="G$1" pin="2"/>
+<pinref part="DRIVER_ELEVATION" gate="L298" pin="OUT1"/>
+<wire x1="-12.7" y1="20.32" x2="7.62" y2="20.32" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$11" class="0">
 <segment>
-<pinref part="HEIGHT_ACTUATOR" gate="G$1" pin="1"/>
-<pinref part="DRIVER_HEIGHT" gate="L298" pin="OUT2"/>
-<wire x1="-5.08" y1="17.78" x2="7.62" y2="17.78" width="0.1524" layer="91"/>
+<pinref part="ELEVATION_ACTUATOR" gate="G$1" pin="1"/>
+<pinref part="DRIVER_ELEVATION" gate="L298" pin="OUT2"/>
+<wire x1="-12.7" y1="17.78" x2="7.62" y2="17.78" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$14" class="0">
 <segment>
-<pinref part="DRIVER_HEIGHT" gate="L298" pin="VS"/>
-<pinref part="REG_HEIGHT" gate="G$1" pin="OUT"/>
+<pinref part="DRIVER_ELEVATION" gate="L298" pin="VS"/>
+<pinref part="REGULATOR_ELEVATION" gate="G$1" pin="OUT"/>
 <wire x1="7.62" y1="33.02" x2="-40.64" y2="33.02" width="0.1524" layer="91"/>
 <pinref part="C2" gate="G$1" pin="1"/>
 <wire x1="-40.64" y1="33.02" x2="-48.26" y2="33.02" width="0.1524" layer="91"/>
@@ -11887,19 +11887,19 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 <segment>
 <pinref part="INCLINE_ACTUATOR" gate="G$1" pin="2"/>
 <pinref part="DRIVER_INCLINE" gate="L298" pin="OUT1"/>
-<wire x1="-5.08" y1="60.96" x2="7.62" y2="60.96" width="0.1524" layer="91"/>
+<wire x1="-12.7" y1="60.96" x2="7.62" y2="60.96" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$13" class="0">
 <segment>
 <pinref part="DRIVER_INCLINE" gate="L298" pin="OUT2"/>
 <pinref part="INCLINE_ACTUATOR" gate="G$1" pin="1"/>
-<wire x1="7.62" y1="58.42" x2="-5.08" y2="58.42" width="0.1524" layer="91"/>
+<wire x1="7.62" y1="58.42" x2="-12.7" y2="58.42" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$15" class="0">
 <segment>
-<pinref part="REG_INCLINE" gate="G$1" pin="OUT"/>
+<pinref part="REGULATOR_INCLINE" gate="G$1" pin="OUT"/>
 <pinref part="DRIVER_INCLINE" gate="L298" pin="VS"/>
 <wire x1="-48.26" y1="73.66" x2="-40.64" y2="73.66" width="0.1524" layer="91"/>
 <pinref part="C3" gate="G$1" pin="1"/>
@@ -11911,44 +11911,44 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 <net name="N$16" class="0">
 <segment>
 <pinref part="NEMA17" gate="G$1" pin="4"/>
-<pinref part="DRIVER_NEMA17" gate="G$1" pin="2B"/>
+<pinref part="DRIVER_RELEASE" gate="G$1" pin="2B"/>
 <wire x1="-12.7" y1="119.38" x2="12.7" y2="119.38" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$17" class="0">
 <segment>
 <pinref part="NEMA17" gate="G$1" pin="3"/>
-<pinref part="DRIVER_NEMA17" gate="G$1" pin="2A"/>
+<pinref part="DRIVER_RELEASE" gate="G$1" pin="2A"/>
 <wire x1="-12.7" y1="116.84" x2="12.7" y2="116.84" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$18" class="0">
 <segment>
 <pinref part="NEMA17" gate="G$1" pin="2"/>
-<pinref part="DRIVER_NEMA17" gate="G$1" pin="1A"/>
+<pinref part="DRIVER_RELEASE" gate="G$1" pin="1A"/>
 <wire x1="-12.7" y1="114.3" x2="12.7" y2="114.3" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$19" class="0">
 <segment>
 <pinref part="NEMA17" gate="G$1" pin="1"/>
-<pinref part="DRIVER_NEMA17" gate="G$1" pin="1B"/>
+<pinref part="DRIVER_RELEASE" gate="G$1" pin="1B"/>
 <wire x1="-12.7" y1="111.76" x2="12.7" y2="111.76" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$20" class="0">
 <segment>
-<pinref part="DRIVER_NEMA17" gate="G$1" pin="!SLP"/>
+<pinref part="DRIVER_RELEASE" gate="G$1" pin="!SLP"/>
 <wire x1="38.1" y1="111.76" x2="40.64" y2="111.76" width="0.1524" layer="91"/>
 <wire x1="40.64" y1="111.76" x2="40.64" y2="114.3" width="0.1524" layer="91"/>
-<pinref part="DRIVER_NEMA17" gate="G$1" pin="!RST"/>
+<pinref part="DRIVER_RELEASE" gate="G$1" pin="!RST"/>
 <wire x1="40.64" y1="114.3" x2="38.1" y2="114.3" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$21" class="0">
 <segment>
 <wire x1="68.58" y1="53.34" x2="68.58" y2="17.78" width="0.1524" layer="91"/>
-<pinref part="DRIVER_HEIGHT" gate="L298" pin="INPUT2"/>
+<pinref part="DRIVER_ELEVATION" gate="L298" pin="INPUT2"/>
 <wire x1="68.58" y1="17.78" x2="38.1" y2="17.78" width="0.1524" layer="91"/>
 <pinref part="B1" gate="G$1" pin="10"/>
 <wire x1="68.58" y1="53.34" x2="101.6" y2="53.34" width="0.1524" layer="91"/>
@@ -11956,7 +11956,7 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 </net>
 <net name="N$22" class="0">
 <segment>
-<pinref part="DRIVER_HEIGHT" gate="L298" pin="INPUT1"/>
+<pinref part="DRIVER_ELEVATION" gate="L298" pin="INPUT1"/>
 <wire x1="38.1" y1="20.32" x2="66.04" y2="20.32" width="0.1524" layer="91"/>
 <wire x1="66.04" y1="20.32" x2="66.04" y2="55.88" width="0.1524" layer="91"/>
 <pinref part="B1" gate="G$1" pin="9"/>
@@ -11972,7 +11972,7 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 </net>
 <net name="N$25" class="0">
 <segment>
-<pinref part="DRIVER_NEMA17" gate="G$1" pin="DIR"/>
+<pinref part="DRIVER_RELEASE" gate="G$1" pin="DIR"/>
 <wire x1="38.1" y1="106.68" x2="45.72" y2="106.68" width="0.1524" layer="91"/>
 <wire x1="45.72" y1="106.68" x2="66.04" y2="106.68" width="0.1524" layer="91"/>
 <wire x1="66.04" y1="106.68" x2="66.04" y2="63.5" width="0.1524" layer="91"/>
@@ -11986,7 +11986,7 @@ Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet 
 <net name="N$26" class="0">
 <segment>
 <wire x1="68.58" y1="66.04" x2="68.58" y2="109.22" width="0.1524" layer="91"/>
-<pinref part="DRIVER_NEMA17" gate="G$1" pin="STEP"/>
+<pinref part="DRIVER_RELEASE" gate="G$1" pin="STEP"/>
 <wire x1="68.58" y1="109.22" x2="55.88" y2="109.22" width="0.1524" layer="91"/>
 <pinref part="R1" gate="G$1" pin="2"/>
 <wire x1="55.88" y1="109.22" x2="38.1" y2="109.22" width="0.1524" layer="91"/>
