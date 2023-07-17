@@ -86,6 +86,8 @@ float LinearActuator::moveToLimit(int direction)
         curr_reading = analogRead(_pin_pot);
 
         // If sensor exists, check when it's pressed
+        // TODO: change this to analog readings, return 1 if value is over threshold
+        // Also develop analogReadDebounce in Functions
         if (_pin_sensor_flag) { sensor_pressed = digitalReadDebounce(_pin_sensor, 20, 1); }
         
     }while((prev_reading!=curr_reading) && !(_pin_sensor_flag && sensor_pressed));

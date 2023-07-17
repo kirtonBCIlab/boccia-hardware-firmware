@@ -41,3 +41,8 @@ bool digitalReadDebounce(int pin, unsigned long msec_debounce, bool is_rising)
   
   return true;
 }
+
+bool analogReadDebounce(int pin, int threshold, unsigned long msec_debounce, bool is_rising)
+{
+  
+}

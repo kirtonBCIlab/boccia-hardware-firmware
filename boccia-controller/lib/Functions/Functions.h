@@ -22,4 +22,13 @@ int signum(float a, float b);
 /// @returns True when the pin has stabilized, false otherwise.
 bool digitalReadDebounce(int pin, unsigned long msec_debounce, bool is_rising);
 
+/// @brief Returns the boolean from reading an analog pin, it assumes the pin is active if the value
+///        is over the threshold limit
+/// @param pin 
+/// @param threshold 
+/// @param msec_debounce 
+/// @param is_rising 
+/// @return True when the pin has stabilized, false otherwise.
+bool analogReadDebounce(int pin, int threshold, long msec_debounce, bool is_rising);
+
 #endif
