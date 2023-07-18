@@ -96,6 +96,11 @@ void loop()
   waitMillis(250);  // Wait a bit while decoding command
 }
 
+void releaseLimit()
+{
+  release.stopDetected()
+}
+
 void leftDetected()
 {
    rotation.leftLimit();
