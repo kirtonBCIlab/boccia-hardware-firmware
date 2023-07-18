@@ -9,7 +9,7 @@
 // - Release
 int release_pin_step = 5;
 int release_pin_dir = 6;
-int release_interrupt_pins[2] = {19,0};
+int release_interrupt_pins[2] = {2,0};
 int release_nsteps = 200;
 int release_nsteps_return = 10;
 int release_default_speed = 400;
@@ -18,7 +18,7 @@ BocciaStepper release(release_pin_step, release_pin_dir, release_interrupt_pins,
 // - Rotation
 int rotation_pin_step = 12;
 int rotation_pin_dir = 11;
-int rotation_interrupt_pins[2] = {3,0};
+int rotation_interrupt_pins[2] = {18,19};
 int rotation_nsteps = 200;
 int rotation_nsteps_return = 10;
 BocciaStepper rotation(rotation_pin_step, rotation_pin_dir, rotation_interrupt_pins, rotation_nsteps, rotation_nsteps_return);
@@ -42,7 +42,8 @@ LinearActuator elevation(elevator_pin1, elevator_pin2, elevator_pin_pot, elevato
 
 // Prototype functions
 void releaseLimit();
-void rotationLimit();
+void rightDetected();
+void leftDetected();
 void waitMillis(unsigned long wait_msec);
 void decodeCommand();
 
@@ -59,9 +60,11 @@ void setup() {
   
   // Interrupts
   attachInterrupt(digitalPinToInterrupt(release_interrupt_pins[0]), releaseLimit, RISING);
-//  attachInterrupt(digitalPinToInterrupt(rotation_interrupt_pins[0]), rotationLimit, RISING);
+  attachInterrupt(digitalPinToInterrupt(rotation_interrupt_pins[0]), leftDetected, RISING);
+  attachInterrupt(digitalPinToInterrupt(rotation_interrupt_pins[1]), rightDetected, RISING);
+  
 
-  // Calibration steps - Enable sections as needed
+  // // Calibration steps - Enable sections as needed
   // Serial.println("Calibration");
 
   // // - Release
@@ -93,14 +96,14 @@ void loop()
   waitMillis(250);  // Wait a bit while decoding command
 }
 
-void releaseLimit()
+void leftDetected()
 {
-  release.stopDetected();
+   rotation.leftLimit();
 }
 
-void rotationLimit()
+void rightDetected()
 {
-  rotation.limitDetected();
+   rotation.rightLimit();
 }
 
 /// @brief The input command must be a positive or negative number with 
@@ -163,7 +166,7 @@ void decodeCommand()
 
   switch (motor)
   {
-  case 1: release.releaseBall(movement);        break;
+  case 1: release.moveRun(movement);            break;
   case 2: rotation.moveRun(movement);           break;  
   case 3: incline.moveToPercentage(movement);   break;
   case 4: elevation.moveToPercentage(movement); break;
