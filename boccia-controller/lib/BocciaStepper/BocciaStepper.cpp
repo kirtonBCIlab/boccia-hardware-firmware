@@ -7,7 +7,8 @@
     _pin_step = pin_step;
     _pin_dir = pin_dir;
     _nsteps = nsteps;
-    _nsteps_return = nsteps_return;
+    _nsteps_return = nsteps_return; 
+    
     _default_speed = default_speed;
     _default_accel = default_accel;
     
@@ -70,8 +71,23 @@
           setLimits();
           _limit_flag = 0; // Restart flag
         }
+
+        if (_release_flag)
+        {
+          relative =0;
+          _release_flag =0;
+        }
+
       } while (distanceToGo() != 0);  
     }
+
+  void BocciaStepper::releaseBall(long relative)
+  {
+    moveRun(relative);
+    move(-70);
+    runToPosition();
+
+  }
 
   void BocciaStepper::setLimits()
   {
@@ -116,6 +132,15 @@
   void BocciaStepper::limitDetected()
   {
     _limit_flag = 1;
+    setAcceleration(10 * _default_accel);  // Change acceleration to stop quickly
+    stop();
+  }
+
+  void BocciaStepper::stopDetected()
+  {
+    _release_flag = 1;
+    setAcceleration(10 * _default_accel);  // Change acceleration to stop quickly
+    stop();
   }
 
   void BocciaStepper::findRange()
