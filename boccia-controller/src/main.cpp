@@ -9,7 +9,7 @@
 // - Release
 int release_pin_step = 5;
 int release_pin_dir = 6;
-int release_interrupt_pins[2] = {2,0};
+int release_interrupt_pins[2] = {18,0};
 int release_nsteps = 200;
 int release_nsteps_return = 10;
 int release_default_speed = 400;
@@ -18,7 +18,7 @@ BocciaStepper release(release_pin_step, release_pin_dir, release_interrupt_pins,
 // - Rotation
 int rotation_pin_step = 12;
 int rotation_pin_dir = 11;
-int rotation_interrupt_pins[2] = {18,19};
+int rotation_interrupt_pins[2] = {0,19};
 int rotation_nsteps = 200;
 int rotation_nsteps_return = 10;
 BocciaStepper rotation(rotation_pin_step, rotation_pin_dir, rotation_interrupt_pins, rotation_nsteps, rotation_nsteps_return);
@@ -60,8 +60,8 @@ void setup() {
   
   // Interrupts
   attachInterrupt(digitalPinToInterrupt(release_interrupt_pins[0]), releaseLimit, RISING);
-  attachInterrupt(digitalPinToInterrupt(rotation_interrupt_pins[0]), leftDetected, RISING);
-  attachInterrupt(digitalPinToInterrupt(rotation_interrupt_pins[1]), rightDetected, RISING);
+  // attachInterrupt(digitalPinToInterrupt(rotation_interrupt_pins[0]), leftDetected, RISING);
+  // attachInterrupt(digitalPinToInterrupt(rotation_interrupt_pins[1]), rightDetected, RISING);
   
 
   // // Calibration steps - Enable sections as needed
@@ -98,18 +98,18 @@ void loop()
 
 void releaseLimit()
 {
-  release.stopDetected()
+  release.stopDetected();
 }
 
-void leftDetected()
-{
-   rotation.leftLimit();
-}
+// void leftDetected()
+// {
+//    rotation.leftLimit();
+// }
 
-void rightDetected()
-{
-   rotation.rightLimit();
-}
+// void rightDetected()
+// {
+//    rotation.rightLimit();
+// }
 
 /// @brief The input command must be a positive or negative number with 
 /// 4 digits. The first digit selects the motor according to the switch
@@ -171,7 +171,7 @@ void decodeCommand()
 
   switch (motor)
   {
-  case 1: release.moveRun(movement);            break;
+  case 1: release.releaseBall(movement);            break;
   case 2: rotation.moveRun(movement);           break;  
   case 3: incline.moveToPercentage(movement);   break;
   case 4: elevation.moveToPercentage(movement); break;
