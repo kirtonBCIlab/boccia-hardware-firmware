@@ -17,6 +17,7 @@ class BocciaStepper:public AccelStepper
     int _limits[2] = {0};     // Step position of limits [low, high]
     bool homing_flag = 0;     // Homing flag (raised when homing is finished)
     bool _limit_flag = 0;     // Limit flag (raised when an interrupt has activated)
+    bool _release_flag =0;
 
     void setLimits();
   
@@ -49,9 +50,11 @@ class BocciaStepper:public AccelStepper
     /// If the limits are already set, and the sensor is triggered, the limits
     /// are updated.
     void moveRun(long relative);
+    void releaseBall(long relative);
     
     /// @brief ISR activated when one of the optical sensors is triggered
     void limitDetected();
+    void stopDetected();
 
     /// @brief Moves the motor a full rotation clockwise, and then
     /// moves the motor a full rotation anticlocwise. 

@@ -95,7 +95,7 @@ void loop()
 
 void releaseLimit()
 {
-  release.limitDetected();
+  release.stopDetected();
 }
 
 void rotationLimit()
@@ -163,7 +163,7 @@ void decodeCommand()
 
   switch (motor)
   {
-  case 1: release.moveRun(movement);            break;
+  case 1: release.releaseBall(movement);        break;
   case 2: rotation.moveRun(movement);           break;  
   case 3: incline.moveToPercentage(movement);   break;
   case 4: elevation.moveToPercentage(movement); break;
