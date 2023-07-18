@@ -128,13 +128,6 @@
 
   }
 
-  void BocciaStepper::limitDetected()
-  {
-    _limit_flag = 1;
-    setAcceleration(10 * _default_accel);  // Change acceleration to stop quickly
-    stop();
-  }
-
   void BocciaStepper::stopDetected()
   {
     _release_flag = 1;
