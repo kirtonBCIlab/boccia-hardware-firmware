@@ -80,12 +80,15 @@
     {
       int step_dir = (relative>0) - (relative<0);
       move(_nsteps_return*-step_dir);
+      // Maybe add runToPosition or consider changing to moveRun
     }
 
     moveRun(relative);
-    runToPosition();
+    //runToPosition();
+    // Maybe change this to -relative + 2*_nsteps_return
     moveRun(-relative);
-    runToPosition();
+    
+    //runToPosition();
     
   }
 
