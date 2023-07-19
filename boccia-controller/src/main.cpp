@@ -19,8 +19,8 @@ BocciaStepper release(release_pin_step, release_pin_dir, release_interrupt_pins,
 int rotation_pin_step = 12;
 int rotation_pin_dir = 11;
 int rotation_interrupt_pins[2] = {3,19};
-int rotation_nsteps = 200;
-int rotation_nsteps_return = 10;
+int rotation_nsteps = 800;
+int rotation_nsteps_return = 80;
 BocciaStepper rotation(rotation_pin_step, rotation_pin_dir, rotation_interrupt_pins, rotation_nsteps, rotation_nsteps_return);
 
 // - Incline actuator
@@ -30,7 +30,7 @@ int incline_pin_pot = 4;          // Analog pin for potentiometer
 int incline_speed_threshold = 15;
 int incline_speed_factor = 50;
 int incline_pin_sensor = 7;       // If pin sensor is enabled (i.e., !0), the calibration depends on the pin sensor trigger
-int incline_pin_threshold = 800;  
+int incline_pin_threshold = 600;  
 LinearActuator incline(incline_pin1, incline_pin2, incline_pin_pot, incline_speed_threshold, incline_speed_factor, incline_pin_sensor, incline_pin_threshold);
 
 // - Elevator actuator
@@ -61,6 +61,7 @@ void setup() {
   // Interrupts
   attachInterrupt(digitalPinToInterrupt(release_interrupt_pins[0]), releaseLimit, RISING);
   attachInterrupt(digitalPinToInterrupt(rotation_interrupt_pins[0]), rotationLimit, RISING);
+  attachInterrupt(digitalPinToInterrupt(rotation_interrupt_pins[1]), rotationLimit, RISING);
 
   // Calibration steps - Enable sections as needed
   Serial.println("Calibration");
@@ -81,9 +82,9 @@ void setup() {
   Serial.println("Incline - Calibration ended");
 
   //  - Elevator actuator
-  // Serial.println("Elevator - Calibration started");
-  // elevation.findRange();
-  // Serial.println("Elevator - Calibration ended");
+  Serial.println("Elevator - Calibration started");
+  elevation.findRange();
+  Serial.println("Elevator - Calibration ended");
 
   Serial.println("\nSelect motor and movement...");
 }
@@ -101,6 +102,7 @@ void releaseLimit()
 
 void rotationLimit()
 {
+  Serial.println("Rotation limit hit");
   rotation.limitDetected();
 }
 

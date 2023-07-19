@@ -8,8 +8,8 @@
 #include <AccelStepper.h>
 
 // Define pin numbers
-const int pin_dir = 3;
-const int pin_step = 2;
+const int pin_dir = 11;
+const int pin_step = 12;
 
 // Create AccelStepper object
 AccelStepper nema8(AccelStepper::DRIVER, pin_step, pin_dir);
