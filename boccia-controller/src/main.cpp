@@ -67,14 +67,14 @@ void setup() {
   Serial.println("Calibration");
 
   // - Release
-  // Serial.println("Release - Calibration started");
-  // release.findRange();
-  // Serial.println("Release - Calibration ended");
+  Serial.println("Release - Calibration started");
+  release.findRange();
+  Serial.println("Release - Calibration ended");
  
   // - Rotation
-  // Serial.println("Rotation - Calibration started");
-  // rotation.findRange();
-  // Serial.println("Rotation - Calibration ended");
+  Serial.println("Rotation - Calibration started");
+  rotation.findRange();
+  Serial.println("Rotation - Calibration ended");
 
   // - Incline actuator
   Serial.println("Incline - Calibration started");
