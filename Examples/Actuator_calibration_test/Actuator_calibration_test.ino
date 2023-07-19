@@ -9,9 +9,9 @@
 // Private variables
   // Settings for motor to be tested
 int repeat = 1;       // Number of times to repeat calibration [n] 
-int pin1 = 9;         // Input 1 of driver
-int pin2 = 10;        // Input 2 of driver 
-int pin_pot = 3;      // Analog pin connected to the potentiometer
+int pin1 = 7;         // Input 1 of driver
+int pin2 = 8;        // Input 2 of driver 
+int pin_pot = 4;      // Analog pin connected to the potentiometer
 int pwm_speed = 255;  // Speed of PWM to drive motor [0 - 255]
 
 void setup() 

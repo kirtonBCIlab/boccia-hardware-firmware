@@ -1,7 +1,7 @@
 #include <LinearActuator.h>
 #include <Functions.h>
 
-LinearActuator::LinearActuator(int pin_1, int pin_2, int pin_pot, int speed_threshold, int speed_factor, int pin_sensor)
+LinearActuator::LinearActuator(int pin_1, int pin_2, int pin_pot, int speed_threshold, int speed_factor, int pin_sensor, int threshold, int sensor_retract)
 {
     _pin1 = pin_1;
     _pin2 = pin_2;
@@ -10,13 +10,11 @@ LinearActuator::LinearActuator(int pin_1, int pin_2, int pin_pot, int speed_thre
     _speed_threshold = speed_threshold;
     _speed_factor = speed_factor;
     _pin_sensor_flag = false;
+    _analog_threshold = threshold;
+    _sensor_retract = sensor_retract;
 
     // Enable sensor flag if _pin_sensor is not default
-    if (_pin_sensor != 0)
-    {
-        _pin_sensor_flag = true;
-        Serial.println("Pin sensor active");
-    }   
+    if (_pin_sensor != 0) { _pin_sensor_flag = true; }   
 }
 
 void LinearActuator::initializePins()
@@ -65,7 +63,7 @@ float LinearActuator::percentageToResistance(float percentage)
 
     float num = _limits[1]*(percentage-range[0]) + _limits[0]*(range[1]-percentage);
     float den = range[1] - range[0];
-    float resistance = num/den;
+    float resistance = abs(num/den);
 
     return resistance;
 }
@@ -85,27 +83,49 @@ float LinearActuator::moveToLimit(int direction)
         waitMillis(250);   
         curr_reading = analogRead(_pin_pot);
 
-        // If sensor exists, check when it's pressed
-        if (_pin_sensor_flag) { sensor_pressed = digitalReadDebounce(_pin_sensor, 20, 1); }
-        
+        // If sensor exists, check when it's pressed, stop, and return waitMillis
+        if (_pin_sensor_flag) 
+        {
+            sensor_pressed = analogReadDebounce(_pin_sensor, _analog_threshold, 10, 1);
+            if (sensor_pressed) 
+            { 
+                driveActuator(0);
+                driveActuator(-direction);
+                waitMillis(_sensor_retract);
+                Serial.println("Sensor pressed, stopping"); 
+                break;
+            }
+        } 
     }while((prev_reading!=curr_reading) && !(_pin_sensor_flag && sensor_pressed));
 
-    driveActuator(0);   // Stop actuator once you have reached the limit
+    driveActuator(0);   // Stop actuator once you have reached the desired position
+    waitMillis(100);
+    curr_reading = analogRead(_pin_pot);
 
     return curr_reading;
 }
 
 void LinearActuator::findRange()
 {   
+    // Before calibration, if there is a press sensor retract motor
+    // so that the sensor is not pressed
+    if (_pin_sensor_flag)
+    {
+        driveActuator(-1);
+        waitMillis(_sensor_retract*3);
+    }
+
     Serial.println("Retracting...");
     _limits[0] = moveToLimit(-1);
     Serial.println("Retraction limit = " + String(_limits[0]));
-    waitMillis(2000);
+    waitMillis(500);
 
     Serial.println("Extending...");
     _limits[1] = moveToLimit(1);
     Serial.println("Extension limit = " + String(_limits[1]));
-    waitMillis(2000);
+
+    // If limits are backwards, drive the motor the opposite direction
+    if (_limits[0]>_limits[1]) { _dir_correction = -1; }
 }
 
 void LinearActuator::moveToPercentage(int percentage)
@@ -126,7 +146,7 @@ void LinearActuator::moveToPercentage(int percentage)
     Serial.println("Current: " + String(curr_reading));
     float resistance = percentageToResistance(percentage); 
     Serial.println("Target: " + String(resistance));
-    int direction = signum(resistance, float(curr_reading));
+    int direction = signum(resistance, float(curr_reading))*_dir_correction;
 
     // If target is below threshold, reduce speed (i.e., fine movements)
     int move_percentage = abs(resistanceToPercentage(curr_reading) - percentage);
@@ -135,7 +155,7 @@ void LinearActuator::moveToPercentage(int percentage)
     else
         {   _pwm_speed = 255;   }
 
-
+    // Check the direction the motor should move to, and drive it
     switch (direction)
     {
         case 1:
