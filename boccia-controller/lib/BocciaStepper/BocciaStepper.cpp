@@ -71,21 +71,22 @@
           _limit_flag = 0; // Restart flag
         }
 
-        if (_release_flag)
-        {
-          relative =0;
-          _release_flag =0;
-        }
-
       } while (distanceToGo() != 0);  
     }
 
   void BocciaStepper::releaseBall(long relative)
   {
-    moveRun(relative);
-    move(-70);
-    runToPosition();
+    if (_release_flag)
+    {
+      int step_dir = (relative>0) - (relative<0);
+      move(_nsteps_return*-step_dir);
+    }
 
+    moveRun(relative);
+    runToPosition();
+    moveRun(-relative);
+    runToPosition();
+    
   }
 
   void BocciaStepper::setLimits()
