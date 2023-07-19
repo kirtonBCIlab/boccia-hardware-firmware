@@ -62,6 +62,13 @@ class BocciaStepper:public AccelStepper
 
     /// @brief Sets step and dir inputs to 0, to avoid any unwanted movements.
     void groundInputs();
+
+    /// @brief Moves a number of steps and returns in the opposite direction 
+    ///        to hif sensor of release mechanism. 
+    /// @param relative Number of steps that the motor will move to open the 
+    ///                 release mechanism
+    void releaseBall(long relative);
+
 };
 
 

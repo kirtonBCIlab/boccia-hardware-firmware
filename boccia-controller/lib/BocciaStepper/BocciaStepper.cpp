@@ -7,7 +7,8 @@
     _pin_step = pin_step;
     _pin_dir = pin_dir;
     _nsteps = nsteps;
-    _nsteps_return = nsteps_return;
+    _nsteps_return = nsteps_return; 
+    
     _default_speed = default_speed;
     _default_accel = default_accel;
     
@@ -76,20 +77,8 @@
 
   void BocciaStepper::releaseBall(long relative)
   {
-    if (_release_flag)
-    {
-      int step_dir = (relative>0) - (relative<0);
-      move(_nsteps_return*-step_dir);
-      // Maybe add runToPosition or consider changing to moveRun
-    }
-
     moveRun(relative);
-    //runToPosition();
-    // Maybe change this to -relative + 2*_nsteps_return
-    moveRun(-relative);
-    
-    //runToPosition();
-    
+    moveRun(-relative+10);
   }
 
   void BocciaStepper::setLimits()
@@ -134,7 +123,7 @@
 
   void BocciaStepper::stopDetected()
   {
-    _release_flag = 1;
+    _limit_flag = 1;
     setAcceleration(10 * _default_accel);  // Change acceleration to stop quickly
     stop();
   }
