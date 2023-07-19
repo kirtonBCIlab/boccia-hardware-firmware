@@ -22,7 +22,7 @@ int rotation_interrupt_pins[2] = {0,19};
 int rotation_nsteps = 200;
 int rotation_nsteps_return = 10;
 BocciaStepper rotation(rotation_pin_step, rotation_pin_dir, rotation_interrupt_pins, rotation_nsteps, rotation_nsteps_return);
-
+ 
 // - Incline actuator
 int incline_pin1 = 7;
 int incline_pin2 = 8;           
