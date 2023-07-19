@@ -24,13 +24,14 @@ int rotation_nsteps_return = 10;
 BocciaStepper rotation(rotation_pin_step, rotation_pin_dir, rotation_interrupt_pins, rotation_nsteps, rotation_nsteps_return);
 
 // - Incline actuator
-int incline_pin1 = 7;
-int incline_pin2 = 8;           
+int incline_pin1 = 8;
+int incline_pin2 = 7;           
 int incline_pin_pot = 4;          // Analog pin for potentiometer
 int incline_speed_threshold = 15;
 int incline_speed_factor = 50;
-int incline_pin_sensor = 0;       // If pin sensor is enabled (i.e., !0), the calibration depends on the pin sensor trigger
-LinearActuator incline(incline_pin1, incline_pin2, incline_pin_pot, incline_speed_threshold, incline_speed_factor, incline_pin_sensor);
+int incline_pin_sensor = 7;       // If pin sensor is enabled (i.e., !0), the calibration depends on the pin sensor trigger
+int incline_pin_threshold = 800;  
+LinearActuator incline(incline_pin1, incline_pin2, incline_pin_pot, incline_speed_threshold, incline_speed_factor, incline_pin_sensor, incline_pin_threshold);
 
 // - Elevator actuator
 int elevator_pin1 = 9;
@@ -65,14 +66,14 @@ void setup() {
   Serial.println("Calibration");
 
   // - Release
-  Serial.println("Release - Calibration started");
-  release.findRange();
-  Serial.println("Release - Calibration ended");
+  // Serial.println("Release - Calibration started");
+  // release.findRange();
+  // Serial.println("Release - Calibration ended");
  
   // - Rotation
-  Serial.println("Rotation - Calibration started");
-  rotation.findRange();
-  Serial.println("Rotation - Calibration ended");
+  // Serial.println("Rotation - Calibration started");
+  // rotation.findRange();
+  // Serial.println("Rotation - Calibration ended");
 
   // - Incline actuator
   Serial.println("Incline - Calibration started");
@@ -80,9 +81,9 @@ void setup() {
   Serial.println("Incline - Calibration ended");
 
   //  - Elevator actuator
-  Serial.println("Elevator - Calibration started");
-  elevation.findRange();
-  Serial.println("Elevator - Calibration ended");
+  // Serial.println("Elevator - Calibration started");
+  // elevation.findRange();
+  // Serial.println("Elevator - Calibration ended");
 
   Serial.println("\nSelect motor and movement...");
 }

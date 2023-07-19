@@ -31,4 +31,12 @@ bool digitalReadDebounce(int pin, unsigned long msec_debounce, bool is_rising);
 /// @return True when the pin has stabilized, false otherwise.
 bool analogReadDebounce(int pin, int threshold, long msec_debounce, bool is_rising);
 
+// bool analogDebounce(int pin, int threshold, long msec_debounce, bool is_rising);
+
+/// @brief Returns true from reading if analog pin is above threshold.
+///        false otherwise
+/// @param pin Pin to convert from analog to digital reading
+/// @param threshold Threshold value to compare pin to [0-255]
+bool analogToDigital(int pin, int threshold);
+
 #endif

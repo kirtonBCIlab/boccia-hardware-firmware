@@ -71,22 +71,13 @@
           setLimits();
           _limit_flag = 0; // Restart flag
         }
-
-        if (_release_flag)
-        {
-          relative =0;
-          _release_flag =0;
-        }
-
       } while (distanceToGo() != 0);  
     }
 
   void BocciaStepper::releaseBall(long relative)
   {
     moveRun(relative);
-    move(-70);
-    runToPosition();
-
+    moveRun(-relative+10);
   }
 
   void BocciaStepper::setLimits()
@@ -132,13 +123,6 @@
   void BocciaStepper::limitDetected()
   {
     _limit_flag = 1;
-    setAcceleration(10 * _default_accel);  // Change acceleration to stop quickly
-    stop();
-  }
-
-  void BocciaStepper::stopDetected()
-  {
-    _release_flag = 1;
     setAcceleration(10 * _default_accel);  // Change acceleration to stop quickly
     stop();
   }

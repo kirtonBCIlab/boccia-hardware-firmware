@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <Functions.h>
 
 void waitMillis(unsigned long wait_msec)
 {
@@ -42,7 +43,58 @@ bool digitalReadDebounce(int pin, unsigned long msec_debounce, bool is_rising)
   return true;
 }
 
-bool analogReadDebounce(int pin, int threshold, unsigned long msec_debounce, bool is_rising)
-{
+// bool analogDebounce(int pin, int threshold, unsigned long msec_debounce, bool is_rising)
+// {
+//   // read the state of the switch into a local variable:
+//   bool r0 = analogToDigital(pin, threshold); // Initial reading
+//   bool r1;                       // Updated reading
+//   unsigned long t0 = millis();  // Set start time
+//   unsigned long t1;             // Updated time
+
+//   // Set a msec_debounce window, if reading changes before the window ends, exit and return false
+//   do
+//   {
+//     // Take updated readings
+//     r1 = analogToDigital(pin, threshold);
+//     t1 = millis();
+
+//     // Check if value has changed 
+//     if (is_rising && (r1 == 0)) { return false; }
+//     else if (!is_rising && (r1 == 1)) { return false; }
+
+//   } while ((t1-t0) < msec_debounce);
   
+//   return true;
+// }
+
+bool analogReadDebounce(int pin, int threshold, long msec_debounce, bool is_rising)
+{
+    // read the state of the switch into a local variable:
+  bool r0 = analogToDigital(pin, threshold); // Initial reading
+  bool r1;                       // Updated reading
+  unsigned long t0 = millis();  // Set start time
+  unsigned long t1;             // Updated time
+
+  // Set a msec_debounce window, if reading changes before the window ends, exit and return false
+  do
+  {
+    // Take updated readings
+    r1 = analogToDigital(pin, threshold);
+    t1 = millis();
+
+    // Check if value has changed 
+    if (is_rising && (r1 == 0)) { return false; }
+    else if (!is_rising && (r1 == 1)) { return false; }
+
+  } while ((t1-t0) < msec_debounce);
+  
+  return true;
+}
+
+bool analogToDigital(int pin, int threshold)
+{
+  int pin_value = analogRead(pin);
+
+  if (pin_value > threshold) { return 1; }
+  else { return 0; }
 }

@@ -14,9 +14,9 @@
 elapsedMillis timeElapsed;
 
 // Setup variables
-int r_pwm = 2;   
-int l_pwm = 3;
-int sensor_pin = A0;
+int r_pwm = 7;   
+int l_pwm = 8;
+int sensor_pin = A4;
 
 int sensor_val;
 int pwm_speed = 255;      // PWM duty cycle [0-255]

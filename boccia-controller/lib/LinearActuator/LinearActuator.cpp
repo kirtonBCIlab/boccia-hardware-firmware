@@ -1,7 +1,7 @@
 #include <LinearActuator.h>
 #include <Functions.h>
 
-LinearActuator::LinearActuator(int pin_1, int pin_2, int pin_pot, int speed_threshold, int speed_factor, int pin_sensor)
+LinearActuator::LinearActuator(int pin_1, int pin_2, int pin_pot, int speed_threshold, int speed_factor, int pin_sensor, int threshold)
 {
     _pin1 = pin_1;
     _pin2 = pin_2;
@@ -10,6 +10,7 @@ LinearActuator::LinearActuator(int pin_1, int pin_2, int pin_pot, int speed_thre
     _speed_threshold = speed_threshold;
     _speed_factor = speed_factor;
     _pin_sensor_flag = false;
+    _threshold = threshold;
 
     // Enable sensor flag if _pin_sensor is not default
     if (_pin_sensor != 0)
@@ -85,10 +86,23 @@ float LinearActuator::moveToLimit(int direction)
         waitMillis(250);   
         curr_reading = analogRead(_pin_pot);
 
-        // If sensor exists, check when it's pressed
-        // TODO: change this to analog readings, return 1 if value is over threshold
-        // Also develop analogReadDebounce in Functions
-        if (_pin_sensor_flag) { sensor_pressed = digitalReadDebounce(_pin_sensor, 20, 1); }
+        // If sensor exists, check when it's pressed, stop, and return waitMillis
+        if (_pin_sensor_flag) 
+        {
+            sensor_pressed = analogReadDebounce(_pin_sensor, _threshold, 20, 1);
+            if (sensor_pressed) 
+            { 
+                driveActuator(0);
+                driveActuator(-direction);
+                waitMillis(500);
+                curr_reading = analogRead(_pin_pot);
+                Serial.println("Sensor pressed, stopping"); 
+                break;
+            }
+        }
+
+        Serial.println("Previous: " + String(prev_reading));
+        Serial.println("Current: " + String(curr_reading));
         
     }while((prev_reading!=curr_reading) && !(_pin_sensor_flag && sensor_pressed));
 
@@ -99,15 +113,31 @@ float LinearActuator::moveToLimit(int direction)
 
 void LinearActuator::findRange()
 {   
+    int lim1;   // Temporary variables
+    int lim2;
+
     Serial.println("Retracting...");
-    _limits[0] = moveToLimit(-1);
-    Serial.println("Retraction limit = " + String(_limits[0]));
+    lim1 = moveToLimit(-1);
     waitMillis(2000);
 
     Serial.println("Extending...");
-    _limits[1] = moveToLimit(1);
-    Serial.println("Extension limit = " + String(_limits[1]));
+    lim2 = moveToLimit(1);
+    
     waitMillis(2000);
+
+    if (lim1 > lim2) 
+    {
+        _limits[0] = lim2;
+        _limits[1] = lim1;
+    }
+    else
+    {
+        _limits[0] = lim1;
+        _limits[1] = lim2;
+    }
+
+    Serial.println("Retraction limit = " + String(_limits[0]));
+    Serial.println("Extension limit = " + String(_limits[1]));
 }
 
 void LinearActuator::moveToPercentage(int percentage)

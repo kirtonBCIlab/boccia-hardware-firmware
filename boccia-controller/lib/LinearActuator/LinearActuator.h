@@ -11,11 +11,12 @@ class LinearActuator
         int _pin_sensor;            // Pin for analog sensor [optional]
         bool _pin_sensor_flag;      // Flag to know if sensor is not default value
         float _stroke_length;       // Stroke length [in]
-        int _pwm_speed;             // PWM speed [0 to 255]
+        int _pwm_speed = 255;       // PWM speed [0 to 255]
         bool _homing_flag = 0;      // Homing flag (raised when homing is finished)
         int _limits[2] = {0};       // Limits [low, high]. Min = 0, Max = 2^10
         int _speed_threshold;       // Threshold to switch between full speed and speed_factor [%]
         int _speed_factor;          // Percentage to reduce speed to if requested movement < _speed_threshold [%]
+        int _threshold;             // Analog threshold value to consider pin_sensor active [0-1023]
 
         /// @brief Drives the actuator in the desired direction. Change
         /// the speed with _pwm_speed 
@@ -42,7 +43,8 @@ class LinearActuator
         /// @param speed_threshold Threshold to switch between full speed and speed_factor [%]
         /// @param speed_factor Percentage to reduce speed to if requested movement < speed_threshold [%]
         /// @param pin_sensor Pin number for the force sensor [optional]
-        LinearActuator(int pin1, int pin2, int pin_pot, int speed_threshold, int speed_factor, int pin_sensor=0);
+        /// @param threshold Analog threshold value to consider pin_sensor active [0-1023]
+        LinearActuator(int pin1, int pin2, int pin_pot, int speed_threshold, int speed_factor, int pin_sensor=0, int threshold=500);
 
         /// @brief Initializes the pins associated with the motor to input or output
         /// accordingly.
