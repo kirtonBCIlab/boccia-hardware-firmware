@@ -9,11 +9,12 @@
 // - Release
 int release_pin_step = 5;
 int release_pin_dir = 6;
-int release_interrupt_pins[2] = {18,0};
+int release_interrupt_pins[2] = {2,0};
 int release_nsteps = 200;
-int release_nsteps_return = 10;
+int release_nsteps_return = 20;
 int release_default_speed = 400;
-BocciaStepper release(release_pin_step, release_pin_dir, release_interrupt_pins, release_nsteps, release_nsteps_return, release_default_speed);
+bool release_use_limits = false;
+BocciaStepper release(release_pin_step, release_pin_dir, release_interrupt_pins, release_nsteps, release_nsteps_return, release_default_speed, release_use_limits);
 
 // - Rotation
 int rotation_pin_step = 12;
@@ -43,8 +44,8 @@ LinearActuator elevation(elevator_pin1, elevator_pin2, elevator_pin_pot, elevato
 
 // Prototype functions
 void releaseLimit();
-void rightDetected();
-void leftDetected();
+void leftLimit();
+void rightLimit();
 void waitMillis(unsigned long wait_msec);
 void decodeCommand();
 
@@ -61,17 +62,17 @@ void setup() {
   
   // Interrupts
   attachInterrupt(digitalPinToInterrupt(release_interrupt_pins[0]), releaseLimit, RISING);
-  // attachInterrupt(digitalPinToInterrupt(rotation_interrupt_pins[0]), leftDetected, RISING);
-  // attachInterrupt(digitalPinToInterrupt(rotation_interrupt_pins[1]), rightDetected, RISING);
+  attachInterrupt(digitalPinToInterrupt(rotation_interrupt_pins[0]), leftLimit, RISING);
+  attachInterrupt(digitalPinToInterrupt(rotation_interrupt_pins[1]), rightLimit, RISING);
   
 
   // // Calibration steps - Enable sections as needed
   // Serial.println("Calibration");
 
   // // - Release
-  // Serial.println("Release - Calibration started");
-  // release.findRange();
-  // Serial.println("Release - Calibration ended");
+  Serial.println("Release - Calibration started");
+  release.releaseStartPoint();
+  Serial.println("Release - Calibration ended");
  
   // // - Rotation
   // Serial.println("Rotation - Calibration started");
@@ -88,7 +89,7 @@ void setup() {
   // elevation.findRange();
   // Serial.println("Elevator - Calibration ended");
 
-  // Serial.println("\nSelect motor and movement...");
+  Serial.println("\nSelect motor and movement...");
 }
 
 void loop() 
@@ -99,18 +100,21 @@ void loop()
 
 void releaseLimit()
 {
-  release.stopDetected();
+  release.active_interrupt_pin = release_interrupt_pins[0];
+  release.limitDetected();
 }
 
-// void leftDetected()
-// {
-//    rotation.leftLimit();
-// }
+void leftLimit()
+{
+  rotation.active_interrupt_pin = rotation_interrupt_pins[0];
+  rotation.limitDetected();
+}
 
-// void rightDetected()
-// {
-//    rotation.rightLimit();
-// }
+void rightLimit()
+{
+  rotation.active_interrupt_pin = rotation_interrupt_pins[1];
+  rotation.limitDetected();
+}
 
 /// @brief The input command must be a positive or negative number with 
 /// 4 digits. The first digit selects the motor according to the switch
@@ -172,7 +176,7 @@ void decodeCommand()
 
   switch (motor)
   {
-  case 1: release.releaseBall(movement);            break;
+  case 1: release.releaseBall(movement);        break;
   case 2: rotation.moveRun(movement);           break;  
   case 3: incline.moveToPercentage(movement);   break;
   case 4: elevation.moveToPercentage(movement); break;
