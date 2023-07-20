@@ -34,22 +34,25 @@
       setSpeed(_default_speed);
       setAcceleration(_default_accel);
     
-      // If limits exist, make sure requested movement is within limits
-      // if (use_limits && (limits[0]!=0 && limits[1]!=0))
-      // {
-      //   long end_position = relative + currentPosition(); 
-      //   if (end_position < limits[0])
-      //     {
-      //       Serial.println("The requested movement will hit the lower limit\nReadjusting value");
-      //       relative = limits[0] - currentPosition(); 
-      //     }
-      //   else if (end_position > limits[1])
-      //     {
-      //       Serial.println("The requested movement will hit the higher limit\nReadjusting value");
-      //       relative = limits[1] - currentPosition();
-      //     }
-      // }
+      if (use_limits == true)
+      {
+        if (limits[0]!=0 && limits[1]!=0)
+        {
+        long end_position = relative + currentPosition(); 
+        if (end_position < limits[0])
+          {
+            Serial.println("The requested movement will hit the lower limit\nReadjusting value");
+            relative = limits[0] - currentPosition(); 
+          }
+        else if (end_position > limits[1])
+          {
+            Serial.println("The requested movement will hit the higher limit\nReadjusting value");
+            relative = limits[1] - currentPosition();
+          }
+      }
 
+      } 
+      
       Serial.println("Relative: " + String(relative));
       // Set movement and get there
       move(relative);
@@ -61,9 +64,11 @@
         if (_limit_flag)
         {
           Serial.println("Limit flag up");
+
           if (digitalReadDebounce(active_interrupt_pin,10,1))
           {
             Serial.println("Limit flag stable");
+            
             // Stop motor
             setAcceleration(_default_accel * 10);
             stop();
@@ -75,7 +80,11 @@
             Serial.println("Returning: " + String(_nsteps_return*-step_dir));
             move(_nsteps_return*-step_dir);
             runToPosition();
-            if (use_limits) { setLimits(); }
+            
+            if (use_limits == true) 
+              { setLimits(); 
+              }
+            
             _limit_flag = 0; // Restart flag
           }
 
@@ -87,7 +96,7 @@
   void BocciaStepper::releaseBall(long relative)
   {
     moveRun(relative);
-    moveRun(-relative+2*_nsteps_return);
+    moveRun(-(relative+2*_nsteps_return));
   }
 
   void BocciaStepper::setLimits()
