@@ -51,19 +51,6 @@
         }
       } 
       
-      
-      //prior to moving if the sensor is active
-      if (_limit_flag)
-        {
-          if (active_interrupt_pin = _interrupt_pins[0])
-          {
-            move(-30);
-          }
-          else if(active_interrupt_pin = _interrupt_pins[1])
-          {
-            move(30);
-          }
-        }
 
       // Set movement and get there
       move(relative);
@@ -157,4 +144,30 @@
   {
     digitalWrite(_pin_step, 0);
     digitalWrite(_pin_dir, 0);
+  }
+
+  void BocciaStepper::clearSensorWhileStop(int active_interrupt_pin)
+  {
+    Serial.println("Inside function");
+    if ((distanceToGo()== 0))
+      {
+        Serial.println("Active pin: " + String(active_interrupt_pin));
+        if (digitalReadDebounce(active_interrupt_pin,5,1))
+        {
+          if (active_interrupt_pin == _interrupt_pins[0])
+            {
+              Serial.println("index 0");
+              moveRun(-_nsteps_return);
+              waitMillis(250);
+
+            }
+          else if (active_interrupt_pin == _interrupt_pins[1])
+            {
+              Serial.println("index 1");
+              moveRun(_nsteps_return);
+              waitMillis(250);
+            }
+        }
+        
+      }
   }
