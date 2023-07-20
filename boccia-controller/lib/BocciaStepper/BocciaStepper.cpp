@@ -51,6 +51,20 @@
         }
       } 
       
+      
+      //prior to moving if the sensor is active
+      if (_limit_flag)
+        {
+          if (active_interrupt_pin = _interrupt_pins[0])
+          {
+            move(-30);
+          }
+          else if(active_interrupt_pin = _interrupt_pins[1])
+          {
+            move(30);
+          }
+        }
+
       // Set movement and get there
       move(relative);
       do
@@ -126,6 +140,7 @@
       }
 
   }
+
 
   void BocciaStepper::limitDetected()
   {
