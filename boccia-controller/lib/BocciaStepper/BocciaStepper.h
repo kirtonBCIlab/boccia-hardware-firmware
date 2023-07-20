@@ -13,13 +13,14 @@ class BocciaStepper:public AccelStepper
     int _nsteps_return;           // Number of steps to return if limitDetected()
     int _default_speed;           // Default speed [steps/sec]
     int _default_accel;           // Default acceleration [steps/(sec^2)]
+    bool _use_limits;              // Bool to know whether to use limits [enable for motors with two optical sensors]
 
     bool _limit_flag = 0;         // Limit flag (raised when an interrupt has activated)
 
     void setLimits();
   
   public:
-    bool use_limits;              // Bool to know whether to use limits
+    
     int active_interrupt_pin;    // Int to determine which pin activated the interrupt
     int limits[2] = {0};         // Step position of limits [low, high]
 

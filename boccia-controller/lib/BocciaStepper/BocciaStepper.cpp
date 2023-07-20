@@ -12,6 +12,7 @@
     
     _default_speed = default_speed;
     _default_accel = default_accel;
+    _use_limits = use_limits;
     
     for (int i=0; i<2; i++) { _interrupt_pins[i] = interrupt_pins[i]; }
   }
@@ -32,25 +33,22 @@
     {
       // Set default values before moving
       setSpeed(_default_speed);
+      Serial.println("Speed: " + String(_default_speed));
       setAcceleration(_default_accel);
     
-      if (use_limits == true)
+      if (_use_limits && (limits[0]!=0 && limits[1]!=0))
       {
-        if (limits[0]!=0 && limits[1]!=0)
+      long end_position = relative + currentPosition(); 
+      if (end_position < limits[0])
         {
-        long end_position = relative + currentPosition(); 
-        if (end_position < limits[0])
-          {
-            Serial.println("The requested movement will hit the lower limit\nReadjusting value");
-            relative = limits[0] - currentPosition(); 
-          }
-        else if (end_position > limits[1])
-          {
-            Serial.println("The requested movement will hit the higher limit\nReadjusting value");
-            relative = limits[1] - currentPosition();
-          }
-      }
-
+          Serial.println("The requested movement will hit the lower limit\nReadjusting value");
+          relative = limits[0] - currentPosition(); 
+        }
+      else if (end_position > limits[1])
+        {
+          Serial.println("The requested movement will hit the higher limit\nReadjusting value");
+          relative = limits[1] - currentPosition();
+        }
       } 
       
       Serial.println("Relative: " + String(relative));
@@ -65,7 +63,7 @@
         {
           Serial.println("Limit flag up");
 
-          if (digitalReadDebounce(active_interrupt_pin,10,1))
+          if (digitalReadDebounce(active_interrupt_pin,5,1))
           {
             Serial.println("Limit flag stable");
             
@@ -81,13 +79,9 @@
             move(_nsteps_return*-step_dir);
             runToPosition();
             
-            if (use_limits == true) 
-              { setLimits(); 
-              }
-            
-            _limit_flag = 0; // Restart flag
+            if (_use_limits) { setLimits(); }
           }
-
+          _limit_flag = 0; // Restart flag
         }
 
       } while (distanceToGo() != 0);  
@@ -95,6 +89,20 @@
 
   void BocciaStepper::releaseBall(long relative)
   {
+    // move(relative);
+
+    // do
+    // {
+    //   run();
+
+    //   if(_limit_flag)
+    //   {
+
+    //   }
+
+    // } while(distanceToGo() != 0);
+    
+
     moveRun(relative);
     moveRun(-(relative+2*_nsteps_return));
   }
@@ -159,8 +167,5 @@
 
   void BocciaStepper::releaseStartPoint()
   {
-    moveRun(66);
-    limits[0] = limits[1]-100;
-    Serial.println("Current pos: " + String(currentPosition()));
-    Serial.println("Lower lim: " + String(limits[0]));
+    moveRun(30);
   }

@@ -13,8 +13,9 @@ int release_interrupt_pins[2] = {2,0};
 int release_nsteps = 200;
 int release_nsteps_return = 20;
 int release_default_speed = 400;
+int release_default_accel = 10;
 bool release_use_limits = false;
-BocciaStepper release(release_pin_step, release_pin_dir, release_interrupt_pins, release_nsteps, release_nsteps_return, release_default_speed, release_use_limits);
+BocciaStepper release(release_pin_step, release_pin_dir, release_interrupt_pins, release_nsteps, release_nsteps_return, release_default_speed, release_default_accel, release_use_limits);
 
 // - Rotation
 int rotation_pin_step = 12;
