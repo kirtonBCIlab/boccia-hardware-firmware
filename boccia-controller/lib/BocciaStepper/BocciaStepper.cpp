@@ -51,7 +51,6 @@
         }
       } 
       
-      Serial.println("Relative: " + String(relative));
       // Set movement and get there
       move(relative);
       do
@@ -61,12 +60,8 @@
         // If limit detected, quickly stop and return motor
         if (_limit_flag)
         {
-          Serial.println("Limit flag up");
-
           if (digitalReadDebounce(active_interrupt_pin,5,1))
-          {
-            Serial.println("Limit flag stable");
-            
+          {          
             // Stop motor
             setAcceleration(_default_accel * 10);
             stop();
@@ -75,7 +70,6 @@
             // Return motor _nsteps_return
             int step_dir = (relative>0) - (relative<0); // Current direction
             setAcceleration(_default_accel);
-            Serial.println("Returning: " + String(_nsteps_return*-step_dir));
             move(_nsteps_return*-step_dir);
             runToPosition();
             
@@ -89,22 +83,8 @@
 
   void BocciaStepper::releaseBall(long relative)
   {
-    // move(relative);
-
-    // do
-    // {
-    //   run();
-
-    //   if(_limit_flag)
-    //   {
-
-    //   }
-
-    // } while(distanceToGo() != 0);
-    
-
     moveRun(relative);
-    moveRun(-(relative+2*_nsteps_return));
+    moveRun(-2*relative);
   }
 
   void BocciaStepper::setLimits()
@@ -154,7 +134,6 @@
 
   void BocciaStepper::findRange()
   {
-    // int starting_pos = currentPosition();
     moveRun(_nsteps);
     moveRun(-_nsteps);
   }
@@ -163,9 +142,4 @@
   {
     digitalWrite(_pin_step, 0);
     digitalWrite(_pin_dir, 0);
-  }
-
-  void BocciaStepper::releaseStartPoint()
-  {
-    moveRun(30);
   }

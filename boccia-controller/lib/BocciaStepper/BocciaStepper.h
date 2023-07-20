@@ -65,16 +65,10 @@ class BocciaStepper:public AccelStepper
     void groundInputs();
 
     /// @brief Moves a number of steps and returns in the opposite direction 
-    ///        to hif sensor of release mechanism. 
+    ///        to hit sensor of release mechanism. 
     /// @param relative Number of steps that the motor will move to open the 
     ///                 release mechanism
     void releaseBall(long relative);
-
-    /// @brief Moves the release motor until it hits the optical sensor and
-    ///        sets the upper limit higher about 120 deg higher than the lower 
-    ///        limit.
-    void releaseStartPoint();
-
 };
 
 
