@@ -11,9 +11,11 @@ int release_pin_step = 5;
 int release_pin_dir = 6;
 int release_interrupt_pins[2] = {2,0};
 int release_nsteps = 200;
-int release_nsteps_return = 10;
+int release_nsteps_return = 30;
 int release_default_speed = 400;
-BocciaStepper release(release_pin_step, release_pin_dir, release_interrupt_pins, release_nsteps, release_nsteps_return, release_default_speed);
+int release_default_accel = 15;
+bool release_use_limits = false;
+BocciaStepper release(release_pin_step, release_pin_dir, release_interrupt_pins, release_nsteps, release_nsteps_return, release_default_speed, release_default_accel, release_use_limits);
 
 // - Rotation
 int rotation_pin_step = 12;
@@ -21,8 +23,11 @@ int rotation_pin_dir = 11;
 int rotation_interrupt_pins[2] = {3,19};
 int rotation_nsteps = 800;
 int rotation_nsteps_return = 80;
-BocciaStepper rotation(rotation_pin_step, rotation_pin_dir, rotation_interrupt_pins, rotation_nsteps, rotation_nsteps_return);
-
+int rotation_default_speed = 600;
+int rotation_default_accel = 30;
+bool rotation_use_limits = true;
+BocciaStepper rotation(rotation_pin_step, rotation_pin_dir, rotation_interrupt_pins, rotation_nsteps, rotation_nsteps_return, rotation_default_speed, rotation_default_accel, rotation_use_limits);
+ 
 // - Incline actuator
 int incline_pin1 = 8;
 int incline_pin2 = 7;           
@@ -43,7 +48,8 @@ LinearActuator elevation(elevator_pin1, elevator_pin2, elevator_pin_pot, elevato
 
 // Prototype functions
 void releaseLimit();
-void rotationLimit();
+void leftLimit();
+void rightLimit();
 void waitMillis(unsigned long wait_msec);
 void decodeCommand();
 
@@ -60,31 +66,32 @@ void setup() {
   
   // Interrupts
   attachInterrupt(digitalPinToInterrupt(release_interrupt_pins[0]), releaseLimit, RISING);
-  attachInterrupt(digitalPinToInterrupt(rotation_interrupt_pins[0]), rotationLimit, RISING);
-  attachInterrupt(digitalPinToInterrupt(rotation_interrupt_pins[1]), rotationLimit, RISING);
+  attachInterrupt(digitalPinToInterrupt(rotation_interrupt_pins[0]), leftLimit, RISING);
+  attachInterrupt(digitalPinToInterrupt(rotation_interrupt_pins[1]), rightLimit, RISING);
+  
 
   // Calibration steps - Enable sections as needed
   Serial.println("Calibration");
 
   // - Release
-  Serial.println("Release - Calibration started");
-  release.findRange();
-  Serial.println("Release - Calibration ended");
+  // Serial.println("Release - Starting position started");
+  // release.moveRun(-release_nsteps);
+  // Serial.println("Release - Starting position ended");
  
   // - Rotation
-  Serial.println("Rotation - Calibration started");
-  rotation.findRange();
-  Serial.println("Rotation - Calibration ended");
+  // Serial.println("Rotation - Calibration started");
+  // rotation.findRange();
+  // Serial.println("Rotation - Calibration ended");
 
   // - Incline actuator
-  Serial.println("Incline - Calibration started");
-  incline.findRange();
-  Serial.println("Incline - Calibration ended");
+  // Serial.println("Incline - Calibration started");
+  // incline.findRange();
+  // Serial.println("Incline - Calibration ended");
 
   //  - Elevator actuator
-  Serial.println("Elevator - Calibration started");
-  elevation.findRange();
-  Serial.println("Elevator - Calibration ended");
+  // Serial.println("Elevator - Calibration started");
+  // elevation.findRange();
+  // Serial.println("Elevator - Calibration ended");
 
   Serial.println("\nSelect motor and movement...");
 }
@@ -97,12 +104,19 @@ void loop()
 
 void releaseLimit()
 {
+  release.active_interrupt_pin = release_interrupt_pins[0];
   release.limitDetected();
 }
 
-void rotationLimit()
+void leftLimit()
 {
-  Serial.println("Rotation limit hit");
+  rotation.active_interrupt_pin = rotation_interrupt_pins[0];
+  rotation.limitDetected();
+}
+
+void rightLimit()
+{
+  rotation.active_interrupt_pin = rotation_interrupt_pins[1];
   rotation.limitDetected();
 }
 
@@ -166,7 +180,7 @@ void decodeCommand()
 
   switch (motor)
   {
-  case 1: release.moveRun(movement);            break;
+  case 1: release.releaseBall(movement);        break;
   case 2: rotation.moveRun(movement);           break;  
   case 3: incline.moveToPercentage(movement);   break;
   case 4: elevation.moveToPercentage(movement); break;
@@ -179,7 +193,7 @@ void decodeCommand()
 
     switch (motor_calibration)
     {
-    case 1: release.findRange(); break;   
+    case 1: release.moveRun(-release_nsteps); break;   
     case 2: rotation.findRange(); break;
     case 3: incline.findRange(); break;
     case 4: elevation.findRange(); break;
