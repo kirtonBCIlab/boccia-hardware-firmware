@@ -2,7 +2,7 @@
 #include <AccelStepper.h>
 #include <Functions.h>
   
-  BocciaStepper::BocciaStepper(int pin_step, int pin_dir, int interrupt_pins[2], int nsteps, int nsteps_return, int default_speed, int default_accel, bool use_limits):
+  BocciaStepper::BocciaStepper(int pin_step, int pin_dir, int interrupt_pins[2], int nsteps, int nsteps_return, int default_speed, int default_accel, int gear_ratio, bool use_limits):
   AccelStepper(AccelStepper::DRIVER, pin_step, pin_dir)
   {
     _pin_step = pin_step;
@@ -12,7 +12,9 @@
     
     _default_speed = default_speed;
     _default_accel = default_accel;
+    _gear_ratio = gear_ratio;
     _use_limits = use_limits;
+    
     
     for (int i=0; i<2; i++) { _interrupt_pins[i] = interrupt_pins[i]; }
   }
@@ -29,11 +31,21 @@
     setCurrentPosition(0);
   }
 
-  void BocciaStepper::moveDegrees(long relative)
+  void BocciaStepper::moveDegrees(long relative, int gear_ratio)
     {
-      // Set default values before moving
-
+      //Convert Degrees to steps
+      if (gear_ratio = 1)
+      {
       relative = (relative/1.8)*3;
+      }
+      else
+      {
+      relative = (relative/1.8);
+      }
+
+
+
+      // Set default values before moving
       setSpeed(_default_speed);
       Serial.println("Speed: " + String(_default_speed));
       setAcceleration(_default_accel);
@@ -83,10 +95,10 @@
       } while (distanceToGo() != 0);  
     }
 
-  void BocciaStepper::releaseBall(long relative)
+  void BocciaStepper::releaseBall(long relative, int gear_ratio)
   {
-    moveDegrees(relative);
-    moveDegrees(-2*relative);
+    moveDegrees(relative, gear_ratio);
+    moveDegrees(-2*relative, gear_ratio);
   }
 
   void BocciaStepper::setLimits()
@@ -136,8 +148,8 @@
 
   void BocciaStepper::findRange()
   {
-    moveDegrees(_nsteps);
-    moveDegrees(-_nsteps);
+    moveDegrees(_nsteps, _gear_ratio);
+    moveDegrees(-_nsteps, _gear_ratio);
   }
 
   void BocciaStepper::groundInputs()

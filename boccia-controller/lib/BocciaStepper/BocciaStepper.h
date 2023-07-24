@@ -13,6 +13,7 @@ class BocciaStepper:public AccelStepper
     int _nsteps_return;           // Number of steps to return if limitDetected()
     int _default_speed;           // Default speed [steps/sec]
     int _default_accel;           // Default acceleration [steps/(sec^2)]
+    int _gear_ratio;              // Gear ratio as a result of the motor present (3:1)
     bool _use_limits;              // Bool to know whether to use limits [enable for motors with two optical sensors]
 
     bool _limit_flag = 0;         // Limit flag (raised when an interrupt has activated)
@@ -32,6 +33,7 @@ class BocciaStepper:public AccelStepper
     /// @param nsteps_return  Number of steps to return motor once it has it a limit
     /// @param default_speed  Default speed [steps/sec]
     /// @param default_accel  Default acceleration [steps/(sec^2)]
+    /// @param gear_ratio     Gear ratio as a result of the motor present (3:1)
     BocciaStepper(int pin_step,
                   int pin_dir,
                   int interrupt_pins[2],
@@ -39,6 +41,7 @@ class BocciaStepper:public AccelStepper
                   int nsteps_return=5,
                   int default_speed=200,
                   int default_accel=10,
+                  int gear_ratio = 0,
                   bool use_limits=true);
 
     /// @brief Initializes the pins associated with the motor to input or output
@@ -52,7 +55,7 @@ class BocciaStepper:public AccelStepper
     /// if the limits are not set, they will get set based on the optical sensor.
     /// If the limits are already set, and the sensor is triggered, the limits
     /// are updated.
-    void moveDegrees(long relative);
+    void moveDegrees(long relative, int gear_ratio);
 
     /// @brief ISR activated when one of the optical sensors is triggered
     void limitDetected();
@@ -69,7 +72,7 @@ class BocciaStepper:public AccelStepper
     ///        to hit sensor of release mechanism. 
     /// @param relative Number of steps that the motor will move to open the 
     ///                 release mechanism
-    void releaseBall(long relative);
+    void releaseBall(long relative, int gear_ratio);
 
     /// @brief Moves motor nsteps as a result of being triggered prior to movement
     void clearSensorWhileStop(int active_interrupt_pin);  
