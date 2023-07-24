@@ -29,9 +29,11 @@
     setCurrentPosition(0);
   }
 
-  void BocciaStepper::moveRun(long relative)
+  void BocciaStepper::moveDegrees(long relative)
     {
       // Set default values before moving
+
+      relative = (relative/1.8)*3;
       setSpeed(_default_speed);
       Serial.println("Speed: " + String(_default_speed));
       setAcceleration(_default_accel);
@@ -83,8 +85,8 @@
 
   void BocciaStepper::releaseBall(long relative)
   {
-    moveRun(relative);
-    moveRun(-2*relative);
+    moveDegrees(relative);
+    moveDegrees(-2*relative);
   }
 
   void BocciaStepper::setLimits()
@@ -134,8 +136,8 @@
 
   void BocciaStepper::findRange()
   {
-    moveRun(_nsteps);
-    moveRun(-_nsteps);
+    moveDegrees(_nsteps);
+    moveDegrees(-_nsteps);
   }
 
   void BocciaStepper::groundInputs()

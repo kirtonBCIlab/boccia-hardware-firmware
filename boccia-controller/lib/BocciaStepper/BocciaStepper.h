@@ -52,10 +52,11 @@ class BocciaStepper:public AccelStepper
     /// if the limits are not set, they will get set based on the optical sensor.
     /// If the limits are already set, and the sensor is triggered, the limits
     /// are updated.
-    void moveRun(long relative);
+    void moveDegrees(long relative);
 
     /// @brief ISR activated when one of the optical sensors is triggered
     void limitDetected();
+
 
     /// @brief Moves the motor a full rotation clockwise, and then
     /// moves the motor a full rotation anticlocwise. 
@@ -69,7 +70,11 @@ class BocciaStepper:public AccelStepper
     /// @param relative Number of steps that the motor will move to open the 
     ///                 release mechanism
     void releaseBall(long relative);
+
+    /// @brief Moves motor nsteps as a result of being triggered prior to movement
+    void clearSensorWhileStop(int active_interrupt_pin);  
 };
+
 
 
 #endif

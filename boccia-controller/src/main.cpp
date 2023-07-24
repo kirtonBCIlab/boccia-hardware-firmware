@@ -9,7 +9,7 @@
 // - Release
 int release_pin_step = 5;
 int release_pin_dir = 6;
-int release_interrupt_pins[2] = {2,0};
+int release_interrupt_pins[2] = {0,2};
 int release_nsteps = 200;
 int release_nsteps_return = 30;
 int release_default_speed = 400;
@@ -63,12 +63,19 @@ void setup() {
   // rotation.initializePins();
   // incline.initializePins();
   // elevation.initializePins();
+
+  //clear motors from sensors if needed
+  release.clearSensorWhileStop(release_interrupt_pins[1]);
+  rotation.clearSensorWhileStop(rotation_interrupt_pins[0]);
+  rotation.clearSensorWhileStop(rotation_interrupt_pins[1]);
   
+
   // Interrupts
-  attachInterrupt(digitalPinToInterrupt(release_interrupt_pins[0]), releaseLimit, RISING);
+  attachInterrupt(digitalPinToInterrupt(release_interrupt_pins[1]), releaseLimit, RISING);
   attachInterrupt(digitalPinToInterrupt(rotation_interrupt_pins[0]), leftLimit, RISING);
   attachInterrupt(digitalPinToInterrupt(rotation_interrupt_pins[1]), rightLimit, RISING);
   
+
 
   // Calibration steps - Enable sections as needed
   Serial.println("Calibration");
@@ -106,18 +113,20 @@ void releaseLimit()
 {
   release.active_interrupt_pin = release_interrupt_pins[0];
   release.limitDetected();
+  
 }
 
 void leftLimit()
 {
-  rotation.active_interrupt_pin = rotation_interrupt_pins[0];
   rotation.limitDetected();
+  rotation.active_interrupt_pin = rotation_interrupt_pins[0];
+
 }
 
 void rightLimit()
 {
-  rotation.active_interrupt_pin = rotation_interrupt_pins[1];
   rotation.limitDetected();
+  rotation.active_interrupt_pin = rotation_interrupt_pins[1];
 }
 
 /// @brief The input command must be a positive or negative number with 
@@ -181,7 +190,7 @@ void decodeCommand()
   switch (motor)
   {
   case 1: release.releaseBall(movement);        break;
-  case 2: rotation.moveRun(movement);           break;  
+  case 2: rotation.moveDegrees(movement);           break;  
   case 3: incline.moveToPercentage(movement);   break;
   case 4: elevation.moveToPercentage(movement); break;
 
@@ -193,7 +202,7 @@ void decodeCommand()
 
     switch (motor_calibration)
     {
-    case 1: release.moveRun(-release_nsteps); break;   
+    case 1: release.moveDegrees(-release_nsteps); break;   
     case 2: rotation.findRange(); break;
     case 3: incline.findRange(); break;
     case 4: elevation.findRange(); break;
