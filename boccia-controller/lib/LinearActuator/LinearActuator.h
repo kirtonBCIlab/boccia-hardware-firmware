@@ -74,6 +74,10 @@ class LinearActuator
         /// Returns the value of the potentiometer once the limit has been reached.
         float limitDetected();
 
+        /// @brief Presets range values for potentiometer.
+        ///        These values need to be measured before hand.
+        void presetRange();
+
 };
 
 #endif
