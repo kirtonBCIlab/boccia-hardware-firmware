@@ -70,9 +70,8 @@ class BocciaStepper:public AccelStepper
     ///                 release mechanism
     void releaseBall(long relative);
 
-    /// @brief Clears the motor off the sensor if the motor is hitting the sensor
-    ///        before the calibration step
-    /// @param active_interrupt_pin Number of pin that triggered the interrupt routine
+    /// @brief Moves object off of sensor if interrupt is active 
+    /// @param active_interrupt_pin pin which is active
     void clearSensorWhileStop(int active_interrupt_pin);
 };
 
