@@ -71,11 +71,12 @@ class BocciaStepper:public AccelStepper
     /// @brief Moves a number of steps and returns in the opposite direction 
     ///        to hit sensor of release mechanism. 
     /// @param relative Number of steps that the motor will move to open the 
-    ///                 release mechanism
-    void releaseBall(long relative, int gear_ratio);
+    ///                 release mechanism.
+    void releaseBall(long relative);
 
-    /// @brief Moves motor nsteps as a result of being triggered prior to movement
-    void clearSensorWhileStop(int active_interrupt_pin);  
+    /// @brief Moves the motor off the sensor before calibration. 
+    /// @param pin pin to check if the sensor is activated.
+    void clearSensorWhileStop(int pin);
 };
 
 

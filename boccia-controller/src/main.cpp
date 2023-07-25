@@ -66,18 +66,15 @@ void setup() {
   // incline.initializePins();
   // elevation.initializePins();
 
-  //clear motors from sensors if needed
-  release.clearSensorWhileStop(release_interrupt_pins[1]);
+  // Check that sensors are cleared
+  release.clearSensorWhileStop(release_interrupt_pins[0]);
   rotation.clearSensorWhileStop(rotation_interrupt_pins[0]);
   rotation.clearSensorWhileStop(rotation_interrupt_pins[1]);
   
-
   // Interrupts
   attachInterrupt(digitalPinToInterrupt(release_interrupt_pins[1]), releaseLimit, RISING);
   attachInterrupt(digitalPinToInterrupt(rotation_interrupt_pins[0]), leftLimit, RISING);
   attachInterrupt(digitalPinToInterrupt(rotation_interrupt_pins[1]), rightLimit, RISING);
-  
-
 
   // Calibration steps - Enable sections as needed
   Serial.println("Calibration");
@@ -226,6 +223,6 @@ void decodeCommand()
     Serial.println("- Movement: " + String(movement));
 
     Serial.println("\nSelect motor and movement...");
-  }
+  } 
 
 }
