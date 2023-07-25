@@ -219,6 +219,6 @@ void decodeCommand()
     Serial.println("- Movement: " + String(movement));
 
     Serial.println("\nSelect motor and movement...");
-  }
+  } 
 
 }
