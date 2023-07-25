@@ -33,7 +33,6 @@
     {
       // Set default values before moving
       setSpeed(_default_speed);
-      Serial.println("Speed: " + String(_default_speed));
       setAcceleration(_default_accel);
     
       if (_use_limits && (limits[0]!=0 && limits[1]!=0))
@@ -51,6 +50,7 @@
         }
       } 
       
+
       // Set movement and get there
       move(relative);
       do
@@ -142,4 +142,15 @@
   {
     digitalWrite(_pin_step, 0);
     digitalWrite(_pin_dir, 0);
+  }
+
+  void BocciaStepper::clearSensorWhileStop(int pin)
+  {
+    if (digitalReadDebounce(pin,5,1))
+    {
+      if (pin == _interrupt_pins[0]) { moveRun(-_nsteps_return); }
+      else if (pin == _interrupt_pins[1]) { moveRun(_nsteps_return); }
+
+      waitMillis(100);
+    }
   }
