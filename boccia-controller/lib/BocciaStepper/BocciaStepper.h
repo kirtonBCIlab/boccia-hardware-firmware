@@ -13,8 +13,8 @@ class BocciaStepper:public AccelStepper
     int _nsteps_return;           // Number of steps to return if limitDetected()
     int _default_speed;           // Default speed [steps/sec]
     int _default_accel;           // Default acceleration [steps/(sec^2)]
-    int _gear_ratio;              // Gear ratio as a result of the motor present (3:1)
-    bool _use_limits;              // Bool to know whether to use limits [enable for motors with two optical sensors]
+    bool _use_limits;             // Bool to know whether to use limits [enable for motors with two optical sensors]
+    int _gear_ratio;              // Gear ratio used in hardware mechanism [output:intput]
 
     bool _limit_flag = 0;         // Limit flag (raised when an interrupt has activated)
 
@@ -33,7 +33,7 @@ class BocciaStepper:public AccelStepper
     /// @param nsteps_return  Number of steps to return motor once it has it a limit
     /// @param default_speed  Default speed [steps/sec]
     /// @param default_accel  Default acceleration [steps/(sec^2)]
-    /// @param gear_ratio     Gear ratio as a result of the motor present (3:1)
+    /// @param gear_ratio     Gear ratio used in hardware mechanism [output:intput]
     BocciaStepper(int pin_step,
                   int pin_dir,
                   int interrupt_pins[2],
@@ -41,8 +41,8 @@ class BocciaStepper:public AccelStepper
                   int nsteps_return=5,
                   int default_speed=200,
                   int default_accel=10,
-                  int gear_ratio = 0,
-                  bool use_limits=true);
+                  bool use_limits=true,
+                  int gear_ratio=1);
 
     /// @brief Initializes the pins associated with the motor to input or output
     /// accordingly.
@@ -55,11 +55,10 @@ class BocciaStepper:public AccelStepper
     /// if the limits are not set, they will get set based on the optical sensor.
     /// If the limits are already set, and the sensor is triggered, the limits
     /// are updated.
-    void moveDegrees(long relative, int gear_ratio);
+    void moveRun(long relative);
 
     /// @brief ISR activated when one of the optical sensors is triggered
     void limitDetected();
-
 
     /// @brief Moves the motor a full rotation clockwise, and then
     /// moves the motor a full rotation anticlocwise. 
@@ -70,13 +69,18 @@ class BocciaStepper:public AccelStepper
 
     /// @brief Moves a number of steps and returns in the opposite direction 
     ///        to hit sensor of release mechanism. 
-    /// @param relative Number of steps that the motor will move to open the 
-    ///                 release mechanism.
-    void releaseBall(long relative);
+    /// @param degrees Number of degrees that the motor will move to open the 
+    ///                release mechanism.
+    void releaseBall(long degrees);
 
     /// @brief Moves the motor off the sensor before calibration. 
     /// @param pin pin to check if the sensor is activated.
     void clearSensorWhileStop(int pin);
+
+    /// @brief Moves the stepper the desired amount of degrees.
+    ///        Takes into to consideration nsteps and gear_ratio.
+    /// @param degrees Number of degrees that the stepper motor will move.
+    void moveDegrees(int degrees);
 };
 
 
