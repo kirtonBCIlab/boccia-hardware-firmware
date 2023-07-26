@@ -167,8 +167,6 @@
 
   void BocciaStepper::moveDegrees(int degrees)
   {
-    int steps = int(floor(float(degrees)*float(_nsteps)/360));
-    // Serial.println("Deg*steps"+ String(a));
-    Serial.println("nsteps: " + String(_nsteps));
-    Serial.println(String(degrees) + " deg are " + String(steps) + " steps");
+    int steps = int(floor(float(_gear_ratio)*float(degrees)*float(_nsteps)/360));
+    moveRun(steps);
   }

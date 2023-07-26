@@ -9,7 +9,7 @@
 // - Release
 int release_pin_step = 5;
 int release_pin_dir = 6;
-int release_interrupt_pins[2] = {0,2};
+int release_interrupt_pins[2] = {2,0};
 int release_nsteps = 200;
 int release_nsteps_return = 30;
 int release_default_speed = 400;
