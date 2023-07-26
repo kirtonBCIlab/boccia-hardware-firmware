@@ -11,11 +11,19 @@ int release_pin_step = 5;
 int release_pin_dir = 6;
 int release_interrupt_pins[2] = {2,0};
 int release_nsteps = 200;
-int release_nsteps_return = 30;
+int release_nsteps_return = 10;
 int release_default_speed = 400;
 int release_default_accel = 15;
 bool release_use_limits = false;
-BocciaStepper release(release_pin_step, release_pin_dir, release_interrupt_pins, release_nsteps, release_nsteps_return, release_default_speed, release_default_accel, release_use_limits);
+BocciaStepper release(
+  release_pin_step,
+  release_pin_dir,
+  release_interrupt_pins,
+  release_nsteps,
+  release_nsteps_return,
+  release_default_speed,
+  release_default_accel,
+  release_use_limits);
 
 // - Rotation
 int rotation_pin_step = 12;
@@ -26,7 +34,17 @@ int rotation_nsteps_return = 80;
 int rotation_default_speed = 600;
 int rotation_default_accel = 30;
 bool rotation_use_limits = true;
-BocciaStepper rotation(rotation_pin_step, rotation_pin_dir, rotation_interrupt_pins, rotation_nsteps, rotation_nsteps_return, rotation_default_speed, rotation_default_accel, rotation_use_limits);
+int rotation_gear_ratio = 3;
+BocciaStepper rotation(
+  rotation_pin_step,
+  rotation_pin_dir,
+  rotation_interrupt_pins,
+  rotation_nsteps,
+  rotation_nsteps_return,
+  rotation_default_speed,
+  rotation_default_accel,
+  rotation_use_limits,
+  rotation_gear_ratio);
  
 // - Incline actuator
 int incline_pin1 = 8;
@@ -36,7 +54,14 @@ int incline_speed_threshold = 15;
 int incline_speed_factor = 50;
 int incline_pin_sensor = 7;       // If pin sensor is enabled (i.e., !0), the calibration depends on the pin sensor trigger
 int incline_pin_threshold = 600;  
-LinearActuator incline(incline_pin1, incline_pin2, incline_pin_pot, incline_speed_threshold, incline_speed_factor, incline_pin_sensor, incline_pin_threshold);
+LinearActuator incline(
+  incline_pin1,
+  incline_pin2,
+  incline_pin_pot,
+  incline_speed_threshold,
+  incline_speed_factor,
+  incline_pin_sensor,
+  incline_pin_threshold);
 
 // - Elevator actuator
 int elevator_pin1 = 9;
@@ -44,7 +69,12 @@ int elevator_pin2 = 10;
 int elevator_pin_pot = 3;
 int elevator_speed_threshold = 15;
 int elevator_speed_factor = 50;
-LinearActuator elevation(elevator_pin1, elevator_pin2, elevator_pin_pot, elevator_speed_threshold, elevator_speed_factor);
+LinearActuator elevation(
+  elevator_pin1,
+  elevator_pin2,
+  elevator_pin_pot,
+  elevator_speed_threshold,
+  elevator_speed_factor);
 
 // Prototype functions
 void releaseLimit();
@@ -110,18 +140,19 @@ void releaseLimit()
 {
   release.active_interrupt_pin = release_interrupt_pins[0];
   release.limitDetected();
+  
 }
 
 void leftLimit()
 {
-  rotation.active_interrupt_pin = rotation_interrupt_pins[0];
   rotation.limitDetected();
+  rotation.active_interrupt_pin = rotation_interrupt_pins[0];
 }
 
 void rightLimit()
 {
-  rotation.active_interrupt_pin = rotation_interrupt_pins[1];
   rotation.limitDetected();
+  rotation.active_interrupt_pin = rotation_interrupt_pins[1];
 }
 
 /// @brief The input command must be a positive or negative number with 
@@ -185,7 +216,7 @@ void decodeCommand()
   switch (motor)
   {
   case 1: release.releaseBall(movement);        break;
-  case 2: rotation.moveRun(movement);           break;  
+  case 2: rotation.moveDegrees(movement);       break;  
   case 3: incline.moveToPercentage(movement);   break;
   case 4: elevation.moveToPercentage(movement); break;
 
@@ -197,7 +228,7 @@ void decodeCommand()
 
     switch (motor_calibration)
     {
-    case 1: release.moveRun(-release_nsteps); break;   
+    case 1: release.moveDegrees(-release_nsteps); break;   
     case 2: rotation.findRange(); break;
     case 3: incline.findRange(); break;
     case 4: elevation.findRange(); break;
