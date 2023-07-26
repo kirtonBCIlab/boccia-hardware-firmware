@@ -2,7 +2,16 @@
 #include <AccelStepper.h>
 #include <Functions.h>
   
-  BocciaStepper::BocciaStepper(int pin_step, int pin_dir, int interrupt_pins[2], int nsteps, int nsteps_return, int default_speed, int default_accel, bool use_limits):
+  BocciaStepper::BocciaStepper(
+    int pin_step,
+    int pin_dir,
+    int interrupt_pins[2],
+    int nsteps,
+    int nsteps_return,
+    int default_speed,
+    int default_accel,
+    bool use_limits,
+    int gear_ratio):
   AccelStepper(AccelStepper::DRIVER, pin_step, pin_dir)
   {
     _pin_step = pin_step;
@@ -12,6 +21,7 @@
     
     _default_speed = default_speed;
     _default_accel = default_accel;
+    _gear_ratio = gear_ratio;
     _use_limits = use_limits;
     
     for (int i=0; i<2; i++) { _interrupt_pins[i] = interrupt_pins[i]; }
@@ -33,9 +43,9 @@
     {
       // Set default values before moving
       setSpeed(_default_speed);
-      Serial.println("Speed: " + String(_default_speed));
       setAcceleration(_default_accel);
     
+      // If the requested value exceeds set limits, readjust
       if (_use_limits && (limits[0]!=0 && limits[1]!=0))
       {
       long end_position = relative + currentPosition(); 
@@ -63,16 +73,20 @@
           if (digitalReadDebounce(active_interrupt_pin,5,1))
           {          
             // Stop motor
+            Serial.println("Stopping");
             setAcceleration(_default_accel * 10);
             stop();
             runToPosition();
             
             // Return motor _nsteps_return
-            int step_dir = (relative>0) - (relative<0); // Current direction
+            int step_dir = signum(float(relative), 0.0);
+            // int step_dir = (relative>0) - (relative<0); // Current direction
             setAcceleration(_default_accel);
-            move(_nsteps_return*-step_dir);
+            Serial.println("Return" + String(-step_dir*_nsteps_return));
+            move(-step_dir*_nsteps_return);
             runToPosition();
             
+            // Reset limits
             if (_use_limits) { setLimits(); }
           }
           _limit_flag = 0; // Restart flag
@@ -81,10 +95,10 @@
       } while (distanceToGo() != 0);  
     }
 
-  void BocciaStepper::releaseBall(long relative)
+  void BocciaStepper::releaseBall(long degrees)
   {
-    moveRun(relative);
-    moveRun(-2*relative);
+    moveDegrees(degrees);
+    moveDegrees(-2*degrees);
   }
 
   void BocciaStepper::setLimits()
@@ -134,12 +148,29 @@
 
   void BocciaStepper::findRange()
   {
-    moveRun(_nsteps);
-    moveRun(-_nsteps);
+    moveDegrees(_nsteps);
+    moveDegrees(-_nsteps);
   }
 
   void BocciaStepper::groundInputs()
   {
     digitalWrite(_pin_step, 0);
     digitalWrite(_pin_dir, 0);
+  }
+
+  void BocciaStepper::clearSensorWhileStop(int pin)
+  {
+    if (digitalReadDebounce(pin,5,1))
+    {
+      if (pin == _interrupt_pins[0]) { moveRun(-_nsteps_return); }
+      else if (pin == _interrupt_pins[1]) { moveRun(_nsteps_return); }
+
+      waitMillis(100);
+    }
+  }
+
+  void BocciaStepper::moveDegrees(int degrees)
+  {
+    int steps = int(floor(float(_gear_ratio)*float(degrees)*float(_nsteps)/360));
+    moveRun(steps);
   }
