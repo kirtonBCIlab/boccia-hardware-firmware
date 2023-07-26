@@ -11,7 +11,7 @@ int release_pin_step = 5;
 int release_pin_dir = 6;
 int release_interrupt_pins[2] = {2,0};
 int release_nsteps = 200;
-int release_nsteps_return = 30;
+int release_nsteps_return = 10;
 int release_default_speed = 400;
 int release_default_accel = 15;
 bool release_use_limits = false;
@@ -100,7 +100,7 @@ void setup() {
   rotation.clearSensorWhileStop(rotation_interrupt_pins[1]);
   
   // Interrupts
-  attachInterrupt(digitalPinToInterrupt(release_interrupt_pins[1]), releaseLimit, RISING);
+  attachInterrupt(digitalPinToInterrupt(release_interrupt_pins[0]), releaseLimit, RISING);
   attachInterrupt(digitalPinToInterrupt(rotation_interrupt_pins[0]), leftLimit, RISING);
   attachInterrupt(digitalPinToInterrupt(rotation_interrupt_pins[1]), rightLimit, RISING);
 
@@ -147,7 +147,6 @@ void leftLimit()
 {
   rotation.limitDetected();
   rotation.active_interrupt_pin = rotation_interrupt_pins[0];
-
 }
 
 void rightLimit()

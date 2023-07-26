@@ -45,6 +45,7 @@
       setSpeed(_default_speed);
       setAcceleration(_default_accel);
     
+      // If the requested value exceeds set limits, readjust
       if (_use_limits && (limits[0]!=0 && limits[1]!=0))
       {
       long end_position = relative + currentPosition(); 
@@ -60,7 +61,6 @@
         }
       } 
       
-
       // Set movement and get there
       move(relative);
       do
@@ -73,16 +73,20 @@
           if (digitalReadDebounce(active_interrupt_pin,5,1))
           {          
             // Stop motor
+            Serial.println("Stopping");
             setAcceleration(_default_accel * 10);
             stop();
             runToPosition();
             
             // Return motor _nsteps_return
-            int step_dir = (relative>0) - (relative<0); // Current direction
+            int step_dir = signum(float(relative), 0.0);
+            // int step_dir = (relative>0) - (relative<0); // Current direction
             setAcceleration(_default_accel);
-            move(_nsteps_return*-step_dir);
+            Serial.println("Return" + String(-step_dir*_nsteps_return));
+            move(-step_dir*_nsteps_return);
             runToPosition();
             
+            // Reset limits
             if (_use_limits) { setLimits(); }
           }
           _limit_flag = 0; // Restart flag
