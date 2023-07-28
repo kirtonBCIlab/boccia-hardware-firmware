@@ -11,7 +11,7 @@ int release_pin_step = 5;
 int release_pin_dir = 6;
 int release_interrupt_pins[2] = {2,0};
 int release_nsteps = 200;
-int release_nsteps_return = 10;
+int release_nsteps_return = 5;
 int release_default_speed = 400;
 int release_default_accel = 15;
 bool release_use_limits = false;
@@ -256,7 +256,7 @@ void decodeCommand()
 
       switch (motor_calibration)
       {
-        case 1: release.moveDegrees(-release_nsteps); break;   
+        case 1: release.moveDegrees(release_nsteps); break;   
         case 2: rotation.findRange(); break;
         case 3: incline.findRange(); break;
         case 4: elevation.findRange(); break;
