@@ -52,7 +52,8 @@ int incline_pin2 = 7;
 int incline_pin_pot = 4;          // Analog pin for potentiometer
 int incline_speed_threshold = 15;
 int incline_speed_factor = 50;
-int incline_pin_sensor = 7;       // If pin sensor is enabled (i.e., !0), the calibration depends on the pin sensor trigger
+int incline_pin_sensor = 7;       // If pin sensor is enabled (i.e., !0),
+                                  // the calibration depends on the pin sensor trigger
 int incline_pin_threshold = 600;  
 LinearActuator incline(
   incline_pin1,
@@ -69,6 +70,8 @@ int elevator_pin2 = 10;
 int elevator_pin_pot = 3;
 int elevator_speed_threshold = 15;
 int elevator_speed_factor = 50;
+int elevator_manual_limits[2] = {20, 360};  // ADC values found manually
+                                            // Use them with presetRange()
 LinearActuator elevation(
   elevator_pin1,
   elevator_pin2,
@@ -122,9 +125,11 @@ void setup() {
   // incline.findRange();
   // Serial.println("Incline - Calibration ended");
 
-  //  - Elevator actuator
+  // - Elevator actuator
+  // -- Select either findRange() or presetRange()
   // Serial.println("Elevator - Calibration started");
   // elevation.findRange();
+  // elevation.presetRange(elevator_manual_limits[1], elevator_manual_limits[2]);
   // Serial.println("Elevator - Calibration ended");
 
   Serial.println("\nSelect motor and movement...");
@@ -140,7 +145,6 @@ void releaseLimit()
 {
   release.active_interrupt_pin = release_interrupt_pins[0];
   release.limitDetected();
-  
 }
 
 void leftLimit()
@@ -168,78 +172,101 @@ void decodeCommand()
 {
   long command = Serial.parseInt();
 
-  // Empty serial port
-  for (int n=0; n<Serial.available(); n++) { Serial.read(); }
-
   // Determine which motor to move
   String motor_names[4] = {"release", "rotation", "incline", "elevation"};
   int motor_select = 1000;  // Units to select motor and determine movement
-  // int gross_motor_select = 100000;  // Units to select gross movement
+  // int gross_motor_select = 10000;  // Units to select gross movement
   int motor = abs(floor(command/motor_select)); 
+  Serial.println("Case: " + String(motor));
   int movement = command % motor_select;
   
   
   String motor_name = motor_names[motor-1];
-  Serial.println("Selected motor " + motor_name + " - " + String(motor));
+  // Serial.println("Selected motor " + motor_name + " - " + String(motor));
 
+  // if (command<100)
+  // {
+  //   int gross_rotation = floor(command / 10);
+  //   int gross_elevation = command % 10;
+
+  //   switch (gross_rotation)
+  //   {
+  //     case 1: Serial.println("rotation 1"); break;
+  //     case 2: Serial.println("rotation 2"); break;
+  //     default: Serial.println("incorrect rotation"); break;
+  //   }
+
+  //   switch (gross_elevation)
+  //   {
+  //     case 1: Serial.println("elevation 1"); break;
+  //     case 2: Serial.println("elevation 2"); break;   
+  //     default: Serial.println("incorrect elevation"); break;
+  //   }
+  // }
   // Check if the command includes gross movement
   // if (command >= gross_motor_select) {
+  //       Serial.println("Here");
   //       int gross_move = abs(floor(command/gross_motor_select));
   //       int gross_rotation = gross_move % 10;
-  //       int gross_elevation = gross_move / 10;
+  //       int gross_elevation = gross_move / 1000;
+  //       Serial.println("Gross move: " + String(gross_move));
+  //       Serial.println("Gross elevation: " + String(gross_elevation));
 
   //       // Handle rotation(assuming 1.8 degree per step)
   //       switch(gross_rotation) {
-  //           case 1: rotation.moveRun(-22); break;
-  //           case 2: rotation.moveRun(-11); break;
-  //           case 3: rotation.moveRun(0); break;
-  //           case 4: rotation.moveRun(11); break;
-  //           case 5: rotation.moveRun(22); break;
-  //           default: Serial.println("Invalid gross rotation command"); break;
+  //         case 1: Serial.println("Rotation 1"); break;
+  //         case 2: Serial.println("Rotation 2"); break;
+  //         // case 1: rotation.moveRun(-22); break;
+  //         // case 2: rotation.moveRun(-11); break;
+  //         // case 3: rotation.moveRun(0); break;
+  //         // case 4: rotation.moveRun(11); break;
+  //         // case 5: rotation.moveRun(22); break;
+  //         default: Serial.println("Invalid gross rotation command"); break;
   //       }
 
   //       // Handle elevation
   //       switch(gross_elevation) {
-  //           case 1: elevation.moveToPercentage(20); break;
-  //           case 2: elevation.moveToPercentage(40); break;
-  //           case 3: elevation.moveToPercentage(60); break;
-  //           case 4: elevation.moveToPercentage(80); break;
-  //           case 5: elevation.moveToPercentage(100); break;
+  //         case 1: Serial.println("Elevation 1"); break;
+  //         case 2: Serial.println("Elevation 2"); break;
+  //           // case 1: elevation.moveToPercentage(20); break;
+  //           // case 2: elevation.moveToPercentage(40); break;
+  //           // case 3: elevation.moveToPercentage(60); break;
+  //           // case 4: elevation.moveToPercentage(80); break;
+  //           // case 5: elevation.moveToPercentage(100); break;
   //           default: Serial.println("Invalid gross elevation command"); break;
   //       }
 
   //       // use motor and movement for the regular command
   //       motor = command % gross_motor_select / motor_select;
   //       movement = command % motor_select;
-  //   }
+    // }
 
   switch (motor)
   {
-  case 1: release.releaseBall(movement);        break;
-  case 2: rotation.moveDegrees(movement);       break;  
-  case 3: incline.moveToPercentage(movement);   break;
-  case 4: elevation.moveToPercentage(movement); break;
+    case 1: release.releaseBall(movement);        break;
+    case 2: rotation.moveDegrees(movement);       break;  
+    case 3: incline.moveToPercentage(movement);   break;
+    case 4: elevation.moveToPercentageRange(movement); break;
 
-  case 9:
-  {
-    int motor_calibration = abs(floor(movement/100));
-    motor_name = motor_names[motor_calibration-1];
-    Serial.println("Recalibrating: " + String(motor_name));
-
-    switch (motor_calibration)
+    case 9:
     {
-    case 1: release.moveDegrees(-release_nsteps); break;   
-    case 2: rotation.findRange(); break;
-    case 3: incline.findRange(); break;
-    case 4: elevation.findRange(); break;
-    default: Serial.println("Incorrect command to calibrate"); break;
-    }
-    break;
-  }    
+      int motor_calibration = abs(floor(movement/100));
+      motor_name = motor_names[motor_calibration-1];
+      Serial.println("Recalibrating: " + String(motor_name));
+
+      switch (motor_calibration)
+      {
+        case 1: release.moveDegrees(-release_nsteps); break;   
+        case 2: rotation.findRange(); break;
+        case 3: incline.findRange(); break;
+        case 4: elevation.findRange(); break;
+        case 5: elevation.presetRange(elevator_manual_limits[1], elevator_manual_limits[2]); break;
+        default: Serial.println("Incorrect command to calibrate");
+      }
+    } break;   
 
   default:
     Serial.println("Incorrect command: " + String(command));
-    break;
   }
 
   if (motor != 9)
