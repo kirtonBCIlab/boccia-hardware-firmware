@@ -79,8 +79,7 @@
             runToPosition();
             
             // Return motor _nsteps_return
-            int step_dir = signum(float(relative), 0.0);
-            // int step_dir = (relative>0) - (relative<0); // Current direction
+            int step_dir = signum(float(relative), 0.0);  // Current movement direction
             setAcceleration(_default_accel);
             Serial.println("Return" + String(-step_dir*_nsteps_return));
             move(-step_dir*_nsteps_return);
