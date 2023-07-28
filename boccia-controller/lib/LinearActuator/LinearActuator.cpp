@@ -46,7 +46,7 @@ void LinearActuator::driveActuator(int direction)
     }
 }
 
-float LinearActuator::resistanceToPercentage(float resistance)
+float LinearActuator::ADCToPercentage(float resistance)
 {
     int range[2] = {0, 100};        // Range of motion for normalization [%]
 
@@ -57,7 +57,7 @@ float LinearActuator::resistanceToPercentage(float resistance)
     return percentage;
 }
 
-float LinearActuator::percentageToResistance(float percentage)
+float LinearActuator::percentageToADC(float percentage)
 {
     int range[2] = {0, 100};        // Range of motion for normalization [%]
 
@@ -70,30 +70,26 @@ float LinearActuator::percentageToResistance(float percentage)
 
 float LinearActuator::moveToLimit(int direction)
 {
-    _pwm_speed = 255;   // Move to limit with full speed
-    float prev_reading = 0.0;
-    float curr_reading = 0.0;
-    bool sensor_pressed;
+    _pwm_speed = 255;           // Move to limit with full speed
+    float prev_reading = 0.0;   // Previous reading ot the pot value
+    float curr_reading = 0.0;   // Current reading of the po value
+    bool sensor_pressed;        // Boolean to know whether the pressure se
+    int wait_time = 400;        // Time to wait for the pot voltage to stabilize
 
     // Keep moving until the reading is stable for X msec or sensor active
     // If object was created with no sensor, the second part of the while check statement is discarded
     do{
         prev_reading = curr_reading;
         driveActuator(direction);
-        waitMillis(250);   
+        waitMillis(wait_time);   
 
-        for (int i=0; i<10; i++)
-        {
-            curr_reading += analogRead(_pin_pot);
-        }
-        curr_reading = curr_reading / 10;
-        // curr_reading = analogRead(_pin_pot);
+        curr_reading = analogRead(_pin_pot);
         Serial.println("Pot val: " + String(curr_reading));
 
         // If sensor exists, check when it's pressed, stop, and return waitMillis
         if (_pin_sensor_flag) 
         {
-            sensor_pressed = analogReadDebounce(_pin_sensor, _analog_threshold, 10, 1);
+            sensor_pressed = analogReadDebounce(_pin_sensor, _analog_threshold, 5, 1);
             if (sensor_pressed) 
             { 
                 driveActuator(0);
@@ -103,9 +99,8 @@ float LinearActuator::moveToLimit(int direction)
                 break;
             }
         } 
-    // }while((curr_reading>20&&curr_reading<360)&&(prev_reading!=curr_reading) && !(_pin_sensor_flag && sensor_pressed));
-    }while((curr_reading>20&&curr_reading<360) && !(_pin_sensor_flag && sensor_pressed));
-
+    }while((prev_reading!=curr_reading) && !(_pin_sensor_flag && sensor_pressed));
+    
     driveActuator(0);   // Stop actuator once you have reached the desired position
     waitMillis(100);
     curr_reading = analogRead(_pin_pot);
@@ -136,82 +131,105 @@ void LinearActuator::findRange()
     if (_limits[0]>_limits[1]) { _dir_correction = -1; }
 }
 
-// TODO: change this so that one can input manually the limits, call this in the calibration of the
-//       main script
-void LinearActuator::presetRange()
+void LinearActuator::presetRange(int lower_limit, int higher_limit)
 {
-    _limits[0] = 20;
-    _limits[1] = 360;
+    _limits[0] = lower_limit;
+    _limits[1] = higher_limit;
+
+    // If limits are backwards, drive the motor the opposite direction
+    if (_limits[0]>_limits[1]) { _dir_correction = -1; }
 }
 
 void LinearActuator::moveToPercentage(int percentage)
 {
     // First, avoid going over the limits
-    if (percentage>100)
-    {   
-        Serial.println("Movement requested over 100%, will limit to 100%");
-        percentage = 100;   
-    }
-    else if (percentage<0)
-    {   
-        Serial.println("Movement requested under 0%, will limit to 0%");
-        percentage = 0;     
-    }
+    moveOverLimit(percentage);
 
+    // Find the direction to move
     float curr_reading = analogRead(_pin_pot);
-    Serial.println("Current: " + String(curr_reading));
-    // TODO change name to percentage to ADCVal
-    float resistance = percentageToResistance(percentage); 
-    Serial.println("Target: " + String(resistance));
+    float resistance = percentageToADC(percentage); 
     int direction = signum(resistance, float(curr_reading))*_dir_correction;
-    Serial.println("Direction: " + String(direction));
 
     // If target is below threshold, reduce speed (i.e., fine movements)
-    int move_percentage = abs(resistanceToPercentage(curr_reading) - percentage);
+    int move_percentage = abs(ADCToPercentage(curr_reading) - percentage);
     if (move_percentage <= _speed_threshold)
         {   _pwm_speed = int(floor(255 * _speed_factor / 100)); }
     else
         {   _pwm_speed = 255;   }
     
-
-    // Check the direction the motor should move to, and drive it
-    // TODO values stop way before the requested resistance values
+    // Move motor in correct direction until resistance is passed
     switch (direction)
     {
         case 1:
             while (curr_reading < resistance)
             {
                 driveActuator(direction);
-                for (int i=0; i<10; i++)
-                {
-                    curr_reading += analogRead(_pin_pot);
-                }
-                curr_reading = curr_reading/10;
-                Serial.println("Curr read:" + String(curr_reading));
+                curr_reading = analogRead(_pin_pot);
             }
             break;
         case -1:
             while (curr_reading > resistance)
             {
                 driveActuator(direction);
-                for (int i=0; i<10; i++)
-                {
-                    curr_reading += analogRead(_pin_pot);
-                }
-                curr_reading = curr_reading/10;
-                Serial.println("Curr read:" + String(curr_reading));
+                curr_reading = analogRead(_pin_pot);
             }
             break;
         case 0:
             break;
-        break;
     }
 
     driveActuator(0); // Stop motor
     waitMillis(100);
+}
+
+void LinearActuator::moveToPercentageRange(int percentage)
+{
+    // First, avoid going over the limits
+    moveOverLimit(percentage);
+
+    // Take initial reading to determine movement direction
+    float curr_reading = analogRead(_pin_pot);
+    Serial.println("Current: " + String(curr_reading));
+    float resistance = percentageToADC(percentage); 
+    Serial.println("Target: " + String(resistance));
+    int direction = signum(resistance, float(curr_reading))*_dir_correction;
+    Serial.println("Direction: " + String(direction));
+
+    // If target is below threshold, reduce speed (i.e., fine movements)
+    int move_percentage = abs(ADCToPercentage(curr_reading) - percentage);
+    if (move_percentage <= _speed_threshold)
+        {   _pwm_speed = int(floor(255 * _speed_factor / 100)); }
+    else
+        {   _pwm_speed = 255;   }
+
+
+    bool position_reached = false;  // Flag to know whether the requested position has been reached
+                                    // 1 = Position reached, stop motor
+                                    // 0 = Position not reached, move motor
+    int num_readings = 4;           // Number of readings to potentiometer to be averaged
+    int buffer = 2;                 // Buffer to the ADC values, this gives a range for error in 
+                                    // the potentiometer measurements
+    Serial.println("About to move motor");
+    // Move motor until position is reached
+    while (!position_reached)
+    {
+        curr_reading = 0;
+        for (int i=0; i<num_readings; i++) { curr_reading = curr_reading + analogRead(_pin_pot); }
+        curr_reading = curr_reading / num_readings;
+        // curr_reading = analogRead(_pin_pot);
+        Serial.println(" Current loop: " + String(curr_reading));
+        if (curr_reading < (resistance-buffer)) { driveActuator(1*_dir_correction);  }
+        else if (curr_reading > (resistance+buffer)) { driveActuator(-1*_dir_correction);  }
+        else 
+        {
+            Serial.println("stop");
+            driveActuator(0);
+            position_reached = true;
+        }
+
+    }
 
     Serial.println("Moved to " + String(analogRead(_pin_pot)));
-
 }
 
 int LinearActuator::getSensorPin()
@@ -228,5 +246,25 @@ float LinearActuator::limitDetected()
     return curr_reading;
 }
 
+void LinearActuator::driveTime(int direction, int time)
+{
+    driveActuator(direction);
+    waitMillis(time);
+    driveActuator(0);
+}
+
+void LinearActuator::moveOverLimit(int percentage)
+{
+    if (percentage>100)
+    {   
+        Serial.println("Movement requested over 100%, will limit to 100%");
+        percentage = 100;   
+    }
+    else if (percentage<0)
+    {   
+        Serial.println("Movement requested under 0%, will limit to 0%");
+        percentage = 0;     
+    }
+}
 
     

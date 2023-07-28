@@ -27,16 +27,20 @@ class LinearActuator
         ///                  1: Extend actuator, 0: hold position, -1: retract actuator
         void driveActuator(int direction);
 
-        /// @brief Converts resistance to a percentage value [0-100%]
-        float resistanceToPercentage(float resistance);
+        /// @brief Converts an ADC value to a percentage value [0-100%]
+        float ADCToPercentage(float resistance);
 
-        /// @brief Converts percentage [0-100%] to a resistance value
-        float percentageToResistance(float percentage);
+        /// @brief Converts percentage [0-100%] to an ADC value [0-1023]
+        float percentageToADC(float percentage);
 
         /// @brief Drives the actuator to the desired limit
         /// @param direction Direction of the limit. 1: Extend, -1: Retract
         /// @return Analog reading of the potentiometer at the selected limit
         float moveToLimit(int direction);
+
+        /// @brief Finds whether the requested movement goes off limits [0-100]
+        /// @param percentage Requested percentage to move
+        void moveOverLimit(int percentage);
 
     public:
         /// @brief Creates a linear actuator object
@@ -58,10 +62,17 @@ class LinearActuator
         int getSensorPin();
 
         /// @brief Moves linear actuator to a percentage of the full range.
-        /// Note: needs findRange() function to be run first.
+        ///        Note: needs ranges set first with findRange() or presetRange() function 
+        ///        to be run first.
         /// @param percentage Percentage of extension or retraction [0-100].
         void moveToPercentage(int percentage);
 
+        /// @brief Moves linear actuator to a percentage of the full range.
+        ///        Note: needs ranges set first with findRange() or presetRange() function 
+        ///        to be run first.
+        /// @param percentage Percentage of extension or retraction [0-100].
+        void moveToPercentageRange(int percentage);
+        
         /// @brief Finds the range of movement of the motor. First, it retracts the
         ///        motor until it stops; then it extends the motor until it stops.
         ///        The range limits are set based on the potentiometer value during
@@ -76,7 +87,12 @@ class LinearActuator
 
         /// @brief Presets range values for potentiometer.
         ///        These values need to be measured before hand.
-        void presetRange();
+        /// @param lower_limit ADC value of the lower limit [0-1023]
+        /// @param higher_limit ADC value of the higher limit [0-1023]
+        void presetRange(int lower_limit, int higher_limit);
+
+        /// @brief Drives actuator set time in the corresponding direction 
+        void driveTime(int direction, int time);
 
 };
 
