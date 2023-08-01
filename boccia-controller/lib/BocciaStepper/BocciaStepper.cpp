@@ -147,8 +147,17 @@
 
   void BocciaStepper::findRange()
   {
-    moveDegrees(_nsteps);
-    moveDegrees(-_nsteps);
+    setCurrentPosition(0);
+
+    moveDegrees(_nsteps);   // Find upper limit
+    moveDegrees(-_nsteps);  // Find lower limit
+
+    // Calculate mid point and move there
+    // TODO: Implement this
+    // float midpoint = floor((limits[1]-limits[0])/2);
+    // moveTo(long(midpoint));
+    // runToPosition();
+    
   }
 
   void BocciaStepper::groundInputs()
