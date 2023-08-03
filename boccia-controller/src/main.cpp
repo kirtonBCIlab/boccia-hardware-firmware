@@ -9,7 +9,7 @@
 // - Release
 int release_pin_step = 5;
 int release_pin_dir = 6;
-int release_interrupt_pins[2] = {2,0};
+int release_interrupt_pins[2] = {0,2};
 int release_nsteps = 800;
 int release_nsteps_return = 15;
 int release_default_speed = 600;
@@ -30,7 +30,7 @@ int rotation_pin_step = 12;
 int rotation_pin_dir = 11;
 int rotation_interrupt_pins[2] = {3,19};
 int rotation_nsteps = 800;
-int rotation_nsteps_return = 80;
+int rotation_nsteps_return = 180;
 int rotation_default_speed = 600;
 int rotation_default_accel = 30;
 bool rotation_use_limits = true;
@@ -98,12 +98,12 @@ void setup() {
   // elevation.initializePins();
 
   // Check that sensors are cleared
-  release.clearSensorWhileStop(release_interrupt_pins[0]);
-  rotation.clearSensorWhileStop(rotation_interrupt_pins[0]);
-  rotation.clearSensorWhileStop(rotation_interrupt_pins[1]);
+  release.clearSensorWhileStopped(release_interrupt_pins[1]);
+  rotation.clearSensorWhileStopped(rotation_interrupt_pins[0]);
+  rotation.clearSensorWhileStopped(rotation_interrupt_pins[1]);
   
   // Interrupts
-  attachInterrupt(digitalPinToInterrupt(release_interrupt_pins[0]), releaseLimit, RISING);
+  attachInterrupt(digitalPinToInterrupt(release_interrupt_pins[1]), releaseLimit, RISING);
   attachInterrupt(digitalPinToInterrupt(rotation_interrupt_pins[0]), leftLimit, RISING);
   attachInterrupt(digitalPinToInterrupt(rotation_interrupt_pins[1]), rightLimit, RISING);
 
