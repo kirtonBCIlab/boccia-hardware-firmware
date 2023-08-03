@@ -138,6 +138,7 @@ void LinearActuator::presetRange(int lower_limit, int higher_limit)
 
     // If limits are backwards, drive the motor the opposite direction
     if (_limits[0]>_limits[1]) { _dir_correction = -1; }
+    Serial.println("Manually set limits to " + String(_limits[0]) + " & " + String(_limits[1]));
 }
 
 void LinearActuator::moveToPercentage(int percentage)
@@ -214,10 +215,10 @@ void LinearActuator::moveToPercentageRange(int percentage)
     while (!position_reached)
     {
         curr_reading = 0;
+
         for (int i=0; i<num_readings; i++) { curr_reading = curr_reading + analogRead(_pin_pot); }
         curr_reading = curr_reading / num_readings;
-        // curr_reading = analogRead(_pin_pot);
-        Serial.println(" Current loop: " + String(curr_reading));
+
         if (curr_reading < (resistance-buffer)) { driveActuator(1*_dir_correction);  }
         else if (curr_reading > (resistance+buffer)) { driveActuator(-1*_dir_correction);  }
         else 
@@ -253,18 +254,50 @@ void LinearActuator::driveTime(int direction, int time)
     driveActuator(0);
 }
 
-void LinearActuator::moveOverLimit(int percentage)
+int LinearActuator::moveOverLimit(int target_percentage)
 {
-    if (percentage>100)
+    if (target_percentage>100)
     {   
         Serial.println("Movement requested over 100%, will limit to 100%");
-        percentage = 100;   
+        target_percentage = 100;   
     }
-    else if (percentage<0)
+    else if (target_percentage<0)
     {   
         Serial.println("Movement requested under 0%, will limit to 0%");
-        percentage = 0;     
+        target_percentage = 0;     
     }
+
+    return target_percentage;
+}
+
+void LinearActuator::moveByPercentage(int percentage)
+{
+    if (_limits[0]==0 && _limits[1]==0)
+    {
+        Serial.println("No limits set, please set limits first");
+        return;
+    }
+
+    // Calculate target percentage
+    float curr_reading = analogRead(_pin_pot);
+    int target_percentage = ADCToPercentage(curr_reading) + percentage;
+
+    moveToPercentage(target_percentage);
+}
+
+void LinearActuator::moveByPercentageRange(int percentage)
+{
+    if (_limits[0]==0 && _limits[1]==0)
+    {
+        Serial.println("No limits set, please set limits first");
+        return;
+    }
+    
+    // Calculate target percentage
+    float curr_reading = analogRead(_pin_pot);
+    int target_percentage = int(floor(ADCToPercentage(curr_reading))) + percentage;
+
+    moveToPercentageRange(target_percentage);
 }
 
     
