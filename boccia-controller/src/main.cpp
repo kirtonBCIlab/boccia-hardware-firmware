@@ -98,9 +98,9 @@ void setup() {
   // elevation.initializePins();
 
   // Check that sensors are cleared
-  release.clearSensorWhileStop(release_interrupt_pins[1]);
-  rotation.clearSensorWhileStop(rotation_interrupt_pins[0]);
-  rotation.clearSensorWhileStop(rotation_interrupt_pins[1]);
+  release.clearSensorWhileStopped(release_interrupt_pins[1]);
+  rotation.clearSensorWhileStopped(rotation_interrupt_pins[0]);
+  rotation.clearSensorWhileStopped(rotation_interrupt_pins[1]);
   
   // Interrupts
   attachInterrupt(digitalPinToInterrupt(release_interrupt_pins[1]), releaseLimit, RISING);

@@ -60,43 +60,38 @@ class BocciaStepper:public AccelStepper
 
     /// @brief Moves the motor off the sensor before calibration. 
     /// @param pin pin to check if the sensor is activated.
-    void clearSensorWhileStop(int pin);
+    void clearSensorWhileStopped(int pin);
 
     /// @brief Moves the stepper the desired amount of degrees.
     ///        Takes into to consideration nsteps and gear_ratio.
     /// @param degrees Number of degrees that the stepper motor will move.
     void moveDegrees(int degrees);
 
-    private:
-      int _pin_step;                // Pin connected to step input of driver
-      int _pin_dir;                 // Pin connected to dir input of driver
-      int _interrupt_pins[2] = {0}; // List with pins connected to interrupts [left, right]
-      int _nsteps;                  // Number of steps for a full rotation
-      int _nsteps_return;           // Number of steps to return if limitDetected()
-      int _default_speed;           // Default speed [steps/sec]
-      int _default_accel;           // Default acceleration [steps/(sec^2)]
-      bool _use_limits;             // Bool to know whether to use limits [enable for motors with two optical sensors]
-      int _gear_ratio;              // Gear ratio used in hardware mechanism [output:intput]
+  private:
+    int _pin_step;                // Pin connected to step input of driver
+    int _pin_dir;                 // Pin connected to dir input of driver
+    int _interrupt_pins[2] = {0}; // List with pins connected to interrupts [left, right]
+    int _nsteps;                  // Number of steps for a full rotation
+    int _nsteps_return;           // Number of steps to return if limitDetected()
+    int _default_speed;           // Default speed [steps/sec]
+    int _default_accel;           // Default acceleration [steps/(sec^2)]
+    bool _use_limits;             // Bool to know whether to use limits [enable for motors with two optical sensors]
+    int _gear_ratio;              // Gear ratio used in hardware mechanism [output:intput]
 
-      bool _limit_flag = 0;         // Limit flag (raised when an interrupt has activated)
+    bool _limit_flag = 0;         // Limit flag (raised when an interrupt has activated)
 
-      /// @brief Set the values for the upper and lower limit for the
-      ///        first time, or updates the values of the limits if one of the sensors
-      ///        is touched while the motor is moving.
-      void setLimits();
+    /// @brief Set the values for the upper and lower limit for the
+    ///        first time, or updates the values of the limits if one of the sensors
+    ///        is touched while the motor is moving.
+    void setLimits();
 
-      /// @brief Check that the limit requested is within the current limits
-      /// @param relative Relative position that the stepper is trying to get to [nsteps].
-      void requestedWithinLimits(long relative);
+    /// @brief Check that the limit requested is within the current limits
+    /// @param relative Relative position that the stepper is trying to get to [nsteps].
+    void requestedWithinLimits(long relative);
 
-      /// @brief Moves the motor off the sensor before calibration. 
-      /// @param pin pin to check if the sensor is activated.
-      /// @param relative Relative position that the stepper is trying to get to [nsteps].
-      void clearSensorWhileMoving(int pin, long relative);
-
-
+    /// @brief Moves the motor off the sensor before calibration. 
+    /// @param pin pin to check if the sensor is activated.
+    /// @param relative Relative position that the stepper is trying to get to [nsteps].
+    void clearSensorWhileMoving(int pin, long relative);
 };
-
-
-
 #endif

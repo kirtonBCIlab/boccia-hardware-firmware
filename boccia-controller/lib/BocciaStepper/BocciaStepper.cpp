@@ -100,7 +100,7 @@
     moveDegrees(-2*degrees);
   }
 
-  void BocciaStepper::clearSensorWhileStop(int pin)
+  void BocciaStepper::clearSensorWhileStopped(int pin)
   {
     if (digitalReadDebounce(pin,5,1))
     {
