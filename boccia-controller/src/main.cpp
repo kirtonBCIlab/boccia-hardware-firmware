@@ -248,14 +248,16 @@ void decodeCommand()
     {
         case 1: release.releaseBall(movement);        break;
         case 2: rotation.moveDegrees(movement);       break;  
-        case 3: incline.moveToPercentage(movement);   break;
-        case 4: elevation.moveToPercentageRange(movement); break;
+        case 3: incline.moveByPercentage(movement);   break;
+        case 4: elevation.moveByPercentageRange(movement); break;
 
-        case 9:
+        case 8:
         {
-            int motor_calibration = abs(floor(movement/100));
-            motor_name = motor_names[motor_calibration-1];
-            Serial.println("Recalibrating: " + String(motor_name));
+            Serial.println("hola");
+            int motor_calibration = abs(movement/100);
+            Serial.print("Motor calibration: " + String(motor_calibration));
+            // motor_name = motor_names[motor_calibration-1];
+            // Serial.println("Recalibrating: " + String(motor_name));
 
             switch (motor_calibration)
             {
@@ -263,7 +265,7 @@ void decodeCommand()
                 case 2: rotation.findRange(); break;
                 case 3: incline.findRange(); break;
                 case 4: elevation.findRange(); break;
-                case 5: elevation.presetRange(elevator_manual_limits[1], elevator_manual_limits[2]); break;
+                case 5: elevation.presetRange(elevator_manual_limits[0], elevator_manual_limits[1]); break;
                 default: Serial.println("Incorrect command to calibrate");
             }
         } break;   
