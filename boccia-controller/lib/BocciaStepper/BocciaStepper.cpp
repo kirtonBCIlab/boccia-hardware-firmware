@@ -46,20 +46,7 @@
       setAcceleration(_default_accel);
     
       // If the requested value exceeds set limits, readjust
-      if (_use_limits && (limits[0]!=0 && limits[1]!=0))
-      {
-      long end_position = relative + currentPosition(); 
-      if (end_position < limits[0])
-        {
-          Serial.println("The requested movement will hit the lower limit\nReadjusting value");
-          relative = limits[0] - currentPosition(); 
-        }
-      else if (end_position > limits[1])
-        {
-          Serial.println("The requested movement will hit the higher limit\nReadjusting value");
-          relative = limits[1] - currentPosition();
-        }
-      } 
+      requestedWithinLimits(relative);
       
       // Set movement and get there
       move(relative);
@@ -68,36 +55,67 @@
         run();
 
         // If limit detected, quickly stop and return motor
-        if (_limit_flag)
-        {
-          if (digitalReadDebounce(active_interrupt_pin,5,1))
-          {          
-            // Stop motor
-            Serial.println("Stopping");
-            setAcceleration(_default_accel * 10);
-            stop();
-            runToPosition();
-            
-            // Return motor _nsteps_return
-            int step_dir = signum(float(relative), 0.0);  // Current movement direction
-            setAcceleration(_default_accel);
-            Serial.println("Return" + String(-step_dir*_nsteps_return));
-            move(-step_dir*_nsteps_return);
-            runToPosition();
-            
-            // Reset limits
-            if (_use_limits) { setLimits(); }
-          }
-          _limit_flag = 0; // Restart flag
-        }
-
+        if (_limit_flag) { clearSensorWhileMoving(active_interrupt_pin, relative); }
       } while (distanceToGo() != 0);  
     }
+
+  void BocciaStepper::limitDetected()
+  {
+    _limit_flag = 1;    
+  }
+
+  void BocciaStepper::findRange()
+    {
+      // Start with position at 0 and reset limits
+      Serial.println("Reseting stepper position and limits");
+      setCurrentPosition(0);
+      limits[0] = 0;
+      limits[1] = 0;
+
+      moveDegrees(_nsteps);   // Find upper limit
+      moveDegrees(-_nsteps);  // Find lower limit
+
+      // Calculate mid point and move there
+      // TODO: Implement this
+      // float current_pos = currentPosition();
+      float current_position = currentPosition();
+      float midpoint = floor((limits[1]-limits[0])/2)+limits[0];
+      Serial.println("Serial midpoint: " + String(midpoint));
+      Serial.println("Serial current: " + String(current_position));
+      
+      moveRun(long(abs(midpoint-current_position)));
+      Serial.println("End point: " + String(currentPosition()));
+      
+    }
+
+  void BocciaStepper::groundInputs()
+  {
+    digitalWrite(_pin_step, 0);
+    digitalWrite(_pin_dir, 0);
+  }
 
   void BocciaStepper::releaseBall(long degrees)
   {
     moveDegrees(degrees);
     moveDegrees(-2*degrees);
+  }
+
+  void BocciaStepper::clearSensorWhileStop(int pin)
+  {
+    if (digitalReadDebounce(pin,5,1))
+    {
+      if (pin == _interrupt_pins[0]) { moveRun(_nsteps_return); }
+      else if (pin == _interrupt_pins[1]) { moveRun(-_nsteps_return); }
+
+      Serial.println("Pin " + String(pin) + " activated, clearing sensor");
+      waitMillis(100);
+    }
+  }
+  
+  void BocciaStepper::moveDegrees(int degrees)
+  {
+    int steps = int(floor(float(_gear_ratio)*float(degrees)*float(_nsteps)/360));
+    moveRun(steps);
   }
 
   void BocciaStepper::setLimits()
@@ -140,45 +158,53 @@
 
   }
 
-  void BocciaStepper::limitDetected()
+  void BocciaStepper::requestedWithinLimits(long relative)
   {
-    _limit_flag = 1;    
+    // If we are using limits and they are set
+    if (_use_limits && (limits[0]!=0 && limits[1]!=0))
+      {
+      long end_position = relative + currentPosition(); 
+      if (end_position < limits[0])
+        {
+          Serial.println("The requested movement will hit the lower limit\nReadjusting value");
+          relative = limits[0] - currentPosition(); 
+        }
+      else if (end_position > limits[1])
+        {
+          Serial.println("The requested movement will hit the higher limit\nReadjusting value");
+          relative = limits[1] - currentPosition();
+        }
+      } 
+
   }
 
-  void BocciaStepper::findRange()
+  void BocciaStepper::clearSensorWhileMoving(int pin, long relative)
   {
-    setCurrentPosition(0);
+    pin = active_interrupt_pin;
 
-    moveDegrees(_nsteps);   // Find upper limit
-    moveDegrees(-_nsteps);  // Find lower limit
-
-    // Calculate mid point and move there
-    // TODO: Implement this
-    // float midpoint = floor((limits[1]-limits[0])/2);
-    // moveTo(long(midpoint));
-    // runToPosition();
-    
-  }
-
-  void BocciaStepper::groundInputs()
-  {
-    digitalWrite(_pin_step, 0);
-    digitalWrite(_pin_dir, 0);
-  }
-
-  void BocciaStepper::clearSensorWhileStop(int pin)
-  {
+    // Check that the sensor has stabilized, and is active
     if (digitalReadDebounce(pin,5,1))
-    {
-      if (pin == _interrupt_pins[0]) { moveRun(-_nsteps_return); }
-      else if (pin == _interrupt_pins[1]) { moveRun(_nsteps_return); }
-
-      waitMillis(100);
+    {          
+      // Stop motor
+      Serial.println("Limit detected, stopping");
+      setAcceleration(_default_accel * 10);
+      stop();
+      runToPosition();
+      
+      // Find current direction and return motor _nsteps_return
+      int step_dir = signum(float(relative), 0.0);
+      Serial.println("Returning " + String(-step_dir*_nsteps_return) + " steps");
+      setAcceleration(_default_accel);            
+      move(-step_dir*_nsteps_return);
+      runToPosition();
+      
+      // Reset limits
+      if (_use_limits) { setLimits(); }
     }
+    _limit_flag = 0; // Restart flag
   }
+  
+  
+ 
 
-  void BocciaStepper::moveDegrees(int degrees)
-  {
-    int steps = int(floor(float(_gear_ratio)*float(degrees)*float(_nsteps)/360));
-    moveRun(steps);
-  }
+  
