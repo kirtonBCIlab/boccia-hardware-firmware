@@ -270,7 +270,7 @@ void decodeCommand()
   }
 
   if (motor != 9)
-  {
+  { 
     Serial.println("\nCommand received: " + String(command));
     Serial.println("Movement request: ");
     Serial.println("- Motor: " + motor_name);

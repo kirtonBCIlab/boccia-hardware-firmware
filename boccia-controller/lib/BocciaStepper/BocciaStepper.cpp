@@ -75,7 +75,7 @@
       moveDegrees(_nsteps);   // Find upper limit
       moveDegrees(-_nsteps);  // Find lower limit
 
-      // Calculate mid point and move there
+      // Calculate mid point and move there 
       // TODO: Implement this
       // float current_pos = currentPosition();
       float current_position = currentPosition();

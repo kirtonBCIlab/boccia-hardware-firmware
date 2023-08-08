@@ -69,7 +69,7 @@ class BocciaStepper:public AccelStepper
 
   private:
     int _pin_step;                // Pin connected to step input of driver
-    int _pin_dir;                 // Pin connected to dir input of driver
+    int _pin_dir;                 // Pin connected  to dir input of driver
     int _interrupt_pins[2] = {0}; // List with pins connected to interrupts [left, right]
     int _nsteps;                  // Number of steps for a full rotation
     int _nsteps_return;           // Number of steps to return if limitDetected()
