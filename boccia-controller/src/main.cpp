@@ -261,6 +261,21 @@ void decodeCommand()
         case 3: incline.findRange(); break;
         case 4: elevation.findRange(); break;
         case 5: elevation.presetRange(elevator_manual_limits[1], elevator_manual_limits[2]); break;
+        case 7: //calibration
+        {
+          release.moveDegrees(release_nsteps);
+          rotation.findRange();
+          //incline.findRange();
+          elevation.findRange();
+          elevation.presetRange(elevator_manual_limits[1], elevator_manual_limits[2]); 
+          break;
+        }
+        case 8: //reset to calibrated positions
+        {
+          release.moveDegrees(release_nsteps);
+          rotation.moveToMiddle();
+          elevation.moveToPercentageRange(50);
+        }
         default: Serial.println("Incorrect command to calibrate");
       }
     } break;   
