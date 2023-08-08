@@ -69,7 +69,7 @@ class BocciaStepper:public AccelStepper
     int midpoint =0 ;
 
 
-    /// @brief Moves to middle of rotation limits
+    /// @brief Moves to middle of rotation limits 
     void moveToMiddle();
 
 
