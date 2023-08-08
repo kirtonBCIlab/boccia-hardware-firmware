@@ -93,7 +93,7 @@
     moveRun(long(abs(midpoint-currentPosition())));
   }
 
-  
+   
   void BocciaStepper::groundInputs()
   {
     digitalWrite(_pin_step, 0);

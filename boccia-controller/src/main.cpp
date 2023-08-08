@@ -274,7 +274,7 @@ void decodeCommand()
         {
           release.moveDegrees(release_nsteps);
           rotation.moveToMiddle();
-          elevation.moveToPercentageRange(50);
+          elevation.moveToPercentageRange(50); 
         }
         default: Serial.println("Incorrect command to calibrate");
       }
