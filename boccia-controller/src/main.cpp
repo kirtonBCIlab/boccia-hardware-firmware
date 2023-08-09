@@ -137,6 +137,7 @@ void setup() {
 
 void loop() 
 {
+  //Checks if serial monitor command is available
   if (Serial.available()) { decodeCommand(); }
   waitMillis(250);  // Wait a bit while decoding command
 }
