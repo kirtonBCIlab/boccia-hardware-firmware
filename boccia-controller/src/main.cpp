@@ -248,7 +248,7 @@ void decodeCommand()
     case 3: incline.moveToPercentage(movement);   break;
     case 4: elevation.moveToPercentageRange(movement); break;
 
-    case 9:
+    case 8:
     {
       int motor_calibration = abs(floor(movement/100));
       motor_name = motor_names[motor_calibration-1];
