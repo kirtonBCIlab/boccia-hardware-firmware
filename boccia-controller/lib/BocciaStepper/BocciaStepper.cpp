@@ -83,13 +83,19 @@
       Serial.println("Serial midpoint: " + String(midpoint));
       Serial.println("Serial current: " + String(current_position));
       
-      moveRun(long(abs(midpoint-current_position)));
+      moveToMiddle();
       Serial.println("End point: " + String(currentPosition()));
       
     }
 
   void BocciaStepper::moveToMiddle()
   {
+    if (limits[1] && limits[0] ==0)
+    {
+      Serial.println("limits are not indicated");
+      return;
+    }  
+    midpoint = floor((limits[1]-limits[0])/2)+limits[0];
     moveRun(long(abs(midpoint-currentPosition())));
   }
 

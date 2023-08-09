@@ -267,7 +267,7 @@ void decodeCommand()
           rotation.findRange();
           //incline.findRange();
           elevation.findRange();
-          elevation.presetRange(elevator_manual_limits[1], elevator_manual_limits[2]); 
+          elevation.moveToPercentageRange(50); 
           break;
         }
         case 8: //reset to calibrated positions
