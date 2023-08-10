@@ -13,7 +13,7 @@ int release_interrupt_pins[2] = {0,2};
 int release_nsteps = 800;
 int release_nsteps_return = 30;
 int release_default_speed = 600;
-int release_default_accel = 30;
+int release_default_accel = 20;
 bool release_use_limits = false;
 BocciaStepper release(
     release_pin_step,
