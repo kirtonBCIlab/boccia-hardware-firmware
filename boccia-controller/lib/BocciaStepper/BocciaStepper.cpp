@@ -94,11 +94,11 @@ void BocciaStepper::moveToMiddle()
     
     if ((midpoint-current_position)<0)
         {
-        moveRun(long(abs(midpoint-currentPosition())));
+        moveRun((midpoint-currentPosition()));
         }
     else if ((midpoint-current_position)>0)
         {
-        moveRun(-(midpoint-currentPosition()));
+        moveRun((midpoint-currentPosition()));
         }
     
     Serial.println("End point: " + String(currentPosition()));
