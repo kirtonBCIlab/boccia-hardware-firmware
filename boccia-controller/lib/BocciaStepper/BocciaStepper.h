@@ -69,6 +69,9 @@ class BocciaStepper:public AccelStepper
         /// @param degrees Number of degrees that the stepper motor will move.
         void moveDegrees(int degrees);
 
+        /// @brief Moves to middle of rotation limits 
+        void moveToMiddle();
+        
     private:
         int _pin_step;                // Pin connected to step input of driver
         int _pin_dir;                 // Pin connected to dir input of driver

@@ -11,9 +11,9 @@ int release_pin_step = 5;
 int release_pin_dir = 6;
 int release_interrupt_pins[2] = {0,2};
 int release_nsteps = 800;
-int release_nsteps_return = 15;
+int release_nsteps_return = 30;
 int release_default_speed = 600;
-int release_default_accel = 30;
+int release_default_accel = 20;
 bool release_use_limits = false;
 BocciaStepper release(
     release_pin_step,
@@ -251,24 +251,37 @@ void decodeCommand()
         case 3: incline.moveByPercentage(movement);   break;
         case 4: elevation.moveByPercentageRange(movement); break;
 
-        case 8:
-        {
-            Serial.println("hola");
-            int motor_calibration = abs(movement/100);
-            Serial.print("Motor calibration: " + String(motor_calibration));
-            // motor_name = motor_names[motor_calibration-1];
-            // Serial.println("Recalibrating: " + String(motor_name));
+    case 8:
+    {
+      int motor_calibration = abs(floor(movement/100));
+      motor_name = motor_names[motor_calibration-1];
+      Serial.println("Recalibrating: " + String(motor_name));
 
-            switch (motor_calibration)
-            {
-                case 1: release.moveDegrees(release_nsteps); break;   
-                case 2: rotation.findRange(); break;
-                case 3: incline.findRange(); break;
-                case 4: elevation.findRange(); break;
-                case 5: elevation.presetRange(elevator_manual_limits[0], elevator_manual_limits[1]); break;
-                default: Serial.println("Incorrect command to calibrate");
-            }
-        } break;   
+      switch (motor_calibration)
+      {
+        case 1: release.moveDegrees(release_nsteps); break;   
+        case 2: rotation.findRange(); break;
+        case 3: incline.findRange(); break;
+        case 4: elevation.findRange(); break;
+        case 5: elevation.presetRange(elevator_manual_limits[1], elevator_manual_limits[2]); break;
+        case 7: //calibration
+        {
+          release.moveDegrees(release_nsteps);
+          rotation.findRange();
+          //incline.findRange();
+          elevation.findRange();
+          elevation.moveToPercentageRange(50); 
+          break;
+        }
+        case 8: //reset to calibrated positions
+        {
+          release.moveDegrees(release_nsteps);
+          rotation.moveToMiddle();
+          elevation.moveToPercentageRange(50); 
+        }
+        default: Serial.println("Incorrect command to calibrate");
+      }
+    } break;   
 
         default: Serial.println("Incorrect command: " + String(command));
     }

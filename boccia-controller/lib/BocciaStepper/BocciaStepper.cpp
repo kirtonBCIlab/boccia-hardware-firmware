@@ -75,20 +75,38 @@ void BocciaStepper::findRange()
     moveDegrees(_nsteps);   // Find upper limit
     moveDegrees(-_nsteps);  // Find lower limit
 
-    // Calculate mid point and move there
-    // TODO: Implement this
-    // float current_pos = currentPosition();
+      // Calculate mid point and go there
+      moveToMiddle();      
+}
+
+void BocciaStepper::moveToMiddle()
+{
+    if (limits[1] && limits[0] ==0)
+    {
+        Serial.println("limits are not indicated");
+        return;
+    }  
+
     float current_position = currentPosition();
     float midpoint = floor((limits[1]-limits[0])/2)+limits[0];
     Serial.println("Serial midpoint: " + String(midpoint));
     Serial.println("Serial current: " + String(current_position));
     
-    moveRun(long(abs(midpoint-current_position)));
+    if ((midpoint-current_position)<0)
+        {
+        moveRun((midpoint-currentPosition()));
+        }
+    else if ((midpoint-current_position)>0)
+        {
+        moveRun((midpoint-currentPosition()));
+        }
+    
     Serial.println("End point: " + String(currentPosition()));
 }
 
-void BocciaStepper::groundInputs()
-{
+   
+  void BocciaStepper::groundInputs()
+  {
     digitalWrite(_pin_step, 0);
     digitalWrite(_pin_dir, 0);
 }
